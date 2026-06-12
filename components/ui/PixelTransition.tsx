@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState, type ReactNode } from 'react';
+import { useRef, useEffect, useState, useCallback, type ReactNode } from 'react';
 import { gsap } from 'gsap';
 import './PixelTransition.css';
 
@@ -63,18 +63,7 @@ function PixelTransition({
     }
   }, [gridSize, pixelColor]);
 
-  useEffect(() => {
-    if (!autoPlay || mountedRef.current) return;
-    mountedRef.current = true;
-
-    const timer = requestAnimationFrame(() => {
-      animatePixels(true);
-    });
-
-    return () => cancelAnimationFrame(timer);
-  }, [autoPlay]);
-
-  const animatePixels = (activate: boolean) => {
+  const animatePixels = useCallback((activate: boolean) => {
     setIsActive(activate);
 
     const pixelGridEl = pixelGridRef.current;
@@ -117,7 +106,18 @@ function PixelTransition({
         from: 'random'
       }
     });
-  };
+  }, [setIsActive, animationStepDuration]);
+
+  useEffect(() => {
+    if (!autoPlay || mountedRef.current) return;
+    mountedRef.current = true;
+
+    const timer = requestAnimationFrame(() => {
+      animatePixels(true);
+    });
+
+    return () => cancelAnimationFrame(timer);
+  }, [autoPlay, animatePixels]);
 
   const handleEnter = () => {
     if (!isActive) animatePixels(true);
