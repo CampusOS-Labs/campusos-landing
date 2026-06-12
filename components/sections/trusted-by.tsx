@@ -4,9 +4,9 @@ import LogoLoop, { type LogoItem } from '@/components/ui/LogoLoop';
 
 const PLACEHOLDER_SCHOOLS = [
   'Kidzee Mundhwa, Pune',
+  'St. Arnold\'s Central School, Pune',
   'Riverside School',
   'Greenwood International',
-  'Summit Preparatory',
   'Horizon Institute',
   'Cedar Valley School',
 ];
