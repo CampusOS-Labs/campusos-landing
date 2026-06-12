@@ -9,11 +9,12 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
+import { NeumorphicButton } from "@/components/ui/NeumorphicButton"
 import { cn } from "@/lib/utils"
 
 const solutions = [
   { title: "Billing Infrastructure", href: "/solutions/billing-infrastructure", description: "End-to-end fee collection and reconciliation for schools" },
-  { title: "Announcements", href: "/solutions/announcements", description: "School-wide and personalized announcements delivered, instantly" },
+  { title: "Announcements", href: "/solutions/announcements", description: "School-wide and personalized announcements delivered instantly" },
   { title: "Social Media", href: "/solutions/socials", description: "Manage your social media outreach, growth, and more" },
   { title: "Everything else", href: "/contact", description: "If an existing tool isn't good enought, contact us" }
 ]
@@ -28,6 +29,11 @@ export function Navbar() {
         <div className="flex-1 flex justify-center">
           <NavigationMenu>
             <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuLink href="/blogs" className="px-2.5 py-1.5 text-sm font-medium text-muted-foreground">
+                  Blog
+                </NavigationMenuLink>
+              </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-muted-foreground">Solutions</NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -51,11 +57,6 @@ export function Navbar() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuLink href="/blogs" className="px-2.5 py-1.5 text-sm font-medium text-muted-foreground">
-                  Blog
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
                 <NavigationMenuLink href="/manifesto" className="px-2.5 py-1.5 text-sm font-medium text-muted-foreground">
                   Manifesto
                 </NavigationMenuLink>
@@ -63,12 +64,9 @@ export function Navbar() {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        <Link
-          href="/contact"
-          className="inline-flex h-9 items-center justify-center rounded-2xl bg-foreground px-4 text-sm font-medium text-background transition-colors hover:bg-foreground/90 shrink-0"
-        >
+        <NeumorphicButton href="/contact" compact>
           Contact
-        </Link>
+        </NeumorphicButton>
       </div>
     </header>
   )
