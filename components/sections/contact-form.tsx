@@ -16,9 +16,7 @@ export function ContactForm() {
           </h1>
           <p className="text-white/70 text-sm mt-3 max-w-xs leading-relaxed">
             Most ERP solutions were not built for your school and it shows.
-          </p>
-          <p className="text-white/70 text-sm mt-2 max-w-xs leading-relaxed">
-            Clunky tools, redundant data entry, and patchwork systems quietly cost your school hours every single day.
+            Clunky tools, and patchwork systems quietly cost your school hours every single day.
           </p>
         </div>
         <div className="flex flex-col gap-6 border-r border-border p-6">
