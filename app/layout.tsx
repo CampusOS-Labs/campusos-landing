@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/sections/footer";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const crimsonText = Crimson_Text({
   weight: ["400", "600", "700"],
@@ -29,9 +30,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn("h-full", "antialiased", inter.variable, crimsonText.variable)}>
       <body className="min-h-full flex flex-col">
-        <Navbar />
-        {children}
-        <Footer />
+        <TooltipProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </TooltipProvider>
       </body>
     </html>
   );
