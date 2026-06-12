@@ -1,10 +1,11 @@
 import { getManifesto } from "@/lib/manifesto";
 import markdownToHtml from "@/lib/markdownToHtml";
+import { notFound } from "next/navigation";
 
 export default async function Manifesto() {
   const manifesto = getManifesto();
 
-  if (!manifesto) return null;
+  if (!manifesto) notFound();
 
   const content = await markdownToHtml(manifesto.content);
 

@@ -14,7 +14,7 @@ export default async function Post(props: Params) {
   const post = getPostBySlug(params.slug);
 
   if (!post) {
-    return notFound();
+    notFound();
   }
 
   const content = await markdownToHtml(post.content || "");
@@ -40,7 +40,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
   const post = getPostBySlug(params.slug);
 
   if (!post) {
-    return notFound();
+    notFound();
   }
 
   return {
