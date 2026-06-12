@@ -1,5 +1,9 @@
 import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
 import { TrustedBy } from "@/components/sections/trusted-by";
+import { CoreLoop } from "@/components/sections/CoreLoop";
+import { CustomerStories } from "@/components/sections/CustomerStories";
+import { Problems } from "@/components/sections/Problems";
+
 
 export default function Home() {
   return (
@@ -15,6 +19,9 @@ We fix only breaking operations, so your team stops living in spreadsheets.
         Contact us
       </NeumorphicButton>
       <TrustedBy />
+      <CoreLoop />
+      <Problems />
+      <CustomerStories />
     </main>
   );
 }
