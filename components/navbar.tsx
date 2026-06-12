@@ -35,6 +35,11 @@ export function Navbar() {
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
+                <NavigationMenuLink href="/case-studies" className="px-2.5 py-1.5 text-sm font-medium text-muted-foreground">
+                  Case Studies
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-muted-foreground">Solutions</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid w-[500px] gap-1 p-4 md:grid-cols-2">
