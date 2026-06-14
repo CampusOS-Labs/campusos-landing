@@ -1,6 +1,13 @@
 import { getAllPosts } from "@/lib/api";
 import { PostPreview } from "@/components/blog/post-preview";
+import { createPageMetadata } from "@/lib/site";
 
+export const metadata = createPageMetadata({
+  title: "Blog",
+  description:
+    "Thoughts on campus operations, education technology, and building better tools for schools.",
+  path: "/blogs",
+});
 export default function Blogs() {
   const allPosts = getAllPosts();
 

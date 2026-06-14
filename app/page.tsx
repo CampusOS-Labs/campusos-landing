@@ -3,8 +3,14 @@ import { TrustedBy } from "@/components/sections/trusted-by";
 import { CoreLoop } from "@/components/sections/CoreLoop";
 import { CustomerStories } from "@/components/sections/CustomerStories";
 import { Problems } from "@/components/sections/Problems";
+import { createPageMetadata } from "@/lib/site";
 
-
+export const metadata = createPageMetadata({
+  title: "School Infrastructure for Every Workflow",
+  description:
+    "We fix only breaking operations, so your team stops living in spreadsheets.",
+  path: "/",
+});
 export default function Home() {
   return (
     <main className="flex-1 flex flex-col items-center pt-32">

@@ -1,7 +1,14 @@
 import Image from "next/image";
 import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
 import PixelTransition from '@/components/ui/PixelTransition';
+import { createPageMetadata } from "@/lib/site";
 
+export const metadata = createPageMetadata({
+  title: "Announcements",
+  description:
+    "Notices that reach every parent on WhatsApp, as a direct message.",
+  path: "/solutions/announcements",
+});
 export default function Announcements() {
   return (
     <main className="flex-1 flex flex-col items-center pt-32 px-6">
@@ -21,6 +28,8 @@ export default function Announcements() {
             className="w-full h-full object-cover"
             width={1200}
             height={538}
+            priority
+            sizes="(max-width: 768px) 100vw, 896px"
           />
         }
         gridSize={30}

@@ -4,6 +4,7 @@ import { getAllCaseStudies, getCaseStudyBySlug } from "@/lib/case-studies";
 import markdownToHtml from "@/lib/markdownToHtml";
 import { PostBody } from "@/components/blog/post-body";
 import DateFormatter from "@/components/blog/date-formatter";
+import { createPageMetadata } from "@/lib/site";
 
 type Params = {
   params: Promise<{ slug: string }>;
@@ -43,10 +44,11 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
     notFound();
   }
 
-  return {
-    title: `${caseStudy.title} | CampusOS Case Studies`,
+  return createPageMetadata({
+    title: caseStudy.title,
     description: caseStudy.excerpt,
-  };
+    path: `/case-studies/${caseStudy.slug}`,
+  });
 }
 
 export async function generateStaticParams() {

@@ -1,6 +1,12 @@
 import { CaseStudyPreview } from "@/components/case-studies/case-study-preview";
 import { getAllCaseStudies } from "@/lib/case-studies";
+import { createPageMetadata } from "@/lib/site";
 
+export const metadata = createPageMetadata({
+  title: "Case Studies",
+  description: "Real schools fixing real workflows — one at a time.",
+  path: "/case-studies",
+});
 export default function CaseStudies() {
   const allCaseStudies = getAllCaseStudies();
 

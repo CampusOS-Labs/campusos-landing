@@ -1,5 +1,12 @@
 import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
+import { createPageMetadata } from "@/lib/site";
 
+export const metadata = createPageMetadata({
+  title: "Social Media",
+  description:
+    "Your school's story published consistently across Instagram, X, Facebook, and LinkedIn.",
+  path: "/solutions/socials",
+});
 export default function Socials() {
   return (
     <main className="flex-1 flex flex-col items-center pt-32 px-6">

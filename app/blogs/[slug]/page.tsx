@@ -4,6 +4,7 @@ import { getAllPosts, getPostBySlug } from "@/lib/api";
 import markdownToHtml from "@/lib/markdownToHtml";
 import { PostBody } from "@/components/blog/post-body";
 import DateFormatter from "@/components/blog/date-formatter";
+import { createPageMetadata } from "@/lib/site";
 
 type Params = {
   params: Promise<{ slug: string }>;
@@ -43,10 +44,11 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
     notFound();
   }
 
-  return {
-    title: `${post.title} | CampusOS Blog`,
+  return createPageMetadata({
+    title: post.title,
     description: post.excerpt,
-  };
+    path: `/blogs/${post.slug}`,
+  });
 }
 
 export async function generateStaticParams() {

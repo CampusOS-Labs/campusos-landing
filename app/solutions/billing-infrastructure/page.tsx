@@ -2,7 +2,14 @@ import Image from "next/image";
 import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
 import PixelTransition from '@/components/ui/PixelTransition';
 import { BillingStackLoop } from '@/components/sections/billing-stack-loop';
+import { createPageMetadata } from "@/lib/site";
 
+export const metadata = createPageMetadata({
+  title: "Billing Infrastructure",
+  description:
+    "Fee collection that reconciles itself — one source of truth for school finance.",
+  path: "/solutions/billing-infrastructure",
+});
 export default function BillingInfrastructure() {
   return (
     <main className="flex-1 flex flex-col items-center pt-32 px-6">
@@ -22,6 +29,8 @@ export default function BillingInfrastructure() {
             className="w-full h-full object-cover"
             width={1200}
             height={538}
+            priority
+            sizes="(max-width: 768px) 100vw, 896px"
           />
         }
         gridSize={30}

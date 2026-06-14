@@ -1,7 +1,24 @@
 import { getManifesto } from "@/lib/manifesto";
 import markdownToHtml from "@/lib/markdownToHtml";
 import { notFound } from "next/navigation";
+import { createPageMetadata } from "@/lib/site";
 
+export async function generateMetadata() {
+  const manifesto = getManifesto();
+
+  if (!manifesto) {
+    return createPageMetadata({
+      title: "Manifesto",
+      path: "/manifesto",
+    });
+  }
+
+  return createPageMetadata({
+    title: "Manifesto",
+    description: manifesto.data.description,
+    path: "/manifesto",
+  });
+}
 export default async function Manifesto() {
   const manifesto = getManifesto();
 

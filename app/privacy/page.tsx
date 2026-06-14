@@ -1,5 +1,13 @@
+import Link from "next/link";
 import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
+import { createPageMetadata } from "@/lib/site";
 
+export const metadata = createPageMetadata({
+  title: "Privacy Policy",
+  description:
+    "How CampusOS collects, uses, and protects personal information on our website and school operations platform.",
+  path: "/privacy",
+});
 const sections = [
   {
     title: "1. Information We Collect",
@@ -151,9 +159,9 @@ const sections = [
         </ul>
         <p className="mt-4">
           We do not use third-party advertising or analytics cookies on our website or application. For more details, see our{" "}
-          <a href="/cookies" className="underline underline-offset-2 hover:text-foreground transition-colors">
+          <Link href="/cookies" className="underline underline-offset-2 hover:text-foreground transition-colors">
             Cookie Policy
-          </a>
+          </Link>
           .
         </p>
       </>
@@ -216,9 +224,9 @@ const sections = [
       <>
         <p>
           If you have questions about this Privacy Policy or how we handle your data, contact us at{" "}
-          <a href="/contact" className="underline underline-offset-2 hover:text-foreground transition-colors">
-            campusos.com/contact
-          </a>
+          <Link href="/contact" className="underline underline-offset-2 hover:text-foreground transition-colors">
+            usecampusos.com/contact
+          </Link>
           .
         </p>
         <p className="mt-4">CampusOS, Inc.</p>
