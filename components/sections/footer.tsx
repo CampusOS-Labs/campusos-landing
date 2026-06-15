@@ -3,6 +3,7 @@ import Link from "next/link"
 const solutions = [
   { title: "Billing Infrastructure", href: "/solutions/billing-infrastructure" },
   { title: "Announcements", href: "/solutions/announcements" },
+  { title: "Attendance", href: "/solutions/attendance" },
   { title: "Social Media", href: "/solutions/socials" },
 ]
 
@@ -37,6 +38,9 @@ export function Footer() {
                 </Link>
                 <Link href="/contact" className="text-[16px] text-white/70 hover:text-white transition-colors">
                   Contact
+                </Link>
+                <Link href="/team" className="text-[16px] text-white/70 hover:text-white transition-colors">
+                 Team
                 </Link>
               </div>
             </div>

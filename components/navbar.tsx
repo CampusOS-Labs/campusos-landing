@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils"
 const solutions = [
   { title: "Billing Infrastructure", href: "/solutions/billing-infrastructure", description: "End-to-end fee collection and reconciliation for schools" },
   { title: "Announcements", href: "/solutions/announcements", description: "School-wide and personalized announcements delivered instantly" },
+  { title: "Attendance", href: "/solutions/attendance", description: "Students & teachers' attendance tracking" },
   { title: "Social Media", href: "/solutions/socials", description: "Manage your social media outreach, growth, and more" },
   { title: "Everything else", href: "/contact", description: "If an existing tool isn't good enought, contact us" }
 ]
