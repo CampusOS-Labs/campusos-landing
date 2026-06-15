@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/lib/site";
 export const metadata = createPageMetadata({
   title: "Attendance",
   description:
-    "Notices that reach every parent on WhatsApp, as a direct message.",
+    "Teacher check-in with GPS verification and a live attendance dashboard.",
   path: "/solutions/attendance",
 });
 export default function Attendance() {
@@ -16,8 +16,7 @@ export default function Attendance() {
         Attendance
       </h1>
       <p className="mt-4 text-center text-lg text-muted-foreground max-w-xl">
-        {/*School-wide and personalized attendance tracking delivered, instantly*/}
-        Notices that reach every parent on WhatsApp, as a direct message.
+        Teachers check in on their phone. You see who&apos;s on campus in real time.
       </p>
       <PixelTransition
         firstContent={<div className="w-full h-full bg-white" />}
@@ -43,41 +42,44 @@ export default function Attendance() {
       />
       <div className="mt-16 grid w-full max-w-5xl grid-cols-3 gap-4">
         <div className="aspect-[2/1] rounded-xl border bg-white flex flex-col items-center justify-center gap-1.5 px-4 text-center">
-          <span className="text-4xl font-semibold font-heading">98.4%</span>
-          <span className="text-sm font-medium">Parent read rate</span>
+          <span className="text-4xl font-semibold font-heading">&lt; 12 sec</span>
+          <span className="text-sm font-medium">Teacher check-in</span>
           <span className="text-xs text-muted-foreground leading-snug max-w-[220px]">
-            Direct WhatsApp messages get opened — not buried in group scroll.
+            Scan the QR, pick a name, confirm location — no app to install.
           </span>
         </div>
         <div className="aspect-[2/1] rounded-xl border bg-white flex flex-col items-center justify-center gap-1.5 px-4 text-center">
-          <span className="text-4xl font-semibold font-heading">&lt; 2 min</span>
-          <span className="text-sm font-medium">School-wide broadcast</span>
+          <span className="text-4xl font-semibold font-heading">GPS</span>
+          <span className="text-sm font-medium">On-site verification</span>
           <span className="text-xs text-muted-foreground leading-snug max-w-[220px]">
-            One template reaches every parent without manual forwarding.
+            Check-ins validate against your school geofence, with an override when GPS misses.
           </span>
         </div>
         <div className="aspect-[2/1] rounded-xl border bg-white flex flex-col items-center justify-center gap-1.5 px-4 text-center">
-          <span className="text-4xl font-semibold font-heading">72%</span>
-          <span className="text-sm font-medium">Fewer repeat inquiries</span>
+          <span className="text-4xl font-semibold font-heading">Live</span>
+          <span className="text-sm font-medium">Staff dashboard</span>
           <span className="text-xs text-muted-foreground leading-snug max-w-[220px]">
-            Clear notices cut the follow-up questions teachers answer every week.
+            See who checked in, who&apos;s still pending, and arrival times from one screen.
           </span>
         </div>
       </div>
       <div className="w-full border-t mt-24 mb-24" />
       <h2 className="text-5xl font-light tracking-tight text-center max-w-3xl font-heading leading-[1.05] mb-12">
-        Outcomes for Announcements
+        Outcomes for Attendance
       </h2>
       <div className="mt-16 max-w-2xl space-y-6">
         <p className="text-muted-foreground leading-relaxed">
-          Stuck with creating WhatsApp groups, adding parents contacts manually and sending messages?
-          Sometimes parents don't even bother checking until its too late, and reach back out to teachers asking the same explained question again.
+          Most schools still rely on paper registers or memory to know who showed up.
+          By the time someone asks, you&apos;re going through pages instead of looking at a clear record of who arrived and when.
         </p>
         <p className="text-muted-foreground leading-relaxed">
-          We've built a solution on top of WhatsApp, so nothing really changes for the parents getting these annoucements. What does change is the ease of use and the efficiency of the process. We help you sync contacts when onboarding, you can create groups to send out mass annoucements, each annoucement is receieved by the parent as a direct message so it feels personalized from the get go.
+          CampusOS starts with teacher attendance. Display a QR code at the entrance. Teachers scan it,
+          select their name on a simple mobile page, and check in with one tap. Their location is verified
+          against your school geofence, so you know the check-in happened on campus, not from home. More safety measures are in place to ensure no buddy punching is happening.
         </p>
         <p className="text-muted-foreground leading-relaxed">
-          You can create templates to send out mass annoucements, send them links to pay the fee as an unpaid fee payment reminder, share you kids' activity videos, images, documents and more all from our own dashboard, only a few clicks away.
+          Your staff dashboard updates instantly: checked-in teachers with timestamps, a pending list for
+          anyone who hasn&apos;t arrived yet, and status for on-site vs. manual override when GPS is off.
         </p>
       </div>
       <NeumorphicButton href="/contact" className="mt-12">

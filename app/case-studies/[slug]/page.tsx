@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { getAllCaseStudies, getCaseStudyBySlug } from "@/lib/case-studies";
 import markdownToHtml from "@/lib/markdownToHtml";
 import { PostBody } from "@/components/blog/post-body";
-import DateFormatter from "@/components/blog/date-formatter";
+import { PostMeta } from "@/components/blog/post-meta";
 import { createPageMetadata } from "@/lib/site";
 
 type Params = {
@@ -26,9 +26,7 @@ export default async function CaseStudyPage(props: Params) {
         <h1 className="text-5xl font-heading font-semibold tracking-tight leading-tight">
           {caseStudy.title}
         </h1>
-        <div className="mt-4 text-muted-foreground">
-          <DateFormatter dateString={caseStudy.date} />
-        </div>
+        <PostMeta author={caseStudy.author} date={caseStudy.date} />
         <hr className="my-8 border-border" />
         <PostBody content={content} />
       </article>

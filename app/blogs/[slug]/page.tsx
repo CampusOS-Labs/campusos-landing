@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "@/lib/api";
 import markdownToHtml from "@/lib/markdownToHtml";
 import { PostBody } from "@/components/blog/post-body";
-import DateFormatter from "@/components/blog/date-formatter";
+import { PostMeta } from "@/components/blog/post-meta";
 import { createPageMetadata } from "@/lib/site";
 
 type Params = {
@@ -26,9 +26,7 @@ export default async function Post(props: Params) {
         <h1 className="text-5xl font-heading font-semibold tracking-tight leading-tight">
           {post.title}
         </h1>
-        <div className="mt-4 text-muted-foreground">
-          <DateFormatter dateString={post.date} />
-        </div>
+        <PostMeta author={post.author} date={post.date} />
         <hr className="my-8 border-border" />
         <PostBody content={content} />
       </article>

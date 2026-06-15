@@ -33,7 +33,9 @@ If he's not being the reply guy on twitter, he's either writing code or satisfyi
   {
     name: "Samarth Ghadipatil",
     role: "Co-founder",
-    bio: "Add your co-founder's bio here — what they built before CampusOS, what part of the product they own, and why they're obsessed with fixing school operations.",
+    bio: `Samarth, game dev, he's all things optimization. Right now he's probably catching up on sleep.
+When he's not working on CampusOS, he's either watching UFC or being emo online.
+    `,
   },
 ];
 
