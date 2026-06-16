@@ -18,7 +18,7 @@ export default function Home() {
         School Infrastructure<br />
         for Every Workflow
       </h1>
-      <p className="mt-4 text-center text-lg text-muted-foreground max-w-xl">
+      <p className="mt-4 text-center text-lg text-muted-foreground max-w-sm">
 We fix only breaking operations, so your team stops living in spreadsheets.
       </p>
       <NeumorphicButton href="/contact" className="mt-8">
@@ -26,7 +26,7 @@ We fix only breaking operations, so your team stops living in spreadsheets.
       </NeumorphicButton>
       <TrustedBy />
       <CoreLoop />
-      <Problems />
+      {/*<Problems />*/}
       <CustomerStories />
     </main>
   );

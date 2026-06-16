@@ -127,23 +127,6 @@ export function Problems() {
 
         <div />
       </div>
-
-      <div className="grid min-h-[36rem] grid-cols-4 gap-0 border border-border">
-        <div className="border-r border-border" />
-
-        <div className="col-span-2 grid grid-cols-2 border-r border-border">
-          {gaps.map((gap, index) => (
-            <GapCard
-              key={gap.conflict}
-              {...gap}
-              borderRight={index % 2 === 0}
-              borderBottom={index < 2}
-            />
-          ))}
-        </div>
-
-        <div />
-      </div>
     </section>
   );
 }
