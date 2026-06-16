@@ -1,6 +1,6 @@
-import Image from "next/image";
 import markdownToHtml from "@/lib/markdownToHtml";
 import { createPageMetadata } from "@/lib/site";
+import { FounderPortrait } from "@/components/team/founder-portrait";
 
 export const metadata = createPageMetadata({
   title: "Team",
@@ -23,6 +23,7 @@ const founders: Founder[] = [
   {
     name: "Amaan Bilwar",
     role: "Co-founder",
+    image: "/team/amaan.jpg",
     linkedin: "https://www.linkedin.com/in/amaanbilwar/",
     github: "https://github.com/AmaanBilwar",
     x: "https://x.com/BilwarAmaan",
@@ -103,12 +104,10 @@ export default async function TeamPage() {
             <div className="flex flex-col sm:flex-row gap-6 sm:gap-10 items-start">
               <div className="relative aspect-square w-24 md:w-28 shrink-0 overflow-hidden rounded-xl border bg-muted flex items-center justify-center">
                 {founder.image ? (
-                  <Image
+                  <FounderPortrait
                     src={founder.image}
                     alt={founder.name}
-                    fill
-                    className="object-cover"
-                    sizes="112px"
+                    className="absolute inset-0"
                   />
                 ) : (
                   <span className="text-xl font-light font-heading text-muted-foreground/70">
