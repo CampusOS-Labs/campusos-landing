@@ -1,9 +1,9 @@
+import { ContentPageShell } from "@/components/content-page-shell";
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   title: "Values",
-  description:
-    "We work the best when we can rely on teammates with these values.",
+  description: "We work the best when we can rely on teammates with these values.",
   path: "/values",
 });
 
@@ -13,7 +13,7 @@ const values = [
     points: [
       "Don't just talk about it, do it.",
       "Do things that don't scale.",
-      "If it slows you down, cut it."
+      "If it slows you down, cut it.",
     ],
   },
   {
@@ -22,7 +22,6 @@ const values = [
       "Ask questions.",
       "You might be wrong, then learn from it when you are.",
       "Don't break your flow state. Look at your calendar and if you think this could be a message, let them know and cancel the meeting.",
-
     ],
   },
   {
@@ -40,36 +39,40 @@ const values = [
       "Support should be an engineer, and easy to talk to.",
     ],
   },
-
 ];
 
 export default function ValuesPage() {
   return (
-    <main className="flex-1 flex flex-col items-center pt-32 px-6 pb-24">
-      <h1 className="text-6xl font-light tracking-tight text-center max-w-3xl font-heading leading-[1.05]">
-        Our Values
-      </h1>
-      <p className="mt-4 text-center text-lg text-muted-foreground max-w-xl">
-        We work the best when we can rely on teammates with these values.
-      </p>
-
-      <div className="mt-16 w-full max-w-3xl space-y-12">
+    <ContentPageShell
+      label="Company"
+      title="Our Values"
+      description="We work the best when we can rely on teammates with these values."
+      bottomCta={{
+        headline: "Build with us",
+        subhead: "We're fixing schools one workflow at a time.",
+        buttonLabel: "Contact us",
+      }}
+    >
+      <div className="mx-auto max-w-3xl space-y-0">
         {values.map((value, index) => (
           <section
             key={value.title}
-            className={index > 0 ? "pt-12 border-t" : undefined}
+            className={`border border-border p-8 md:p-10 ${index > 0 ? "border-t-0" : ""}`}
           >
-            <h2 className="text-3xl font-light tracking-tight font-heading leading-[1.1]">
+            <h2 className="font-heading text-3xl font-light leading-[1.1] tracking-tight">
               {value.title}
             </h2>
-            <ul className="mt-3 list-disc pl-5 space-y-1.5 text-muted-foreground leading-relaxed">
+            <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted-foreground">
               {value.points.map((point) => (
-                <li key={point}>{point}</li>
+                <li key={point} className="flex gap-3">
+                  <span className="mt-2 size-1 shrink-0 bg-foreground" />
+                  {point}
+                </li>
               ))}
             </ul>
           </section>
         ))}
       </div>
-    </main>
+    </ContentPageShell>
   );
 }

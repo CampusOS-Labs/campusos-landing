@@ -1,4 +1,5 @@
 import markdownToHtml from "@/lib/markdownToHtml";
+import { ContentPageShell } from "@/components/content-page-shell";
 import { createPageMetadata } from "@/lib/site";
 import { FounderPortrait } from "@/components/team/founder-portrait";
 
@@ -28,15 +29,15 @@ const founders: Founder[] = [
     github: "https://github.com/AmaanBilwar",
     x: "https://x.com/BilwarAmaan",
     bio: `Amaan writes code and does collison installations for CampusOS.
-Before CampusOS, he was 2x [Honeywell](https://automation.honeywell.com/us/en/) intern, 1x [Story](https://www.story.com/) intern.
-If he's not being the reply guy on twitter, he's either writing code or satisfying customers.`,
+Before CampusOS, he was scaling infra and building pipelines at big tech.
+If he's not being the reply guy on twitter, he's either working or ... working.`,
   },
   {
     name: "Samarth Ghadipatil",
     role: "Co-founder",
-    bio: `Samarth, game dev, he's all things optimization. Right now he's probably catching up on sleep.
-When he's not working on CampusOS, he's either watching UFC or being emo online.
-    `,
+    bio: `Samarth, game dev, he's all things optimization and operation at CampusOS.
+Before CampusOS, he was on a random discord call. Right now he's probably catching up on sleep.
+When he's not working on CampusOS, he's either watching UFC or being emo online.`,
   },
 ];
 
@@ -87,22 +88,25 @@ export default async function TeamPage() {
   );
 
   return (
-    <main className="flex-1 flex flex-col items-center pt-32 px-6 pb-24">
-      <h1 className="text-6xl font-light tracking-tight text-center max-w-3xl font-heading leading-[1.05]">
-        Team
-      </h1>
-      <p className="mt-4 text-center text-lg text-muted-foreground max-w-xl">
-        The people building school infrastructure, one workflow at a time.
-      </p>
-
-      <div className="mt-16 w-full max-w-6xl space-y-24">
+    <ContentPageShell
+      label="Company"
+      title="Team"
+      description="The people building school infrastructure, one workflow at a time."
+      fullWidth
+      bottomCta={{
+        headline: "Want to build with us?",
+        subhead: "We're a small team fixing schools one workflow at a time.",
+        buttonLabel: "Contact us",
+      }}
+    >
+      <div className="mx-auto max-w-6xl space-y-0">
         {team.map((founder, index) => (
           <section
             key={founder.name}
-            className={index > 0 ? "pt-24 border-t" : undefined}
+            className={`border border-border p-8 md:p-10 ${index > 0 ? "border-t-0" : ""}`}
           >
-            <div className="flex flex-col sm:flex-row gap-6 sm:gap-10 items-start">
-              <div className="relative aspect-square w-24 md:w-28 shrink-0 overflow-hidden rounded-xl border bg-muted flex items-center justify-center">
+            <div className="flex flex-col items-start gap-6 sm:flex-row sm:gap-10">
+              <div className="relative flex aspect-square w-24 shrink-0 items-center justify-center overflow-hidden border bg-muted md:w-28">
                 {founder.image ? (
                   <FounderPortrait
                     src={founder.image}
@@ -159,6 +163,6 @@ export default async function TeamPage() {
           </section>
         ))}
       </div>
-    </main>
+    </ContentPageShell>
   );
 }

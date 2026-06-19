@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
+
 import { getAllPosts } from "@/lib/api";
 import { getAllCaseStudies } from "@/lib/case-studies";
+import { PERSONAS, PRODUCTS } from "@/lib/products";
 import { SITE_URL } from "@/lib/site";
 
 const staticRoutes = [
@@ -10,10 +12,10 @@ const staticRoutes = [
   "/contact",
   "/manifesto",
   "/privacy",
-  "/cookies",
-  "/solutions/billing-infrastructure",
-  "/solutions/announcements",
-  "/solutions/socials",
+  "/values",
+  "/team",
+  ...PRODUCTS.map((p) => p.href),
+  ...PERSONAS.map((p) => p.href),
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

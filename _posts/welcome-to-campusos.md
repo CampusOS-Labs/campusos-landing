@@ -3,7 +3,7 @@ title: "Welcome to CampusOS"
 excerpt: "Introducing the operating system for modern campus management. Here's what we're building and why."
 date: "2026-01-15T10:00:00.000Z"
 author:
-  name: CampusOS Team
+  name: Amaan
   picture: ""
 ogImage:
   url: ""

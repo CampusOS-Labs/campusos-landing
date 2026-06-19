@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
+
+import { BottomCta } from "@/components/sections/bottom-cta";
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
@@ -237,35 +238,47 @@ const sections = [
 
 export default function Privacy() {
   return (
-    <main className="flex-1 flex flex-col items-center pt-32 px-6 pb-24">
-      <h1 className="text-6xl font-light tracking-tight text-center max-w-3xl font-heading leading-[1.05]">
-        Privacy Policy
-      </h1>
-      <p className="mt-4 text-center text-lg text-muted-foreground max-w-xl">
-        Last updated: June 12, 2026
-      </p>
-
-      <div className="mt-16 max-w-2xl space-y-10">
-        <p className="text-muted-foreground leading-relaxed">
-          CampusOS, Inc. (&quot;CampusOS&quot;, &quot;we&quot;, &quot;our&quot;) respects your privacy. This Privacy Policy explains how we collect, use, disclose, and protect personal information when you visit our website or use our school operations platform and related services.
+    <>
+      <main className="flex flex-1 flex-col items-center px-6 pt-32">
+        <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+          Legal
+        </p>
+        <h1 className="mt-4 max-w-3xl text-center font-heading text-6xl font-light leading-[1.05] tracking-tight">
+          Privacy Policy
+        </h1>
+        <p className="mt-4 max-w-xl text-center text-lg text-muted-foreground">
+          Last updated: June 12, 2026
         </p>
 
-        {sections.map((section) => (
-          <section key={section.title}>
-            <div className="w-full h-px bg-muted mb-8" />
-            <h2 className="text-3xl font-light tracking-tight font-heading leading-[1.1]">
-              {section.title}
-            </h2>
-            <div className="mt-4 text-muted-foreground leading-relaxed space-y-4">
-              {section.content}
-            </div>
-          </section>
-        ))}
-      </div>
+        <div className="mt-16 max-w-2xl space-y-0">
+          <div className="border border-border p-8 text-sm leading-relaxed text-muted-foreground">
+            CampusOS, Inc. (&quot;CampusOS&quot;, &quot;we&quot;, &quot;our&quot;) respects your privacy.
+            This Privacy Policy explains how we collect, use, disclose, and protect personal
+            information when you visit our website or use our school operations platform and related
+            services.
+          </div>
 
-      <NeumorphicButton href="/contact" className="mt-16">
-        Contact us
-      </NeumorphicButton>
-    </main>
+          {sections.map((section, index) => (
+            <section
+              key={section.title}
+              className={`border border-border border-t-0 p-8 ${index === sections.length - 1 ? "" : ""}`}
+            >
+              <h2 className="font-heading text-3xl font-light leading-[1.1] tracking-tight">
+                {section.title}
+              </h2>
+              <div className="mt-4 space-y-4 text-sm leading-relaxed text-muted-foreground">
+                {section.content}
+              </div>
+            </section>
+          ))}
+        </div>
+      </main>
+
+      <BottomCta
+        headline="Questions about your data?"
+        subhead="We're happy to walk through how CampusOS handles school and parent information."
+        buttonLabel="Contact us"
+      />
+    </>
   );
 }

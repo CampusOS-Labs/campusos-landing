@@ -236,10 +236,33 @@ From `_manifesto/our-manifesto.md` — already strong; compress for UI:
 
 ---
 
+## Willow-inspired homepage map (new-landing-page branch)
+
+Scroll narrative adapted from [Willow Voice](https://willowvoice.com/) — structure only, CampusOS box-corner visuals.
+
+| # | Section | Component | Copy anchor |
+|---|---------|-----------|-------------|
+| 1 | Hero | inline | "Run your school without running on spreadsheets" |
+| 2 | Trusted by | `TrustedBy` | School logos |
+| 3 | The shift | `TheShift` | Thesis + 98.4% / < 2 min / 97.2% stats |
+| 4 | How it works | `HowItWorks` | Connect → Audit → Run + mock UI |
+| 5 | Products | `ProductShowcase` | Billing, Announcements, Attendance modules |
+| 6 | Capabilities | `CapabilityGrid` | 9 capability rows |
+| 7 | Wall of love | `WallOfLove` | Kidzee quotes |
+| 8 | Customer stories | `CustomerStories` | Case study promos |
+| 9 | Bottom CTA | `BottomCta` | "Your spreadsheets are optional now" |
+
+Persona pages: `/for-owners`, `/for-admins`, `/for-teachers`
+
+Product data lives in `lib/products.ts`. Mock UI previews in `components/ui/mock-ui-frame.tsx`.
+
+---
+
 ## Files to update when copy is finalized
 
 - `app/page.tsx` — homepage sections
-- `app/solutions/billing-infrastructure/page.tsx`
-- `app/solutions/announcements/page.tsx`
-- `app/solutions/socials/page.tsx`
+- `app/products/billing-infrastructure/page.tsx`
+- `app/products/announcements/page.tsx`
+- `app/products/socials/page.tsx`
+- `lib/products.ts` — shared product/persona copy
 - `_manifesto/our-manifesto.md` — optional alignment pass

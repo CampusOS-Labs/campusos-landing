@@ -12,7 +12,7 @@ export default function Blogs() {
   const allPosts = getAllPosts();
 
   return (
-    <main className="flex-1 flex flex-col items-center pt-32 px-6">
+    <main className="flex-1 flex flex-col items-center pt-32 px-6 pb-24">
       <h1 className="text-6xl font-light tracking-tight text-center max-w-3xl font-heading leading-[1.05]">
         Blog
       </h1>

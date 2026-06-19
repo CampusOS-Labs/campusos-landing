@@ -3,7 +3,7 @@ title: "Attendance and Announcements"
 excerpt: "We went to Kidzee Mundhwa to listen. Announcements and fees came up, like every Kidzee branch, but what they really wanted fixed was teacher attendance."
 date: "2026-06-16T10:00:00.000Z"
 author:
-  name: Amaan Bilwar
+  name: Amaan
   picture: ""
 ogImage:
   url: ""

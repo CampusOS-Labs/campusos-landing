@@ -21,7 +21,7 @@ export default async function CaseStudyPage(props: Params) {
   const content = await markdownToHtml(caseStudy.content || "");
 
   return (
-    <main className="flex-1 flex flex-col items-center pt-32 px-6">
+    <main className="flex-1 flex flex-col items-center pt-32 px-6 pb-24">
       <article className="max-w-3xl w-full">
         <h1 className="text-5xl font-heading font-semibold tracking-tight leading-tight">
           {caseStudy.title}
