@@ -12,11 +12,11 @@ import {
 import { NeumorphicButton } from "@/components/ui/NeumorphicButton"
 import { cn } from "@/lib/utils"
 
-const solutions = [
-  { title: "Billing Infrastructure", href: "/solutions/billing-infrastructure", description: "End-to-end fee collection and reconciliation for schools" },
-  { title: "Announcements", href: "/solutions/announcements", description: "School-wide and personalized announcements delivered instantly" },
-  { title: "Attendance", href: "/solutions/attendance", description: "Teacher check-in with GPS verification and a live dashboard" },
-  { title: "Social Media", href: "/solutions/socials", description: "Manage your social media outreach, growth, and more" },
+const products = [
+  { title: "Billing Infrastructure", href: "/products/billing-infrastructure", description: "End-to-end fee collection and reconciliation for schools" },
+  { title: "Announcements", href: "/products/announcements", description: "School-wide and personalized announcements delivered instantly" },
+  { title: "Attendance", href: "/products/attendance", description: "Teacher check-in with GPS verification and a live dashboard" },
+  { title: "Social Media", href: "/products/socials", description: "Manage your social media outreach, growth, and more" },
   { title: "Everything else", href: "/contact", description: "If an existing tool isn't good enought, contact us" }
 ]
 
@@ -31,20 +31,10 @@ export function Navbar() {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuLink href="/blogs" className="px-2.5 py-1.5 text-sm font-medium text-muted-foreground">
-                  Blog
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink href="/case-studies" className="px-2.5 py-1.5 text-sm font-medium text-muted-foreground">
-                  Case Studies
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-muted-foreground">Solutions</NavigationMenuTrigger>
+                <NavigationMenuTrigger className="text-muted-foreground">Products</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid w-[500px] gap-1 p-4 md:grid-cols-2">
-                    {solutions.map((item) => (
+                    {products.map((item) => (
                       <li key={item.title}>
                         <NavigationMenuLink
                           href={item.href}
@@ -61,6 +51,17 @@ export function Navbar() {
                     ))}
                   </ul>
                 </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink href="/blogs" className="px-2.5 py-1.5 text-sm font-medium text-muted-foreground">
+                  Blog
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuLink href="/case-studies" className="px-2.5 py-1.5 text-sm font-medium text-muted-foreground">
+                  Case Studies
+                </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink href="/manifesto" className="px-2.5 py-1.5 text-sm font-medium text-muted-foreground">
