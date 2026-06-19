@@ -1,6 +1,7 @@
 import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
 import { TrustedBy } from "@/components/sections/trusted-by";
-import { CoreLoop } from "@/components/sections/CoreLoop";
+// import { CoreLoop } from "@/components/sections/CoreLoop";
+import { CoreLoop2 } from "@/components/sections/CoreLoop2";
 import { CustomerStories } from "@/components/sections/CustomerStories";
 import { Problems } from "@/components/sections/Problems";
 import { createPageMetadata } from "@/lib/site";
@@ -25,7 +26,8 @@ We fix only breaking operations, so your team stops living in spreadsheets.
         Contact us
       </NeumorphicButton>
       <TrustedBy />
-      <CoreLoop />
+      <CoreLoop2 />
+      {/*<CoreLoop />*/}
       {/*<Problems />*/}
       <CustomerStories />
     </main>
