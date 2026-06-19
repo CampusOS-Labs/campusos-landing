@@ -1,10 +1,10 @@
 import Link from "next/link"
 
-const solutions = [
-  { title: "Billing Infrastructure", href: "/solutions/billing-infrastructure" },
-  { title: "Announcements", href: "/solutions/announcements" },
-  { title: "Attendance", href: "/solutions/attendance" },
-  { title: "Social Media", href: "/solutions/socials" },
+const products = [
+  { title: "Billing Infrastructure", href: "/products/billing-infrastructure" },
+  { title: "Announcements", href: "/products/announcements" },
+  { title: "Attendance", href: "/products/attendance" },
+  { title: "Social Media", href: "/products/socials" },
 ]
 
 export function Footer() {
@@ -16,7 +16,7 @@ export function Footer() {
             <div>
               <p className="text-[16px] text-white mb-2">Product</p>
               <div className="flex flex-col gap-1">
-                {solutions.map((item) => (
+                {products.map((item) => (
                   <Link
                     key={item.title}
                     href={item.href}
@@ -79,9 +79,6 @@ export function Footer() {
               <div className="flex flex-col gap-1">
                 <Link href="/privacy" className="text-[16px] text-white/70 hover:text-white transition-colors">
                   Privacy
-                </Link>
-                <Link href="/cookies" className="text-[16px] text-white/70 hover:text-white transition-colors">
-                  Cookies
                 </Link>
               </div>
             </div>
