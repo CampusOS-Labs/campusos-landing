@@ -39,6 +39,9 @@ export function Footer() {
                 <Link href="/contact" className="text-[16px] text-white/70 hover:text-white transition-colors">
                   Contact
                 </Link>
+                <Link href="/values" className="text-[16px] text-white/70 hover:text-white transition-colors">
+                  Values
+                </Link>
                 <Link href="/team" className="text-[16px] text-white/70 hover:text-white transition-colors">
                  Team
                 </Link>
