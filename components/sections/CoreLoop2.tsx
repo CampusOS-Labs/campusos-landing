@@ -55,7 +55,7 @@ function PillarRow({
   );
 }
 
-export function CoreLoop() {
+export function CoreLoop2() {
   return (
     <section className="mt-24 flex w-full flex-col gap-16 self-stretch">
       <PillarRow
