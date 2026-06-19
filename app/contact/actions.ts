@@ -1,5 +1,7 @@
 "use server";
 
+import { headers } from "next/headers";
+
 export type ContactFormState = {
   status: "idle" | "success" | "error";
   message?: string;
@@ -7,6 +9,27 @@ export type ContactFormState = {
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+async function resolveContactApiUrl() {
+  const explicit = process.env.CONTACT_FORM_API_URL?.trim();
+  if (explicit) return explicit;
+
+  const campusosBase = process.env.CAMPUSOS_API_URL?.trim().replace(/\/$/, "");
+  if (campusosBase) return `${campusosBase}/api/contact`;
+
+  const headerList = await headers();
+  const host = headerList.get("x-forwarded-host") ?? headerList.get("host");
+  if (host) {
+    const proto = headerList.get("x-forwarded-proto") ?? "http";
+    return `${proto}://${host}/api/contact`;
+  }
+
+  const vercel = process.env.VERCEL_URL?.trim();
+  if (vercel) return `https://${vercel}/api/contact`;
+
+  const port = process.env.PORT ?? "3000";
+  return `http://localhost:${port}/api/contact`;
 }
 
 export async function submitContactForm(
@@ -37,31 +60,26 @@ export async function submitContactForm(
     schoolName,
     email,
     message,
-    submittedAt: new Date().toISOString(),
   };
 
-  const webhookUrl = process.env.CONTACT_FORM_WEBHOOK_URL;
+  const apiUrl = await resolveContactApiUrl();
 
-  if (webhookUrl) {
-    try {
-      const response = await fetch(webhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
 
-      if (!response.ok) {
-        throw new Error(`Webhook responded with ${response.status}`);
-      }
-    } catch {
-      return {
-        status: "error",
-        message:
-          "We couldn't send your message right now. Please try again in a moment.",
-      };
+    if (!response.ok) {
+      throw new Error(`API responded with ${response.status}`);
     }
-  } else {
-    console.info("[contact-form]", payload);
+  } catch {
+    return {
+      status: "error",
+      message:
+        "We couldn't send your message right now. Please try again in a moment.",
+    };
   }
 
   return {
