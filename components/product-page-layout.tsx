@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import { BottomCta } from "@/components/sections/bottom-cta";
 import { MockUiFrame } from "@/components/ui/mock-ui-frame";
 import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
 import PixelTransition from "@/components/ui/PixelTransition";
@@ -111,9 +110,9 @@ export function ProductPageLayout({
 
       <blockquote className="mt-16 max-w-2xl border-l-2 border-border pl-6">
         <p className="text-lg font-light leading-relaxed">&ldquo;{product.testimonial.quote}&rdquo;</p>
-        <footer className="mt-4 text-sm text-muted-foreground">
+        <cite className="mt-4 block text-sm not-italic text-muted-foreground">
           — {product.testimonial.name}, {product.testimonial.role} · {product.testimonial.school}
-        </footer>
+        </cite>
       </blockquote>
 
       {showBillingStack ? (
@@ -150,12 +149,6 @@ export function ProductPageLayout({
       <NeumorphicButton href="/contact" className="mt-12">
         Get started
       </NeumorphicButton>
-
-      <BottomCta
-        headline={`Fix ${product.label.toLowerCase()} first`}
-        subhead="Start with one workflow. Add the rest when it's running smoothly."
-        buttonLabel="Talk to us"
-      />
     </main>
   );
 }

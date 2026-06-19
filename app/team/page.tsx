@@ -93,11 +93,6 @@ export default async function TeamPage() {
       title="Team"
       description="The people building school infrastructure, one workflow at a time."
       fullWidth
-      bottomCta={{
-        headline: "Want to build with us?",
-        subhead: "We're a small team fixing schools one workflow at a time.",
-        buttonLabel: "Contact us",
-      }}
     >
       <div className="mx-auto max-w-6xl space-y-0">
         {team.map((founder, index) => (

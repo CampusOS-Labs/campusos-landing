@@ -47,11 +47,6 @@ export default function ValuesPage() {
       label="Company"
       title="Our Values"
       description="We work the best when we can rely on teammates with these values."
-      bottomCta={{
-        headline: "Build with us",
-        subhead: "We're fixing schools one workflow at a time.",
-        buttonLabel: "Contact us",
-      }}
     >
       <div className="mx-auto max-w-3xl space-y-0">
         {values.map((value, index) => (

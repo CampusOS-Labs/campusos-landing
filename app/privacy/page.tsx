@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { BottomCta } from "@/components/sections/bottom-cta";
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
@@ -273,12 +272,6 @@ export default function Privacy() {
           ))}
         </div>
       </main>
-
-      <BottomCta
-        headline="Questions about your data?"
-        subhead="We're happy to walk through how CampusOS handles school and parent information."
-        buttonLabel="Contact us"
-      />
     </>
   );
 }

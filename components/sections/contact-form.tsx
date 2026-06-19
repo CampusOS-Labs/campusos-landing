@@ -23,9 +23,9 @@ export function ContactForm() {
       <div className="grid grid-cols-4 gap-0 border border-border">
         <div className="border-r border-border" />
         <div className="flex min-h-full flex-col items-start justify-start border-r border-border bg-black p-6">
-          <h1 className="font-heading text-2xl font-medium leading-snug tracking-tight text-white">
+          <h2 className="font-heading text-2xl font-medium leading-snug tracking-tight text-white">
             Let&apos;s talk about what&apos;s breaking
-          </h1>
+          </h2>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/70">
             Most ERP solutions were not built for your school and it shows.
             Clunky tools, and patchwork systems quietly cost your school hours
@@ -33,9 +33,9 @@ export function ContactForm() {
           </p>
         </div>
         <div className="flex flex-col gap-6 border-r border-border p-6">
-          <h2 className="font-heading text-2xl font-medium tracking-tight">
+          <h3 className="font-heading text-2xl font-medium tracking-tight">
             How can we help?
-          </h2>
+          </h3>
           <form action={formAction}>
             <FieldGroup className="gap-4">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

@@ -266,7 +266,7 @@ export const CAPABILITIES: Capability[] = [
   {
     icon: ChatsCircleIcon,
     title: "WhatsApp-native delivery",
-    description: "Parents get direct messages — not group scroll they never open.",
+    description: "Parents get direct messages — not group scroll where they have to read a million messages before the important ones.",
   },
   {
     icon: CreditCardIcon,
@@ -274,29 +274,14 @@ export const CAPABILITIES: Capability[] = [
     description: "Payment links, partial payments, and overdue flags in one ledger.",
   },
   {
-    icon: MapPinIcon,
-    title: "GPS attendance",
-    description: "Teachers check in from their phone. Office sees live arrivals.",
-  },
-  {
     icon: BellIcon,
     title: "Broadcast templates",
     description: "PTM reminders, holidays, and fee notices — send in seconds.",
   },
   {
-    icon: ReceiptIcon,
-    title: "Accounting export",
-    description: "Reconciled data flows to the software your finance team uses.",
-  },
-  {
     icon: PlugsConnectedIcon,
     title: "Integrates with your stack",
     description: "Razorpay, UPI, WhatsApp Business — connect what you already have.",
-  },
-  {
-    icon: UsersThreeIcon,
-    title: "Role-based access",
-    description: "Owners, admins, and teachers see exactly what they need.",
   },
   {
     icon: ChartLineUpIcon,
@@ -400,7 +385,7 @@ export const PRODUCT_FAQ = [
   {
     question: "How long does setup take?",
     answer:
-      "Most schools go live in under a week. We sync parent contacts, connect WhatsApp, and train your team on the workflows you pick first.",
+      "A few hours, no really. We show up to your school, help you migrate your data and set everything up.",
   },
   {
     question: "Do parents need to install anything?",

@@ -34,9 +34,9 @@ const trustedLogos: LogoItem[] = TRUSTED_SCHOOLS.map((school) => {
   };
 });
 
-export function TrustedBy() {
+export function TrustedBy({ className }: { className?: string }) {
   return (
-    <section className="mt-24 w-full max-w-5xl px-6">
+    <section className={`w-full max-w-5xl px-6 ${className ?? "mt-24"}`}>
       <p className="mb-8 text-center text-xs font-medium uppercase tracking-widest text-muted-foreground">
         Trusted by
       </p>

@@ -1,4 +1,3 @@
-import { BottomCta } from "@/components/sections/bottom-cta";
 import { MockUiFrame } from "@/components/ui/mock-ui-frame";
 import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
 import { getPersonaById, type PersonaDefinition } from "@/lib/products";
@@ -78,10 +77,6 @@ export function PersonaPageLayout({ personaId }: PersonaPageProps) {
         ))}
       </div>
 
-      <BottomCta
-        headline={`Built for ${persona.label.toLowerCase()}`}
-        subhead="Start with one workflow. We'll train your team on what matters first."
-      />
     </main>
   );
 }

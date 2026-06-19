@@ -3,6 +3,7 @@ import { Crimson_Text, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/navbar";
+import { BottomCta } from "@/components/sections/bottom-cta";
 import { Footer } from "@/components/sections/footer";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import {
@@ -61,6 +62,7 @@ export default function RootLayout({
         <TooltipProvider>
           <Navbar />
           {children}
+          <BottomCta />
           <Footer />
         </TooltipProvider>
       </body>

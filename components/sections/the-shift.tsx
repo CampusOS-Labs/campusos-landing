@@ -1,40 +1,185 @@
-import { SHIFT_STATS } from "@/lib/products";
+"use client";
+
+import { Fragment, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import { GoogleSheetsIcon, WhatsAppIcon } from "@/components/sections/shift-inline-icons";
+
+gsap.registerPlugin(ScrollTrigger);
+
+type ShiftSegment = {
+  text: string;
+  icon?: "sheets" | "whatsapp";
+};
+
+const SHIFT_LINE_ONE = "Your school doesn't break in one place.";
+
+const SHIFT_LINE_TWO: ShiftSegment[] = [
+  { text: "It" },
+  { text: "breaks" },
+  { text: "in" },
+  { text: "the" },
+  { text: "handoffs" },
+  { text: "—" },
+  { text: "between" },
+  { text: "spreadsheets,", icon: "sheets" },
+  { text: "WhatsApp", icon: "whatsapp" },
+  { text: "groups," },
+  { text: "and" },
+  { text: "whoever" },
+  { text: "remembered" },
+  { text: "to" },
+  { text: "update" },
+  { text: "the" },
+  { text: "register." },
+];
+
+function ShiftInlineIcon({ name }: { name: "sheets" | "whatsapp" }) {
+  if (name === "sheets") {
+    return <GoogleSheetsIcon />;
+  }
+
+  return <WhatsAppIcon />;
+}
+
+function ShiftWord({ segment }: { segment: ShiftSegment }) {
+  const commaMatch = segment.text.match(/^(.*?)([,.!?;:]+)$/);
+
+  if (segment.icon) {
+    const label = commaMatch ? `${commaMatch[1]}${commaMatch[2]}` : segment.text;
+
+    return (
+      <span
+        data-shift-word
+        className="inline-flex items-center gap-[0.35em] text-muted-foreground"
+      >
+        <ShiftInlineIcon name={segment.icon} />
+        <span>{label}</span>
+      </span>
+    );
+  }
+
+  return (
+    <span data-shift-word className="inline text-muted-foreground">
+      {segment.text}
+    </span>
+  );
+}
+
+function ShiftWords({
+  segments,
+  className,
+}: {
+  segments: ShiftSegment[];
+  className?: string;
+}) {
+  return (
+    <span className={className}>
+      {segments.map((segment, index) => (
+        <Fragment key={`${segment.text}-${index}`}>
+          {index > 0 ? " " : null}
+          <ShiftWord segment={segment} />
+        </Fragment>
+      ))}
+    </span>
+  );
+}
 
 export function TheShift() {
-  return (
-    <section className="mt-24 w-full max-w-5xl px-6">
-      <div className="grid grid-cols-4 gap-0 border border-border">
-        <div className="border-r border-border" />
-        <div className="col-span-2 border-r border-border p-8">
-          <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-            The shift
-          </p>
-          <p className="mt-6 font-heading text-3xl font-light leading-[1.15] tracking-tight md:text-4xl">
-            Your school doesn&apos;t break in one place. It breaks in the handoffs — between
-            spreadsheets, WhatsApp groups, and whoever remembered to update the register and excel sheets.
-          </p>
-          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            CampusOS fixes one workflow at a time. Connect your tools, audit what&apos;s broken,
-            and run operations that work in production — not another ERP you fight for six months.
-          </p>
-        </div>
-        <div />
-      </div>
+  const sectionRef = useRef<HTMLElement>(null);
+  const textRef = useRef<HTMLParagraphElement>(null);
 
-      <div className="mt-0 grid grid-cols-3 gap-0 border border-t-0 border-border">
-        {SHIFT_STATS.map((stat, index) => (
-          <div
-            key={stat.label}
-            className={`flex flex-col items-center justify-center border-border px-6 py-10 text-center ${
-              index < SHIFT_STATS.length - 1 ? "border-r" : ""
-            }`}
-          >
-            <span className="font-heading text-5xl font-light tracking-tight tabular-nums">
-              {stat.value}
-            </span>
-            <span className="mt-2 max-w-[180px] text-sm text-muted-foreground">{stat.label}</span>
-          </div>
-        ))}
+  useEffect(() => {
+    const section = sectionRef.current;
+    const text = textRef.current;
+    if (!section || !text) return;
+
+    let matchMedia: gsap.MatchMedia | undefined;
+
+    const ctx = gsap.context(() => {
+      const words = gsap.utils.toArray<HTMLElement>("[data-shift-word]", section);
+      if (words.length === 0) return;
+
+      const mutedColor = getComputedStyle(document.documentElement)
+        .getPropertyValue("--muted-foreground")
+        .trim();
+      const activeColor = getComputedStyle(document.documentElement)
+        .getPropertyValue("--foreground")
+        .trim();
+
+      gsap.set(words, { autoAlpha: 0, color: mutedColor });
+
+      matchMedia = gsap.matchMedia();
+
+      matchMedia.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.set(words, { autoAlpha: 1, color: activeColor });
+      });
+
+      matchMedia.add("(prefers-reduced-motion: no-preference)", () => {
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: text,
+            start: "top 85%",
+            end: "bottom 35%",
+            scrub: true,
+          },
+        });
+
+        words.forEach((word) => {
+          timeline.to(word, {
+            autoAlpha: 1,
+            color: activeColor,
+            ease: "none",
+            duration: 1,
+          });
+        });
+
+        ScrollTrigger.refresh();
+      });
+    }, section);
+
+    return () => {
+      matchMedia?.revert();
+      ctx.revert();
+    };
+  }, []);
+
+  const lineOneSegments = SHIFT_LINE_ONE.split(" ").map((text) => ({ text }));
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative mt-0 w-full self-stretch overflow-hidden"
+    >
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(180deg, oklch(0.94 0.04 285) 0%, oklch(0.97 0.02 300) 45%, oklch(1 0 0) 100%)",
+        }}
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-40"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.82 0.12 285 / 35%), transparent 70%)",
+        }}
+        aria-hidden
+      />
+
+      <div className="relative mx-auto max-w-4xl px-6 py-20 text-center md:px-8 md:py-28">
+        <p className="text-xs font-medium uppercase tracking-[0.2em] text-foreground/50">
+          The shift
+        </p>
+        <p
+          ref={textRef}
+          className="mt-8 font-heading text-4xl font-light leading-[1.08] tracking-tight md:text-5xl lg:text-6xl"
+        >
+          <ShiftWords segments={lineOneSegments} className="block" />
+          <ShiftWords segments={SHIFT_LINE_TWO} className="mt-3 block" />
+        </p>
       </div>
     </section>
   );
