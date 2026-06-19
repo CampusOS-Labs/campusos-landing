@@ -12,7 +12,8 @@ const values = [
     title: "Move Fast, Break Things",
     points: [
       "Don't just talk about it, do it.",
-      "Do things that don't scale."
+      "Do things that don't scale.",
+      "If it slows you down, cut it."
     ],
   },
   {
@@ -20,7 +21,7 @@ const values = [
     points: [
       "Ask questions.",
       "You might be wrong, then learn from it when you are.",
-      "I hate meetings, so don't break your flow state. Look at your calendar and if you think this could be a slack message, let them know and cancel the meeting — Amaan.",
+      "Don't break your flow state. Look at your calendar and if you think this could be a message, let them know and cancel the meeting.",
 
     ],
   },
@@ -32,6 +33,14 @@ const values = [
       "We build for educators and administrators, not ERP consultants.",
     ],
   },
+  {
+    title: "Support",
+    points: [
+      "Support should always be fast.",
+      "Support should be an engineer, and easy to talk to.",
+    ],
+  },
+
 ];
 
 export default function ValuesPage() {
