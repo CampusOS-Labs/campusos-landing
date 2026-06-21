@@ -9,7 +9,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-sans);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --font-heading: var(--font-heading);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -40,6 +40,10 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-link: var(--link);
+  --color-cream: var(--cream);
+  --color-greige: var(--greige);
+  --color-ink: var(--ink);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -50,38 +54,46 @@
 }
 
 :root {
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.21 0.006 285.885);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.21 0.006 285.885);
+  /* Exa-inspired: cream field, charcoal type, black CTAs, blue links */
+  --cream: #faf9f7;
+  --cream-darker: #f0ece8;
+  --greige: #8c8880;
+  --ink: #181815;
+  --charcoal: #111111;
+  --link: #0972d5;
+  --brand-blue: #1f40ed;
+  --card: #ffffff;
+  --card-foreground: #111827;
+  --popover: #ffffff;
+  --popover-foreground: #111827;
+  --primary: #111111;
+  --primary-foreground: #ffffff;
+  --secondary: #f3f4f6;
+  --secondary-foreground: #111827;
+  --muted: #f5f5f4;
+  --muted-foreground: #6b7280;
+  --accent: #eef8ff;
+  --accent-foreground: #111827;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.705 0.015 286.067);
-  --chart-1: oklch(0.871 0.006 286.286);
-  --chart-2: oklch(0.552 0.016 285.938);
-  --chart-3: oklch(0.442 0.017 285.786);
-  --chart-4: oklch(0.37 0.013 285.805);
-  --chart-5: oklch(0.274 0.006 286.033);
-  --radius: 0;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.21 0.006 285.885);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.705 0.015 286.067);
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #9ca3af;
+  --chart-1: #dbeafe;
+  --chart-2: #6b7280;
+  --chart-3: #374151;
+  --chart-4: #1f2937;
+  --chart-5: #111827;
+  --radius: 0.25rem;
+  --sidebar: var(--cream);
+  --sidebar-foreground: #111827;
+  --sidebar-primary: #111111;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f3f4f6;
+  --sidebar-accent-foreground: #111827;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: #9ca3af;
+  --background: var(--cream);
+  --foreground: #111827;
 }
 
 .dark {
@@ -123,13 +135,43 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground text-base leading-relaxed;
   }
   html {
     @apply font-sans;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-normal tracking-[-0.03em] text-foreground;
   }
 }
 
 .prose :where(h1, h2, h3, h4, h5, h6) {
   font-family: var(--font-heading);
+}
+
+@layer utilities {
+  .surface-panel {
+    @apply overflow-hidden rounded-md border border-border bg-card;
+  }
+
+  .text-eyebrow {
+    @apply text-[0.8125rem] font-medium uppercase tracking-[0.1em] text-greige;
+  }
+
+  .text-lead {
+    @apply text-lg leading-relaxed tracking-[-0.02em] text-muted-foreground;
+  }
+
+  .section-pad {
+    @apply py-16 md:py-28;
+  }
+
+  .section-band-dark {
+    background-color: var(--ink);
+    color: #ffffff;
+  }
+
+  .section-band-white {
+    @apply bg-white;
+  }
 }

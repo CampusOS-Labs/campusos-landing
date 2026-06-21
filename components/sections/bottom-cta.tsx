@@ -1,4 +1,6 @@
-import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
+import Link from "next/link";
+
+import { buttonVariants } from "@/components/ui/button";
 
 type BottomCtaProps = {
   headline?: string;
@@ -14,20 +16,15 @@ export function BottomCta({
   buttonHref = "/contact",
 }: BottomCtaProps) {
   return (
-    <section
-      className="mt-24 w-full self-stretch py-16 md:py-20"
-      style={{ backgroundColor: "#000000" }}
-    >
+    <section className="mt-0 w-full self-stretch border-t border-border bg-background section-pad">
       <div className="mx-auto flex max-w-3xl flex-col items-center px-6 text-center">
-        <h2 className="font-heading text-4xl font-light tracking-tight leading-[1.1] text-white md:text-5xl">
+        <h2 className="font-heading text-4xl font-normal leading-[1.1] tracking-[-0.03em] md:text-5xl">
           {headline}
         </h2>
-        <p className="mt-4 max-w-lg text-sm leading-relaxed text-white/60 md:text-base">
-          {subhead}
-        </p>
-        <NeumorphicButton href={buttonHref} className="mt-8">
+        <p className="mt-5 max-w-lg text-lead">{subhead}</p>
+        <Link href={buttonHref} className={`${buttonVariants({ size: "lg" })} mt-8`}>
           {buttonLabel}
-        </NeumorphicButton>
+        </Link>
       </div>
     </section>
   );

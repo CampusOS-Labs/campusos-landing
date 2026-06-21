@@ -9,22 +9,22 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
-import { PERSONAS, PRODUCTS } from "@/lib/products";
+import { buttonVariants } from "@/components/ui/button";
+import { PRODUCTS } from "@/lib/products";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-white">
+    <header className="sticky top-0 z-50 w-full  bg-white/95 backdrop-blur-sm">
       <div className="flex h-16 items-center px-4 md:px-8">
-        <Link href="/" className="shrink-0 text-lg font-bold">
-          CampusOS
-        </Link>
+        <Link href="/" className="shrink-0 font-heading text-lg tracking-[-0.02em]">
+        <span className="font-sans font-bold ">CampusOS</span>
+      </Link>
         <div className="flex flex-1 justify-center">
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-muted-foreground">
+                <NavigationMenuTrigger className="bg-transparent text-muted-foreground">
                   Products
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -34,7 +34,7 @@ export function Navbar() {
                         <NavigationMenuLink
                           href={item.href}
                           className={cn(
-                            "block select-none p-3 leading-none no-underline outline-none transition-colors hover:bg-muted focus:bg-muted",
+                            "block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-secondary focus:bg-secondary",
                           )}
                         >
                           <div className="text-sm font-medium leading-none">{item.label}</div>
@@ -47,7 +47,7 @@ export function Navbar() {
                     <li className="md:col-span-2">
                       <NavigationMenuLink
                         href="/contact"
-                        className="block select-none p-3 leading-none no-underline outline-none transition-colors hover:bg-muted focus:bg-muted"
+                        className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-secondary focus:bg-secondary"
                       >
                         <div className="text-sm font-medium leading-none">Everything else</div>
                         <p className="mt-1 text-sm leading-snug text-muted-foreground">
@@ -58,30 +58,6 @@ export function Navbar() {
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-muted-foreground">
-                  For schools
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-1 p-4">
-                    {PERSONAS.map((persona) => (
-                      <li key={persona.id}>
-                        <NavigationMenuLink
-                          href={persona.href}
-                          className="block select-none p-3 leading-none no-underline outline-none transition-colors hover:bg-muted focus:bg-muted"
-                        >
-                          <div className="text-sm font-medium leading-none">{persona.label}</div>
-                          <p className="mt-1 line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            {persona.subhead}
-                          </p>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
               <NavigationMenuItem>
                 <NavigationMenuLink
                   href="/blogs"
@@ -109,9 +85,14 @@ export function Navbar() {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        <NeumorphicButton href="/contact" compact>
-          Contact
-        </NeumorphicButton>
+        <div className="flex shrink-0 items-center gap-2">
+          <Link href="/contact" className={buttonVariants({ variant: "secondary", size: "sm" })}>
+            Contact
+          </Link>
+          <Link href="/contact" className={buttonVariants({ variant: "default", size: "sm" })}>
+            Get started
+          </Link>
+        </div>
       </div>
     </header>
   );

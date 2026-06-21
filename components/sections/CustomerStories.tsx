@@ -28,7 +28,7 @@ export function CustomerStories() {
       </div>
 
       <div
-        className={`${storyGridClass} min-h-[36rem] border border-border`}
+        className={`${storyGridClass} min-h-144 border border-border`}
       >
         <div className="border-r border-border" />
 
@@ -48,7 +48,7 @@ export function CustomerStories() {
       </div>
 
       <div
-        className={`${storyGridClassTextLeft} min-h-[36rem] border border-border`}
+        className={`${storyGridClassTextLeft} min-h-144 border border-border`}
       >
         <div className="border-r border-border" />
 

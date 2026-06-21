@@ -150,32 +150,13 @@ export function TheShift() {
   return (
     <section
       ref={sectionRef}
-      className="relative mt-0 w-full self-stretch overflow-hidden"
+      className="section-band-white relative mt-0 w-full self-stretch overflow-hidden"
     >
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(180deg, oklch(0.94 0.04 285) 0%, oklch(0.97 0.02 300) 45%, oklch(1 0 0) 100%)",
-        }}
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute inset-0 opacity-40"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.82 0.12 285 / 35%), transparent 70%)",
-        }}
-        aria-hidden
-      />
-
-      <div className="relative mx-auto max-w-4xl px-6 py-20 text-center md:px-8 md:py-28">
-        <p className="text-xs font-medium uppercase tracking-[0.2em] text-foreground/50">
-          The shift
-        </p>
+      <div className="relative mx-auto max-w-4xl px-6 section-pad text-center md:px-8">
+        <p className="text-eyebrow">The shift</p>
         <p
           ref={textRef}
-          className="mt-8 font-heading text-4xl font-light leading-[1.08] tracking-tight md:text-5xl lg:text-6xl"
+          className="mt-8 font-heading text-4xl font-normal leading-[1.08] tracking-[-0.03em] md:text-5xl lg:text-6xl"
         >
           <ShiftWords segments={lineOneSegments} className="block" />
           <ShiftWords segments={SHIFT_LINE_TWO} className="mt-3 block" />

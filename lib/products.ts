@@ -1,16 +1,3 @@
-import type { Icon } from "@phosphor-icons/react";
-import {
-  BellIcon,
-  ChartLineUpIcon,
-  ChatsCircleIcon,
-  CreditCardIcon,
-  MapPinIcon,
-  PlugsConnectedIcon,
-  ReceiptIcon,
-  ShieldCheckIcon,
-  UsersThreeIcon,
-} from "@phosphor-icons/react/ssr";
-
 export type ProductStat = {
   value: string;
   label: string;
@@ -46,7 +33,7 @@ export const PRODUCTS: ProductDefinition[] = [
     description:
       "One ledger for tuition, events, and ad-hoc fees — no end-of-term reconciliation marathons.",
     href: "/products/billing-infrastructure",
-    imageSrc: "/billing-infrastructure-header.png",
+    // imageSrc: "/billing-infrastructure-header.png",
     mockVariant: "billing",
     stats: [
       {
@@ -91,7 +78,7 @@ export const PRODUCTS: ProductDefinition[] = [
     description:
       "Notices delivered as direct WhatsApp messages — not buried in group scroll.",
     href: "/products/announcements",
-    imageSrc: "/announcements-header.png",
+    // imageSrc: "/announcements-header.png",
     mockVariant: "announcements",
     stats: [
       {
@@ -235,63 +222,79 @@ export const SHIFT_STATS = [
 export const HOW_IT_WORKS_STEPS = [
   {
     step: "01",
-    title: "Connect",
+    title: "Painpoint",
     description:
-      "Plug into WhatsApp, payment gateways, and the tools your school already uses.",
-    mockVariant: "connect" as const,
+      "Tell us what's breaking — fees stuck in Excel, parents missing notices, registers nobody trusts.",
+    imageSrc: undefined,
   },
   {
     step: "02",
-    title: "Audit",
+    title: "Build",
     description:
-      "Unpaid fees, missed notices, duplicate records — flagged before they become fires.",
-    mockVariant: "audit" as const,
+      "We fix just that workflow — built for your school, installed on site, trained day one.",
+    imageSrc: undefined,
   },
   {
     step: "03",
-    title: "Run",
+    title: "Expand",
     description:
-      "One dashboard, one workflow, live at your school — working day one.",
-    mockVariant: "run" as const,
+      "When it's running, pick the next problem. No forced bundle, no 200-feature ERP.",
+    imageSrc: undefined,
   },
 ];
 
+export type CapabilityIcon =
+  | "ledger"
+  | "broadcast"
+  | "integrations"
+  | "dashboard"
+  | "shield";
+
 export type Capability = {
-  icon: Icon;
   title: string;
   description: string;
+  imageSrc?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  imageMaxWidth?: number;
+  imageAlt?: string;
+  imageCaption?: string;
+  icon?: CapabilityIcon;
+  visual?: "payment-stack" | "whatsapp-chat";
 };
 
 export const CAPABILITIES: Capability[] = [
   {
-    icon: ChatsCircleIcon,
     title: "WhatsApp-native delivery",
-    description: "Parents get direct messages — not group scroll where they have to read a million messages before the important ones.",
+    description:
+      "Parents get a direct message — not a group chat where the notice that matters scrolls away under a hundred good-mornings. Read receipts tell you who saw it before you chase anyone down.",
+    visual: "whatsapp-chat",
+    imageAlt: "A school fee notice delivered as a direct WhatsApp message, with a payment link and read receipt",
+    imageCaption: "A fee notice, delivered direct and read — receipt and all.",
   },
   {
-    icon: CreditCardIcon,
     title: "Fee reconciliation",
-    description: "Payment links, partial payments, and overdue flags in one ledger.",
+    description:
+      "Payment links, partial payments, and overdue flags in one ledger. Your finance team stops reconciling three spreadsheets at term end.",
+    imageSrc: "/billing-infrastructure-header.png",
+    imageWidth: 6100,
+    imageHeight: 2736,
+    imageAlt: "CampusOS billing dashboard showing fee collection and payment status",
   },
   {
-    icon: BellIcon,
     title: "Broadcast templates",
-    description: "PTM reminders, holidays, and fee notices — send in seconds.",
+    description:
+      "PTM reminders, holidays, and fee notices — send in seconds. Pick a template, choose your audience, and reach every parent without manual forwarding.",
+    imageSrc: "/announcements-header.png",
+    imageWidth: 6100,
+    imageHeight: 2736,
+    imageAlt: "CampusOS announcements interface for sending school-wide notices",
   },
   {
-    icon: PlugsConnectedIcon,
     title: "Integrates with your stack",
-    description: "Razorpay, UPI, WhatsApp Business — connect what you already have.",
-  },
-  {
-    icon: ChartLineUpIcon,
-    title: "Live ops dashboard",
-    description: "Collections, attendance, and comms status — one view.",
-  },
-  {
-    icon: ShieldCheckIcon,
-    title: "Built for school data",
-    description: "Parent contacts and fee records handled with care.",
+    description:
+      "Razorpay, UPI, WhatsApp Business — connect what you already have. No rip-and-replace ERP project to get one workflow working.",
+    visual: "payment-stack",
   },
 ];
 

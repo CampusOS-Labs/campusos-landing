@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="412" height="412" viewBox="0 0 412 412">
+  <defs>
+    <pattern id="wa-tile" width="412" height="412" patternUnits="userSpaceOnUse">
+      <rect width="412" height="412" fill="#F5F2EB"/>
+      <g fill="none" stroke="#D8D2C8" stroke-width="1.1" opacity="0.55">
+        <circle cx="42" cy="38" r="8"/>
+        <path d="M96 28h14v14H96z"/>
+        <path d="M150 34c0-6 5-10 10-10s10 4 10 10-5 10-10 10-10-4-10-10z"/>
+        <path d="M210 24l12 8-12 8-12-8z"/>
+        <path d="M268 30h18v4h-18zM268 38h18v4h-18z"/>
+        <path d="M330 26c8 0 14 6 14 14s-6 14-14 14"/>
+        <path d="M28 96c6-8 18-8 24 0"/>
+        <rect x="88" y="88" width="12" height="16" rx="2"/>
+        <path d="M150 92v20M140 102h20"/>
+        <path d="M206 88c10 0 18 8 18 18s-8 18-18 18"/>
+        <path d="M268 94l10 16-10 16-10-16z"/>
+        <path d="M326 98h20v8h-20z"/>
+        <path d="M34 154h16v16H34z"/>
+        <path d="M92 150c0 10 8 18 18 18"/>
+        <path d="M152 158c6 0 10 4 10 10"/>
+        <path d="M210 150l14 10-14 10"/>
+        <path d="M268 154c8 4 8 14 0 18"/>
+        <path d="M330 152h12v20h-12z"/>
+        <path d="M38 214c10-6 22-6 32 0"/>
+        <path d="M96 208h20v20H96z"/>
+        <path d="M150 218c8 0 14 6 14 14"/>
+        <path d="M210 210v24M198 222h24"/>
+        <path d="M268 214c12 0 20 8 20 20"/>
+        <path d="M326 218l8 12-8 12-8-12z"/>
+        <path d="M30 276c8 0 14 6 14 14"/>
+        <path d="M92 270h18v18H92z"/>
+        <path d="M150 278c0-8 6-14 14-14"/>
+        <path d="M210 272l10 14-10 14"/>
+        <path d="M268 270c10 0 18 8 18 18"/>
+        <path d="M330 276h14v14h-14z"/>
+        <path d="M36 334c6 6 16 6 22 0"/>
+        <path d="M96 330v22M85 341h22"/>
+        <path d="M150 334c8 4 8 14 0 18"/>
+        <path d="M210 328h20v20h-20z"/>
+        <path d="M268 336c0 10 8 18 18 18"/>
+        <path d="M326 330l12 8-12 8"/>
+      </g>
+    </pattern>
+  </defs>
+  <rect width="412" height="412" fill="url(#wa-tile)"/>
+</svg>

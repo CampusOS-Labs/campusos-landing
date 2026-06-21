@@ -1,7 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { MockUiFrame } from "@/components/ui/mock-ui-frame";
-import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
+import { buttonVariants } from "@/components/ui/button";
 import PixelTransition from "@/components/ui/PixelTransition";
 import { BillingStackLoop } from "@/components/sections/billing-stack-loop";
 import { PRODUCT_FAQ, type ProductDefinition } from "@/lib/products";
@@ -19,13 +20,11 @@ export function ProductPageLayout({
 }: ProductPageLayoutProps) {
   return (
     <main className="flex flex-1 flex-col items-center px-6 pt-32">
-      <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-        {product.label}
-      </p>
-      <h1 className="mt-4 max-w-3xl text-center font-heading text-6xl font-light leading-[1.05] tracking-tight">
+      <p className="text-eyebrow">{product.label}</p>
+      <h1 className="mt-4 max-w-3xl text-center font-heading text-5xl font-normal leading-[1.05] tracking-[-0.03em] md:text-6xl">
         {product.title}
       </h1>
-      <p className="mt-4 max-w-xl text-center text-lg text-muted-foreground">{product.headline}</p>
+      <p className="mt-5 max-w-xl text-center text-lead">{product.headline}</p>
 
       {product.imageSrc ? (
         <PixelTransition
@@ -77,7 +76,7 @@ export function ProductPageLayout({
 
       <div className="grid w-full max-w-5xl grid-cols-1 gap-12 lg:grid-cols-2">
         <div>
-          <h2 className="font-heading text-4xl font-light tracking-tight leading-[1.05]">
+          <h2 className="font-heading text-4xl font-normal leading-[1.05] tracking-[-0.03em]">
             What schools use this for
           </h2>
           <ul className="mt-6 space-y-3">
@@ -97,7 +96,7 @@ export function ProductPageLayout({
 
       <div className="mb-24 mt-24 w-full border-t" />
 
-      <h2 className="mb-12 max-w-3xl text-center font-heading text-5xl font-light leading-[1.05] tracking-tight">
+      <h2 className="mb-12 max-w-3xl text-center font-heading text-5xl font-normal leading-[1.05] tracking-[-0.03em]">
         Outcomes for {product.label.toLowerCase()}
       </h2>
       <div className="max-w-2xl space-y-6">
@@ -119,7 +118,7 @@ export function ProductPageLayout({
         <>
           <div className="mb-24 mt-24 w-full border-t" />
           <div className="mb-12 text-center">
-            <h2 className="font-heading text-5xl font-light leading-[1.05] tracking-tight">
+            <h2 className="font-heading text-5xl font-normal leading-[1.05] tracking-[-0.03em]">
               Built with the entire stack in mind
             </h2>
             <p className="mx-auto mt-1 max-w-2xl text-lg leading-relaxed text-muted-foreground">
@@ -134,7 +133,7 @@ export function ProductPageLayout({
 
       <div className="mb-24 mt-24 w-full border-t" />
 
-      <h2 className="mb-8 font-heading text-3xl font-light tracking-tight">Questions?</h2>
+      <h2 className="mb-8 font-heading text-3xl font-normal tracking-[-0.03em]">Questions?</h2>
       <div className="w-full max-w-2xl divide-y divide-border border border-border">
         {PRODUCT_FAQ.map((item) => (
           <details key={item.question} className="group px-6 py-4">
@@ -146,9 +145,9 @@ export function ProductPageLayout({
         ))}
       </div>
 
-      <NeumorphicButton href="/contact" className="mt-12">
+      <Link href="/contact" className={`${buttonVariants({ size: "lg" })} mt-12`}>
         Get started
-      </NeumorphicButton>
+      </Link>
     </main>
   );
 }
