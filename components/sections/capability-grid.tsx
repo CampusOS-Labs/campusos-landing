@@ -1,134 +1,149 @@
 import Image from "next/image";
 
 import { IntegrationsLogoLoop } from "@/components/sections/integrations-logo-loop";
-import { WhatsAppChatMock } from "@/components/whatsapp/whatsapp-chat-mock";
-import { CAPABILITIES, type Capability, type CapabilityIcon } from "@/lib/products";
+import { cn } from "@/lib/utils";
+import { CAPABILITIES, type Capability, type CapabilityComparisonImage } from "@/lib/products";
 
-function CapabilityGlyph({
-  icon,
-  className,
-}: {
-  icon: CapabilityIcon;
-  className?: string;
-}) {
-  const common = {
-    className,
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 1,
-    strokeLinecap: "round" as const,
-    strokeLinejoin: "round" as const,
-    "aria-hidden": true,
-  };
-
-  switch (icon) {
-    case "ledger":
-      return (
-        <svg {...common}>
-          <rect x="4" y="3" width="16" height="18" />
-          <line x1="8" y1="8" x2="16" y2="8" />
-          <line x1="8" y1="12" x2="16" y2="12" />
-          <line x1="8" y1="16" x2="13" y2="16" />
-        </svg>
-      );
-    case "broadcast":
-      return (
-        <svg {...common}>
-          <circle cx="12" cy="18" r="1" />
-          <path d="M8.5 14.5a5 5 0 0 1 7 0" />
-          <path d="M6 12a9 9 0 0 1 12 0" />
-        </svg>
-      );
-    case "integrations":
-      return (
-        <svg {...common}>
-          <circle cx="7" cy="12" r="3" />
-          <circle cx="17" cy="12" r="3" />
-          <line x1="10" y1="12" x2="14" y2="12" />
-        </svg>
-      );
-    case "dashboard":
-      return (
-        <svg {...common}>
-          <polyline points="3 14 8 14 10 9 13 17 15 12 21 12" />
-        </svg>
-      );
-    case "shield":
-      return (
-        <svg {...common}>
-          <path d="M12 3l7 3v5c0 4-3 7-7 8-4-1-7-4-7-8V6l7-3z" />
-          <polyline points="9 12 11 14 15 10" />
-        </svg>
-      );
-  }
-}
-
-function CapabilityVisual({ capability }: { capability: Capability }) {
-  if (capability.visual === "whatsapp-chat") {
-    return (
-      <figure className="flex w-full items-center justify-center bg-muted/20 p-6 md:p-10 xl:p-12">
-        <WhatsAppChatMock className="w-full max-w-[360px]" />
-      </figure>
-    );
-  }
-
-  if (capability.visual === "payment-stack") {
-    return <IntegrationsLogoLoop />;
-  }
-
-  if (capability.imageSrc && capability.imageWidth && capability.imageHeight) {
-    return (
-      <figure className="flex w-full items-center justify-center bg-muted/20 p-6 md:p-10 xl:p-12">
-        <Image
-          src={capability.imageSrc}
-          alt={capability.imageAlt ?? capability.title}
-          width={capability.imageWidth}
-          height={capability.imageHeight}
-          className="h-auto w-full max-w-full"
-          style={
-            capability.imageMaxWidth
-              ? { maxWidth: `min(100%, ${capability.imageMaxWidth}px)` }
-              : undefined
-          }
-          sizes={
-            capability.imageMaxWidth
-              ? `${capability.imageMaxWidth}px`
-              : "(max-width: 1024px) 100vw, 50vw"
-          }
-        />
-      </figure>
-    );
-  }
-
-  if (!capability.icon) return null;
+function WhatsAppComparisonVisual({ images }: { images: CapabilityComparisonImage[] }) {
+  const [group, direct] = images;
+  const phoneWidth =
+    "w-[min(78vw,720px)] sm:w-[min(70vw,820px)] lg:w-[340px] xl:w-[380px] 2xl:w-[420px]";
 
   return (
-    <figure className="flex w-full items-center justify-center bg-muted/20 p-6 md:p-10 xl:p-12">
-      <div className="flex aspect-square w-full max-w-md items-center justify-center bg-white">
-        <CapabilityGlyph icon={capability.icon} className="size-28 text-muted-foreground/70 md:size-36" />
+    <figure className="flex w-full items-center justify-center overflow-visible px-0 py-4 sm:py-6 md:py-8 lg:items-end lg:justify-start lg:py-6 xl:py-8">
+      <div className="flex items-end justify-center lg:justify-start">
+        {group ? (
+          <div
+            className={cn(
+              "relative z-10 shrink-0 origin-bottom -rotate-6 sm:-rotate-8",
+              phoneWidth,
+            )}
+          >
+            <Image
+              src={group.src}
+              alt={group.alt}
+              width={1920}
+              height={2160}
+              className="h-auto w-full object-contain drop-shadow-sm"
+              sizes="(max-width: 1024px) 78vw, 420px"
+              priority
+            />
+          </div>
+        ) : null}
+        {direct ? (
+          <div
+            className={cn(
+              "relative z-20 shrink-0 origin-bottom rotate-6 sm:rotate-8",
+              "-ml-[48vw] sm:-ml-[44vw] lg:-ml-[220px] xl:-ml-[250px] 2xl:-ml-[280px]",
+              phoneWidth,
+            )}
+          >
+            <Image
+              src={direct.src}
+              alt={direct.alt}
+              width={1920}
+              height={2160}
+              className="h-auto w-full object-contain drop-shadow-sm"
+              sizes="(max-width: 1024px) 78vw, 420px"
+              priority
+            />
+          </div>
+        ) : null}
+      </div>
+      <figcaption className="sr-only">
+        Side-by-side WhatsApp comparison: a cluttered school group chat versus a direct fee payment
+        message from the school.
+      </figcaption>
+    </figure>
+  );
+}
+
+function CapabilityImage({ capability }: { capability: Capability }) {
+  if (!capability.imageSrc) return null;
+
+  return (
+    <figure className="flex w-full items-center justify-center bg-white p-4 md:p-5">
+      <Image
+        src={capability.imageSrc}
+        alt={capability.imageAlt ?? capability.title}
+        width={1920}
+        height={2160}
+        className="h-auto w-full object-contain"
+        sizes="(max-width: 1024px) 100vw, 50vw"
+      />
+    </figure>
+  );
+}
+
+function CapabilityPlaceholder({ title }: { title: string }) {
+  return (
+    <figure className="flex w-full items-center justify-center bg-white p-4 md:p-5">
+      <div
+        aria-hidden
+        className="flex aspect-4/3 w-full max-w-md items-center justify-center border border-dashed border-border/80 bg-white"
+      >
+        <span className="px-4 text-center text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
+          {title}
+        </span>
       </div>
     </figure>
   );
 }
 
-function CapabilityRow({ capability }: { capability: Capability }) {
-  return (
-    <article className="grid grid-cols-1 items-center lg:grid-cols-2">
-      <CapabilityVisual capability={capability} />
+function CapabilityVisual({ capability }: { capability: Capability }) {
+  if (capability.visual === "payment-stack") {
+    return <IntegrationsLogoLoop compact />;
+  }
 
-      <div className="flex flex-col justify-center px-6 py-10 md:px-10 lg:px-14 lg:py-16 xl:px-20 xl:py-20">
-        <h3 className="font-heading text-4xl font-normal leading-[1.08] tracking-[-0.03em] md:text-5xl xl:text-6xl">
-          {capability.title}
-        </h3>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground md:max-w-none md:text-xl md:leading-relaxed">
-          {capability.description}
+  if (capability.visual === "whatsapp-comparison" && capability.comparisonImages) {
+    return <WhatsAppComparisonVisual images={capability.comparisonImages} />;
+  }
+
+  if (capability.imageSrc) {
+    return <CapabilityImage capability={capability} />;
+  }
+
+  return <CapabilityPlaceholder title={capability.title} />;
+}
+
+function CapabilityCopy({ capability }: { capability: Capability }) {
+  return (
+    <>
+      <h3 className="font-heading text-2xl font-normal leading-[1.12] tracking-[-0.03em] md:text-3xl">
+        {capability.title}
+      </h3>
+      <p className="mt-3 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+        {capability.description}
+      </p>
+      {capability.imageCaption ? (
+        <p className="mt-3 max-w-xl text-sm leading-relaxed text-greige">
+          {capability.imageCaption}
         </p>
-        {capability.imageCaption ? (
-          <p className="mt-6 max-w-2xl text-sm leading-relaxed text-greige md:max-w-none md:text-base">
-            {capability.imageCaption}
-          </p>
-        ) : null}
+      ) : null}
+    </>
+  );
+}
+
+function CapabilityRow({
+  capability,
+  visualOnLeft,
+}: {
+  capability: Capability;
+  visualOnLeft: boolean;
+}) {
+  return (
+    <article className="grid grid-cols-1 items-center overflow-visible lg:grid-cols-2">
+      <div className={cn(!visualOnLeft && "lg:order-2")}>
+        <CapabilityVisual capability={capability} />
+      </div>
+
+      <div
+        className={cn(
+          "flex flex-col justify-center px-4 py-6 md:px-6 md:py-8 lg:px-8",
+          !visualOnLeft && "lg:order-1",
+        )}
+      >
+        <CapabilityCopy capability={capability} />
       </div>
     </article>
   );
@@ -136,19 +151,19 @@ function CapabilityRow({ capability }: { capability: Capability }) {
 
 export function CapabilityGrid() {
   return (
-    <section className="section-band-white mt-0 w-full self-stretch">
-      <div className="w-full px-4 pb-16 md:px-10 md:pb-28 lg:px-16 xl:px-24">
-        <div className="mx-auto max-w-4xl pt-8 text-center md:pt-12">
+    <section className="section-band-white mt-24 w-full self-stretch md:mt-36 lg:mt-48">
+      <div className="w-full px-4 pb-10 md:px-8 md:pb-14 lg:px-12">
+        <div className="mx-auto max-w-2xl pt-6 text-center md:pt-8">
           <p className="text-eyebrow">Capabilities</p>
-          <h2 className="mt-4 font-heading text-5xl font-normal leading-[1.05] tracking-[-0.03em] md:text-6xl">
-            Not just reliable. Built for how schools work.
+          <h2 className="mt-3 font-heading text-3xl font-normal leading-[1.08] tracking-[-0.03em] md:text-4xl">
+            Not just faster. Built for how schools work.
           </h2>
         </div>
 
-        <div className="mt-12 flex flex-col gap-16 md:mt-20 md:gap-24">
-          {CAPABILITIES.map((capability) => (
+        <div className="mt-8 flex flex-col gap-8 md:mt-10 md:gap-10">
+          {CAPABILITIES.map((capability, index) => (
             <div key={capability.title}>
-              <CapabilityRow capability={capability} />
+              <CapabilityRow capability={capability} visualOnLeft={index % 2 === 0} />
             </div>
           ))}
         </div>

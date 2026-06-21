@@ -4,13 +4,10 @@ import { Fragment, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import { GoogleSheetsIcon, WhatsAppIcon } from "@/components/sections/shift-inline-icons";
-
 gsap.registerPlugin(ScrollTrigger);
 
 type ShiftSegment = {
   text: string;
-  icon?: "sheets" | "whatsapp";
 };
 
 const SHIFT_LINE_ONE = "Your school doesn't break in one place.";
@@ -23,8 +20,8 @@ const SHIFT_LINE_TWO: ShiftSegment[] = [
   { text: "handoffs" },
   { text: "—" },
   { text: "between" },
-  { text: "spreadsheets,", icon: "sheets" },
-  { text: "WhatsApp", icon: "whatsapp" },
+  { text: "spreadsheets," },
+  { text: "WhatsApp" },
   { text: "groups," },
   { text: "and" },
   { text: "whoever" },
@@ -35,31 +32,7 @@ const SHIFT_LINE_TWO: ShiftSegment[] = [
   { text: "register." },
 ];
 
-function ShiftInlineIcon({ name }: { name: "sheets" | "whatsapp" }) {
-  if (name === "sheets") {
-    return <GoogleSheetsIcon />;
-  }
-
-  return <WhatsAppIcon />;
-}
-
 function ShiftWord({ segment }: { segment: ShiftSegment }) {
-  const commaMatch = segment.text.match(/^(.*?)([,.!?;:]+)$/);
-
-  if (segment.icon) {
-    const label = commaMatch ? `${commaMatch[1]}${commaMatch[2]}` : segment.text;
-
-    return (
-      <span
-        data-shift-word
-        className="inline-flex items-center gap-[0.35em] text-muted-foreground"
-      >
-        <ShiftInlineIcon name={segment.icon} />
-        <span>{label}</span>
-      </span>
-    );
-  }
-
   return (
     <span data-shift-word className="inline text-muted-foreground">
       {segment.text}
@@ -150,13 +123,13 @@ export function TheShift() {
   return (
     <section
       ref={sectionRef}
-      className="section-band-white relative mt-0 w-full self-stretch overflow-hidden"
+      className="section-band-white relative mt-24 w-full self-stretch overflow-hidden md:mt-36 lg:mt-48"
     >
-      <div className="relative mx-auto max-w-4xl px-6 section-pad text-center md:px-8">
+      <div className="relative mx-auto flex min-h-[100dvh] max-w-4xl flex-col justify-center px-6 py-20 text-center md:px-8 md:py-24">
         <p className="text-eyebrow">The shift</p>
         <p
           ref={textRef}
-          className="mt-8 font-heading text-4xl font-normal leading-[1.08] tracking-[-0.03em] md:text-5xl lg:text-6xl"
+          className="mt-6 font-heading text-3xl font-normal leading-[1.12] tracking-[-0.03em] md:text-4xl lg:text-[2.75rem]"
         >
           <ShiftWords segments={lineOneSegments} className="block" />
           <ShiftWords segments={SHIFT_LINE_TWO} className="mt-3 block" />

@@ -9,7 +9,11 @@ type IntegrationsLogoLoopProps = {
 
 export function IntegrationsLogoLoop({ compact = false }: IntegrationsLogoLoopProps) {
   return (
-    <figure className="flex w-full items-center justify-center bg-muted/20 p-6 md:p-10 xl:p-12">
+    <figure
+      className={`flex w-full items-center justify-center bg-white ${
+        compact ? "p-4 md:p-5" : "p-6 md:p-10 xl:p-12"
+      }`}
+    >
       <div
         className={`relative w-full overflow-hidden [&_.logoloop__item_img]:opacity-80 ${
           compact ? "h-10 max-w-5xl" : "h-16 max-w-xl md:h-20 md:max-w-2xl"
@@ -23,7 +27,7 @@ export function IntegrationsLogoLoop({ compact = false }: IntegrationsLogoLoopPr
           gap={compact ? 48 : 56}
           hoverSpeed={0}
           fadeOut
-          fadeOutColor="var(--muted)"
+          fadeOutColor="#ffffff"
           ariaLabel="Payment methods supported through Razorpay and UPI"
         />
       </div>

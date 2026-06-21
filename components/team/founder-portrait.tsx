@@ -23,9 +23,9 @@ export function FounderPortrait({ src, alt, className }: FounderPortraitProps) {
         colorSteps={4}
         originalColors
         inverted={false}
-        colorFront="#141414"
-        colorBack="#f5f5f5"
-        colorHighlight="#141414"
+        colorFront="#000000"
+        colorBack="#ffffff"
+        colorHighlight="#000000"
         scale={1.55}
         offsetX={-0.1}
         offsetY={-0.06}

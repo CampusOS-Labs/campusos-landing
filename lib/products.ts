@@ -243,24 +243,20 @@ export const HOW_IT_WORKS_STEPS = [
   },
 ];
 
-export type CapabilityIcon =
-  | "ledger"
-  | "broadcast"
-  | "integrations"
-  | "dashboard"
-  | "shield";
+export type CapabilityComparisonImage = {
+  src: string;
+  label: string;
+  alt: string;
+};
 
 export type Capability = {
   title: string;
   description: string;
-  imageSrc?: string;
-  imageWidth?: number;
-  imageHeight?: number;
-  imageMaxWidth?: number;
-  imageAlt?: string;
   imageCaption?: string;
-  icon?: CapabilityIcon;
-  visual?: "payment-stack" | "whatsapp-chat";
+  imageSrc?: string;
+  imageAlt?: string;
+  visual?: "payment-stack" | "whatsapp-comparison";
+  comparisonImages?: CapabilityComparisonImage[];
 };
 
 export const CAPABILITIES: Capability[] = [
@@ -268,27 +264,30 @@ export const CAPABILITIES: Capability[] = [
     title: "WhatsApp-native delivery",
     description:
       "Parents get a direct message — not a group chat where the notice that matters scrolls away under a hundred good-mornings. Read receipts tell you who saw it before you chase anyone down.",
-    visual: "whatsapp-chat",
-    imageAlt: "A school fee notice delivered as a direct WhatsApp message, with a payment link and read receipt",
     imageCaption: "A fee notice, delivered direct and read — receipt and all.",
+    visual: "whatsapp-comparison",
+    comparisonImages: [
+      {
+        src: "/whats1.png",
+        label: "School group",
+        alt: "Parents group chat where a fee notice is buried under unrelated messages.",
+      },
+      {
+        src: "/whats2.png",
+        label: "Direct from school",
+        alt: "Direct WhatsApp message from the school with a fee payment link and read receipt.",
+      },
+    ],
   },
   {
     title: "Fee reconciliation",
     description:
       "Payment links, partial payments, and overdue flags in one ledger. Your finance team stops reconciling three spreadsheets at term end.",
-    imageSrc: "/billing-infrastructure-header.png",
-    imageWidth: 6100,
-    imageHeight: 2736,
-    imageAlt: "CampusOS billing dashboard showing fee collection and payment status",
   },
   {
     title: "Broadcast templates",
     description:
       "PTM reminders, holidays, and fee notices — send in seconds. Pick a template, choose your audience, and reach every parent without manual forwarding.",
-    imageSrc: "/announcements-header.png",
-    imageWidth: 6100,
-    imageHeight: 2736,
-    imageAlt: "CampusOS announcements interface for sending school-wide notices",
   },
   {
     title: "Integrates with your stack",

@@ -19,7 +19,7 @@ type MockUiFrameProps = {
 
 function Chrome({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <div className="flex h-full min-h-[220px] flex-col border border-border bg-[#fafafa]">
+    <div className="flex h-full min-h-[220px] flex-col border border-border bg-white">
       <div className="flex items-center gap-2 border-b border-border bg-white px-3 py-2">
         <div className="flex gap-1">
           <span className="size-2 rounded-full bg-border" />

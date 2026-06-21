@@ -17,22 +17,22 @@ export default function GlobalError({
           alignItems: "center",
           justifyContent: "center",
           fontFamily: "system-ui, sans-serif",
-          background: "#fafafa",
-          color: "#111",
+          background: "#ffffff",
+          color: "#000000",
         }}
       >
         <main style={{ maxWidth: "28rem", padding: "1.5rem", textAlign: "center" }}>
           <h1 style={{ fontSize: "2rem", fontWeight: 500, marginBottom: "0.75rem" }}>
             Something went wrong
           </h1>
-          <p style={{ color: "#666", lineHeight: 1.6, marginBottom: "1.5rem" }}>
+          <p style={{ color: "rgba(0,0,0,0.55)", lineHeight: 1.6, marginBottom: "1.5rem" }}>
             CampusOS ran into an unexpected error. Please try again.
           </p>
           <button
             type="button"
             onClick={reset}
             style={{
-              border: "1px solid #ddd",
+              border: "1px solid rgba(0,0,0,0.12)",
               borderRadius: "9999px",
               background: "#fff",
               padding: "0.5rem 1rem",
