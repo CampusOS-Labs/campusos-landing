@@ -9,7 +9,7 @@ ogImage:
   url: ""
 ---
 
-## the talk that started it all
+## the snowball effect
 
 Kidzee Vadgaon Sheri was one of the first schools that gave us a chance at this. When we first talked to the principal there, she was waiting for someone to hear out her problems, it felt like. It couldn't have been any better. The insights we got from her laid the foundation for understanding the market gap that existed.
 
@@ -21,4 +21,8 @@ The second thing she mentioned is how Meta now charges money for > 256 messages,
 ## a far fetched statement
 Calling it billing infra is a far-fetched statement, not because we didn't build it, but because we had a lot of help from our friends at Razorpay. I didn't have a clue what Razorpay was until I attended YC Startup School in Bangalore, and nothing is going to sell me more about a company that can solve real problems then it being backed by YC (though my beliefs have changed for a few)
 
-Razorpay's API docs are decent.
+Razorpay's API docs are decent. We decided to use those docs as building blocks for our billing infra, and within 16 hours and a sleepless night, we had a working billing infra system up and running. The funny part is the KYC took us longer than writing the actual code. If anyone wants to start helping people out with that, there's a free startup idea.
+
+What we built was basically this: a parent would get a custom link based on their invoice information about the unpaid fee, and all they would have to do is click the link, use our Razorpay integration, and complete the payment—and voila, they're done. DB updated for the school, no more reconciliation calls, no more parents that forget or try to delay payments (c'mon guys), and the best part: NO MORE EXCEL SHEETS.
+
+## did prod go down?

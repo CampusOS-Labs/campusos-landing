@@ -1,8 +1,10 @@
 "use client";
 
-import { Fragment, useEffect, useRef } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { GrainGradient } from "@paper-design/shaders-react";
+import { Badge } from "@/components/ui/badge";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,12 +63,30 @@ function ShiftWords({
 
 export function TheShift() {
   const sectionRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
+  const [shaderSpeed, setShaderSpeed] = useState(1);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const updateSpeed = () => {
+      setShaderSpeed(mediaQuery.matches ? 0 : 1);
+    };
+
+    updateSpeed();
+    mediaQuery.addEventListener("change", updateSpeed);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateSpeed);
+    };
+  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
+    const container = containerRef.current;
     const text = textRef.current;
-    if (!section || !text) return;
+    if (!section || !container || !text) return;
 
     let matchMedia: gsap.MatchMedia | undefined;
 
@@ -74,12 +94,14 @@ export function TheShift() {
       const words = gsap.utils.toArray<HTMLElement>("[data-shift-word]", section);
       if (words.length === 0) return;
 
-      const mutedColor = getComputedStyle(document.documentElement)
-        .getPropertyValue("--muted-foreground")
-        .trim();
-      const activeColor = getComputedStyle(document.documentElement)
-        .getPropertyValue("--foreground")
-        .trim();
+      const sectionStyles = getComputedStyle(section);
+      const rootStyles = getComputedStyle(document.documentElement);
+      const mutedColor =
+        sectionStyles.getPropertyValue("--shift-word-muted").trim() ||
+        rootStyles.getPropertyValue("--muted-foreground").trim();
+      const activeColor =
+        sectionStyles.getPropertyValue("--shift-word-active").trim() ||
+        rootStyles.getPropertyValue("--foreground").trim();
 
       gsap.set(words, { autoAlpha: 0, color: mutedColor });
 
@@ -92,10 +114,11 @@ export function TheShift() {
       matchMedia.add("(prefers-reduced-motion: no-preference)", () => {
         const timeline = gsap.timeline({
           scrollTrigger: {
-            trigger: text,
+            trigger: container,
             start: "top 85%",
-            end: "bottom 35%",
+            end: "35% 50%",
             scrub: true,
+            invalidateOnRefresh: true,
           },
         });
 
@@ -108,7 +131,15 @@ export function TheShift() {
           });
         });
 
-        ScrollTrigger.refresh();
+        const refresh = () => ScrollTrigger.refresh();
+        refresh();
+        window.addEventListener("load", refresh);
+        window.addEventListener("resize", refresh);
+
+        return () => {
+          window.removeEventListener("load", refresh);
+          window.removeEventListener("resize", refresh);
+        };
       });
     }, section);
 
@@ -123,10 +154,34 @@ export function TheShift() {
   return (
     <section
       ref={sectionRef}
-      className="section-band-white relative mt-16 w-full self-stretch overflow-hidden md:mt-36 lg:mt-48"
+      className="section-band-shift-shader relative w-full self-stretch overflow-hidden"
     >
-      <div className="relative mx-auto flex min-h-[80dvh] max-w-4xl flex-col justify-center px-4 py-16 text-center sm:min-h-[100dvh] sm:px-6 sm:py-20 md:px-8 md:py-24">
-        <p className="text-eyebrow">The shift</p>
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <GrainGradient
+          colors={["#c6750c", "#beae60", "#d7cbc6"]}
+          colorBack="#000a0f"
+          softness={0.7}
+          intensity={0.15}
+          noise={0.5}
+          shape="wave"
+          speed={shaderSpeed}
+          scale={1}
+          rotation={0}
+          offsetX={0}
+          offsetY={0}
+          style={{ width: "100%", height: "100%" }}
+        />
+      </div>
+      <div
+        ref={containerRef}
+        className="relative z-10 mx-auto flex min-h-[70dvh] max-w-4xl flex-col justify-start px-4 pt-16 pb-16 text-center text-white sm:min-h-[78dvh] sm:px-6 sm:pt-24 sm:pb-20 md:min-h-[86dvh] md:px-8 md:pt-28 md:pb-24"
+      >
+        <Badge
+          variant="outline"
+          className="mx-auto border-white/35 bg-white/10 px-3 py-1 text-[0.68rem] font-medium tracking-[0.14em] text-white uppercase backdrop-blur-sm"
+        >
+          The shift
+        </Badge>
         <p
           ref={textRef}
           className="mt-4 font-heading text-2xl font-normal leading-[1.12] tracking-[-0.03em] sm:mt-6 sm:text-3xl md:text-4xl lg:text-[2.75rem]"

@@ -8,3 +8,5 @@ author:
 ogImage:
   url: ""
 ---
+
+what started off as a way to get our favorite local fried chicken shop's scoial social media gig led us to learn so muchu more abotu social meadia then we oculd've ever imageined

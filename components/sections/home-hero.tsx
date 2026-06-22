@@ -111,7 +111,7 @@ export function HomeHero() {
   return (
     <div
       ref={sectionRef}
-      className="relative flex min-h-[calc(100dvh-3.5rem)] w-full flex-col items-center justify-between bg-white px-4 pt-16 pb-8 sm:min-h-[calc(100dvh-4rem)] sm:px-6 sm:pt-24 sm:pb-12 md:pt-32 md:pb-16"
+      className="relative flex min-h-[calc(100dvh-3.5rem)] w-full flex-col items-center justify-between bg-white px-4 pt-16 pb-6 sm:min-h-[calc(100dvh-4rem)] sm:px-6 sm:pt-24 sm:pb-8 md:pt-32 md:pb-10"
     >
       <div className="flex w-full flex-col items-center text-center">
         <h1
@@ -132,7 +132,7 @@ export function HomeHero() {
 
       {/*<WhatsAppHalftone className="pointer-events-none mt-10 h-[min(34vw,280px)] w-[min(82vw,500px)] flex-none [mask-image:radial-gradient(ellipse_at_center,black_58%,transparent_82%)] md:mt-14 md:h-[min(30vw,340px)] md:w-[min(64vw,620px)]" />*/}
 
-      <TrustedBy className="mt-10 w-full shrink-0 sm:mt-12 md:absolute md:bottom-16 md:left-1/2 md:mt-0 md:-translate-x-1/2" />
+      <TrustedBy className="mt-10 w-full shrink-0 sm:mt-12 md:absolute md:bottom-10 md:left-1/2 md:mt-0 md:-translate-x-1/2" />
     </div>
   );
 }

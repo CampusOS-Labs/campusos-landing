@@ -236,12 +236,6 @@ export const HOW_IT_WORKS_STEPS = [
 
 export type HowItWorksStep = (typeof HOW_IT_WORKS_STEPS)[number];
 
-export type CapabilityComparisonImage = {
-  src: string;
-  label: string;
-  alt: string;
-};
-
 export type Capability = {
   title: string;
   description: string;
@@ -249,7 +243,6 @@ export type Capability = {
   imageSrc?: string;
   imageAlt?: string;
   visual?: "payment-stack" | "whatsapp-comparison";
-  comparisonImages?: CapabilityComparisonImage[];
 };
 
 export const CAPABILITIES: Capability[] = [
@@ -259,18 +252,6 @@ export const CAPABILITIES: Capability[] = [
       "Parents get a direct message — not a group chat where the notice that matters scrolls away under a hundred good-mornings. Read receipts tell you who saw it before you chase anyone down.",
     imageCaption: "A fee notice, delivered direct and read — receipt and all.",
     visual: "whatsapp-comparison",
-    comparisonImages: [
-      {
-        src: "/whats1.png",
-        label: "School group",
-        alt: "Parents group chat where a fee notice is buried under unrelated messages.",
-      },
-      {
-        src: "/whats2.png",
-        label: "Direct from school",
-        alt: "Direct WhatsApp message from the school with a fee payment link and read receipt.",
-      },
-    ],
   },
   {
     title: "Fee reconciliation",

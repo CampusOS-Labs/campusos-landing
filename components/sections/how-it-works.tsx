@@ -34,7 +34,7 @@ function HowItWorksStepCard({
 
 export function HowItWorks() {
   return (
-    <section className="section-band-white mt-16 w-full self-stretch md:mt-36 lg:mt-48">
+    <section className="section-band-white w-full self-stretch">
       <div className="w-full px-4 pb-10 md:px-8 md:pb-14 lg:px-12">
         <div className="mx-auto max-w-2xl pt-6 text-center md:pt-8">
           <p className="text-eyebrow">How it works</p>
