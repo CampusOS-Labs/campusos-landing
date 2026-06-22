@@ -14,7 +14,7 @@ const linkClassName = "text-base text-white/60 transition-colors hover:text-whit
 
 const FOOTER_HEADLINE = "Your spreadsheets are optional now";
 const FOOTER_SUBHEAD =
-  "Fix one broken workflow — installed, trained, and working in production.";
+  "Fix one broken workflow, flawlessly.";
 
 function HeadlineWords({ text }: { text: string }) {
   const words = text.split(" ");
@@ -137,7 +137,7 @@ export function Footer() {
             <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
               <h2
                 ref={headlineRef}
-                className="font-heading text-4xl font-normal leading-[1.1] tracking-[-0.03em] text-white md:text-5xl"
+                className="font-heading text-3xl font-normal leading-[1.1] tracking-[-0.03em] text-white sm:text-4xl md:text-5xl"
               >
                 <HeadlineWords text={FOOTER_HEADLINE} />
               </h2>
@@ -188,12 +188,12 @@ export function Footer() {
             <div>
               <p className="mb-2 text-base font-medium text-white">Follow</p>
               <a
-                href="https://linkedin.com"
+                href="https://www.instagram.com/usecampusos/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`block ${linkClassName}`}
               >
-                LinkedIn
+                Instagram
               </a>
               <a
                 href="https://x.com"
@@ -201,15 +201,15 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className={`block ${linkClassName}`}
               >
-                X (Twitter)
+                X <s>(Twitter)</s>
               </a>
               <a
-                href="https://www.instagram.com/usecampusos/"
+                href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`block ${linkClassName}`}
               >
-                Instagram
+                LinkedIn
               </a>
             </div>
             <div>
@@ -222,10 +222,10 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="mt-10 flex items-end justify-between md:mt-20">
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between md:mt-20">
             <Link
               href="/"
-              className="font-heading text-lg font-normal tracking-[-0.02em] text-white"
+              className="font-sans text-lg font-normal tracking-[-0.02em] text-white"
             >
               CampusOS
             </Link>

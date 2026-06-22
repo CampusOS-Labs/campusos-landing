@@ -1,4 +1,3 @@
-import { MockUiFrame } from "@/components/ui/mock-ui-frame";
 import { getManifesto } from "@/lib/manifesto";
 import { MANIFESTO_SECTIONS } from "@/lib/content-pages";
 import markdownToHtml from "@/lib/markdownToHtml";
@@ -31,18 +30,18 @@ export default async function ManifestoPage() {
 
   return (
     <>
-      <main className="flex flex-1 flex-col items-center px-6 pt-32">
+      <main className="flex flex-1 flex-col items-center px-4 pt-24 sm:px-6 sm:pt-32">
         <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
           Manifesto
         </p>
-        <h1 className="mt-4 max-w-3xl text-center font-heading text-6xl font-light leading-[1.05] tracking-tight">
+        <h1 className="mt-4 max-w-3xl text-center font-heading text-4xl font-light leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
           {manifesto.data.title}
         </h1>
-        <p className="mt-4 max-w-xl text-center text-lg text-muted-foreground">
+        <p className="mt-4 max-w-xl text-center text-base text-muted-foreground sm:text-lg">
           {manifesto.data.description}
         </p>
 
-        <div className="mt-16 w-full max-w-2xl p-8 md:p-12">
+        <div className="mt-10 w-full max-w-2xl p-4 sm:mt-16 sm:p-8 md:p-12">
           <div
             className="prose prose-lg max-w-none prose-headings:font-heading prose-headings:font-light prose-headings:tracking-tight"
             dangerouslySetInnerHTML={{ __html: content }}

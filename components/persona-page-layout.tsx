@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { MockUiFrame } from "@/components/ui/mock-ui-frame";
 import { buttonVariants } from "@/components/ui/button";
 import { getPersonaById, type PersonaDefinition } from "@/lib/products";
 import { createPageMetadata } from "@/lib/site";
@@ -23,9 +22,9 @@ export function PersonaPageLayout({ personaId }: PersonaPageProps) {
   if (!persona) notFound();
 
   return (
-    <main className="flex flex-1 flex-col items-center px-6 pt-32">
+    <main className="flex flex-1 flex-col items-center px-4 pt-24 sm:px-6 sm:pt-32">
       <p className="text-eyebrow">For {persona.label.toLowerCase()}</p>
-      <h1 className="mt-4 max-w-3xl text-center font-heading text-5xl font-normal leading-[1.05] tracking-[-0.03em] md:text-6xl">
+      <h1 className="mt-4 max-w-3xl text-center text-display">
         {persona.headline}
       </h1>
       <p className="mt-5 max-w-xl text-center text-lead">{persona.subhead}</p>
@@ -33,12 +32,8 @@ export function PersonaPageLayout({ personaId }: PersonaPageProps) {
         Contact us
       </Link>
 
-      <div className="mt-16 w-full max-w-4xl">
-        <MockUiFrame variant={persona.mockVariant} className="min-h-[300px]" />
-      </div>
-
-      <div className="mt-24 w-full max-w-3xl surface-panel">
-        <div className="border-b border-border px-8 py-6">
+      <div className="mt-16 w-full max-w-3xl surface-panel sm:mt-24">
+        <div className="border-b border-border px-5 py-5 sm:px-8 sm:py-6">
           <h2 className="font-heading text-3xl font-normal tracking-[-0.03em]">
             What {persona.label.toLowerCase()} use CampusOS for
           </h2>
@@ -46,7 +41,7 @@ export function PersonaPageLayout({ personaId }: PersonaPageProps) {
         {persona.useCases.map((item, index) => (
           <div
             key={item}
-            className={`flex gap-4 px-8 py-6 ${
+            className={`flex gap-4 px-5 py-5 sm:px-8 sm:py-6 ${
               index < persona.useCases.length - 1 ? "border-b border-border" : ""
             }`}
           >

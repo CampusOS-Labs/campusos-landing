@@ -26,7 +26,7 @@ Tone: confident, technical, restrained. Headline + one sentence per section. No 
 4. **Name the failure mode** — "end-of-term reconciliation marathons", not "improved efficiency"
 5. **Production language** — "live at your school", "working day one", "before the term ends"
 6. **Three-word verb pillars** — Connect / Audit / Run (or Sync / Flag / Fix)
-7. **Minimal CTA** — "Contact" or "Get started", not noisy conversion copy
+7. **Minimal CTA** — "Contact" not noisy conversion copy
 
 ---
 

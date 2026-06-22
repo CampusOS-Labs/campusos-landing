@@ -94,7 +94,7 @@ export default async function TeamPage() {
       description="The people building school infrastructure, one workflow at a time."
       fullWidth
     >
-      <div className="mx-auto max-w-6xl space-y-0">
+      <div className="mx-auto max-w-6xl space-y-0 pb-24 md:pb-32">
         {team.map((founder, index) => (
           <section
             key={founder.name}

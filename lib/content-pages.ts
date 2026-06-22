@@ -1,24 +1,18 @@
-import type { MockUiVariant } from "@/components/ui/mock-ui-frame";
-
 export type CaseStudyCardMeta = {
-  mockVariant: MockUiVariant;
   products: string[];
   highlight: string;
 };
 
 export const CASE_STUDY_CARD_META: Record<string, CaseStudyCardMeta> = {
   "kidzee-vadgaon-sheri": {
-    mockVariant: "billing",
     products: ["Billing Infrastructure"],
     highlight: "Live in under a week",
   },
   "kidzee-mundhwa": {
-    mockVariant: "attendance",
     products: ["Attendance", "Announcements"],
     highlight: "GPS check-in + WhatsApp DMs",
   },
   "company-brain-for-schools": {
-    mockVariant: "run",
     products: ["Connect", "Audit", "Run"],
     highlight: "One source of truth",
   },
@@ -27,7 +21,6 @@ export const CASE_STUDY_CARD_META: Record<string, CaseStudyCardMeta> = {
 export function getCaseStudyCardMeta(slug: string): CaseStudyCardMeta {
   return (
     CASE_STUDY_CARD_META[slug] ?? {
-      mockVariant: "run",
       products: ["CampusOS"],
       highlight: "Workflow fixed in production",
     }

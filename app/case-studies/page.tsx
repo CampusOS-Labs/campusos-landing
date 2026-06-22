@@ -11,14 +11,14 @@ export default function CaseStudies() {
   const allCaseStudies = getAllCaseStudies();
 
   return (
-    <main className="flex-1 flex flex-col items-center pt-32 px-6 pb-24">
-      <h1 className="text-6xl font-light tracking-tight text-center max-w-3xl font-heading leading-[1.05]">
+    <main className="flex flex-1 flex-col items-center px-4 pt-24 pb-16 sm:px-6 sm:pt-32 sm:pb-24">
+      <h1 className="max-w-3xl text-center font-heading text-4xl font-light leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
         Case Studies
       </h1>
-      <p className="mt-4 text-center text-lg text-muted-foreground max-w-xl">
+      <p className="mt-4 max-w-xl text-center text-base text-muted-foreground sm:text-lg">
         Real schools fixing real workflows — one at a time.
       </p>
-      <div className="mt-16 max-w-2xl w-full space-y-12">
+      <div className="mt-10 w-full max-w-2xl space-y-12 sm:mt-16">
         {allCaseStudies.length > 0 ? (
           allCaseStudies.map((caseStudy) => (
             <CaseStudyPreview

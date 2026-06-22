@@ -12,7 +12,6 @@ export type ProductDefinition = {
   description: string;
   href: string;
   imageSrc?: string;
-  mockVariant: "billing" | "announcements" | "attendance" | "socials";
   stats: ProductStat[];
   useCases: string[];
   testimonial: {
@@ -34,7 +33,6 @@ export const PRODUCTS: ProductDefinition[] = [
       "One ledger for tuition, events, and ad-hoc fees — no end-of-term reconciliation marathons.",
     href: "/products/billing-infrastructure",
     // imageSrc: "/billing-infrastructure-header.png",
-    mockVariant: "billing",
     stats: [
       {
         value: "97.2%",
@@ -79,7 +77,6 @@ export const PRODUCTS: ProductDefinition[] = [
       "Notices delivered as direct WhatsApp messages — not buried in group scroll.",
     href: "/products/announcements",
     // imageSrc: "/announcements-header.png",
-    mockVariant: "announcements",
     stats: [
       {
         value: "98.4%",
@@ -123,7 +120,6 @@ export const PRODUCTS: ProductDefinition[] = [
     description:
       "Teachers check in on their phone. You see live attendance on your dashboard.",
     href: "/products/attendance",
-    mockVariant: "attendance",
     stats: [
       {
         value: "< 30s",
@@ -167,7 +163,6 @@ export const PRODUCTS: ProductDefinition[] = [
     description:
       "Plan, draft, and publish outreach without another agency retainer.",
     href: "/products/socials",
-    mockVariant: "socials",
     stats: [
       {
         value: "3×",
@@ -222,26 +217,24 @@ export const SHIFT_STATS = [
 export const HOW_IT_WORKS_STEPS = [
   {
     step: "01",
-    title: "Painpoint",
-    description:
-      "Tell us what's breaking — fees stuck in Excel, parents missing notices, registers nobody trusts.",
-    imageSrc: undefined,
+    title: "Get on a call or meet us",
+    description: "Tell us what's painful. We listen first",
   },
   {
     step: "02",
-    title: "Build",
+    title: "We adapt or build it for YOU",
     description:
-      "We fix just that workflow — built for your school, installed on site, trained day one.",
-    imageSrc: undefined,
+      "We configure CampusOS for your situation, or spin up a custom tool that fits.",
   },
   {
     step: "03",
-    title: "Expand",
+    title: "We install it for you",
     description:
-      "When it's running, pick the next problem. No forced bundle, no 200-feature ERP.",
-    imageSrc: undefined,
+      "We come to your school — data migrated, everything set up, staff walked through it.",
   },
-];
+] as const;
+
+export type HowItWorksStep = (typeof HOW_IT_WORKS_STEPS)[number];
 
 export type CapabilityComparisonImage = {
   src: string;
@@ -304,7 +297,6 @@ export type PersonaDefinition = {
   headline: string;
   subhead: string;
   useCases: string[];
-  mockVariant: "billing" | "announcements" | "attendance" | "run";
 };
 
 export const PERSONAS: PersonaDefinition[] = [
@@ -320,7 +312,6 @@ export const PERSONAS: PersonaDefinition[] = [
       "Confirm parent notices are actually being read",
       "Know who's on campus before the school day starts",
     ],
-    mockVariant: "run",
   },
   {
     id: "admins",
@@ -334,7 +325,6 @@ export const PERSONAS: PersonaDefinition[] = [
       "Send fee reminders with payment links to unpaid families",
       "Export attendance and billing reports for compliance",
     ],
-    mockVariant: "announcements",
   },
   {
     id: "teachers",
@@ -348,7 +338,6 @@ export const PERSONAS: PersonaDefinition[] = [
       "Send quick class updates without chasing admin",
       "Focus on teaching — not copying phone numbers",
     ],
-    mockVariant: "attendance",
   },
 ];
 

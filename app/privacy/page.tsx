@@ -238,19 +238,19 @@ const sections = [
 export default function Privacy() {
   return (
     <>
-      <main className="flex flex-1 flex-col items-center px-6 pt-32">
+      <main className="flex flex-1 flex-col items-center px-4 pt-24 sm:px-6 sm:pt-32">
         <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
           Legal
         </p>
-        <h1 className="mt-4 max-w-3xl text-center font-heading text-6xl font-light leading-[1.05] tracking-tight">
+        <h1 className="mt-4 max-w-3xl text-center font-heading text-4xl font-light leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
           Privacy Policy
         </h1>
-        <p className="mt-4 max-w-xl text-center text-lg text-muted-foreground">
+        <p className="mt-4 max-w-xl text-center text-base text-muted-foreground sm:text-lg">
           Last updated: June 12, 2026
         </p>
 
-        <div className="mt-16 max-w-2xl space-y-0">
-          <div className="border border-border p-8 text-sm leading-relaxed text-muted-foreground">
+        <div className="mt-10 max-w-2xl space-y-0 sm:mt-16">
+          <div className="border border-border p-5 text-sm leading-relaxed text-muted-foreground sm:p-8">
             CampusOS, Inc. (&quot;CampusOS&quot;, &quot;we&quot;, &quot;our&quot;) respects your privacy.
             This Privacy Policy explains how we collect, use, disclose, and protect personal
             information when you visit our website or use our school operations platform and related

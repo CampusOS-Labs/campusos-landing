@@ -36,16 +36,16 @@ const trustedLogos: LogoItem[] = TRUSTED_SCHOOLS.map((school) => {
 
 export function TrustedBy({ className }: { className?: string }) {
   return (
-    <section className={`w-full max-w-5xl px-6 ${className ?? "mt-24"}`}>
-      <p className="mb-8 text-center text-eyebrow">
+    <section className={`mx-auto w-full max-w-5xl px-4 sm:px-6 ${className ?? "mt-24"}`}>
+      <p className="mb-6 text-center text-eyebrow sm:mb-8">
         Trusted by
       </p>
-      <div className="relative h-20 overflow-hidden">
+      <div className="relative h-16 overflow-hidden sm:h-20">
         <LogoLoop
           logos={trustedLogos}
           speed={60}
           direction="left"
-          logoHeight={86}
+          logoHeight={64}
           gap={56}
           hoverSpeed={0}
           fadeOut

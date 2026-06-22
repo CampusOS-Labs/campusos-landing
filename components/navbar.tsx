@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
+import { ListIcon } from "@phosphor-icons/react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,17 +12,36 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { buttonVariants } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { PRODUCTS } from "@/lib/products";
 import { cn } from "@/lib/utils";
 
+const NAV_LINKS = [
+  { href: "/blogs", label: "Blog" },
+  { href: "/case-studies", label: "Case Studies" },
+  { href: "/manifesto", label: "Manifesto" },
+] as const;
+
+const mobileLinkClassName =
+  "block rounded-md px-3 py-2.5 text-base font-medium text-foreground transition-colors hover:bg-secondary";
+
 export function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 z-50 w-full  bg-white/95 backdrop-blur-sm">
-      <div className="flex h-16 items-center px-4 md:px-8">
+    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-white/95 backdrop-blur-sm">
+      <div className="mx-auto flex h-14 max-w-7xl items-center gap-3 px-4 sm:h-16 sm:px-6 lg:px-8">
         <Link href="/" className="shrink-0 font-heading text-lg tracking-[-0.02em]">
-        <span className="font-sans font-bold ">CampusOS</span>
-      </Link>
-        <div className="flex flex-1 justify-center">
+          <span className="font-sans font-bold">CampusOS</span>
+        </Link>
+
+        <div className="hidden flex-1 justify-center lg:flex">
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
@@ -28,7 +49,7 @@ export function Navbar() {
                   Products
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[500px] gap-1 p-4 md:grid-cols-2">
+                  <ul className="grid w-[min(100vw-2rem,500px)] gap-1 p-4 md:grid-cols-2">
                     {PRODUCTS.map((item) => (
                       <li key={item.id}>
                         <NavigationMenuLink
@@ -58,40 +79,95 @@ export function Navbar() {
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="/blogs"
-                  className="px-2.5 py-1.5 text-sm font-medium text-muted-foreground"
-                >
-                  Blog
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="/case-studies"
-                  className="px-2.5 py-1.5 text-sm font-medium text-muted-foreground"
-                >
-                  Case Studies
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="/manifesto"
-                  className="px-2.5 py-1.5 text-sm font-medium text-muted-foreground"
-                >
-                  Manifesto
-                </NavigationMenuLink>
-              </NavigationMenuItem>
+              {NAV_LINKS.map((link) => (
+                <NavigationMenuItem key={link.href}>
+                  <NavigationMenuLink
+                    href={link.href}
+                    className="px-2.5 py-1.5 text-sm font-medium text-muted-foreground"
+                  >
+                    {link.label}
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              ))}
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        <div className="flex shrink-0 items-center gap-2">
-          <Link href="/contact" className={buttonVariants({ variant: "secondary", size: "sm" })}>
-            Contact
+
+        <div className="ml-auto flex shrink-0 items-center gap-2">
+          <Link
+            href="/contact"
+            className={cn(buttonVariants({ variant: "secondary", size: "sm" }), "hidden sm:inline-flex")}
+          >
+           Get Started
           </Link>
-          <Link href="/contact" className={buttonVariants({ variant: "default", size: "sm" })}>
-            Get started
-          </Link>
+          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+            <SheetTrigger
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon-sm" }),
+                "lg:hidden",
+              )}
+              aria-label="Open menu"
+            >
+              <ListIcon className="size-5" />
+            </SheetTrigger>
+            <SheetContent side="right" className="overflow-y-auto">
+              <SheetHeader className="border-b border-border pb-4">
+                <SheetTitle>Menu</SheetTitle>
+              </SheetHeader>
+
+              <nav className="flex flex-1 flex-col gap-6 px-4 pb-6">
+                <div>
+                  <p className="mb-2 px-3 text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground">
+                    Products
+                  </p>
+                  <div className="flex flex-col gap-0.5">
+                    {PRODUCTS.map((item) => (
+                      <Link
+                        key={item.id}
+                        href={item.href}
+                        className={mobileLinkClassName}
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                    <Link
+                      href="/contact"
+                      className={mobileLinkClassName}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      Everything else
+                    </Link>
+                  </div>
+                </div>
+
+                <div>
+                  <p className="mb-2 px-3 text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground">
+                    Company
+                  </p>
+                  <div className="flex flex-col gap-0.5">
+                    {NAV_LINKS.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className={mobileLinkClassName}
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                    <Link
+                      href="/contact"
+                      className={mobileLinkClassName}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      Contact
+                    </Link>
+                  </div>
+                </div>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>

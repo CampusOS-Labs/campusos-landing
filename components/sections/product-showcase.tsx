@@ -3,7 +3,6 @@ import Image from "next/image";
 
 import { HOMEPAGE_PRODUCTS } from "@/lib/products";
 import { buttonVariants } from "@/components/ui/button";
-import { MockUiFrame } from "@/components/ui/mock-ui-frame";
 
 export function ProductShowcase() {
   return (
@@ -29,11 +28,17 @@ export function ProductShowcase() {
           return (
             <div
               key={product.id}
-              className="grid min-h-[28rem] grid-cols-1 border border-border lg:grid-cols-2"
+              className={`grid min-h-[28rem] grid-cols-1 border border-border ${
+                product.imageSrc ? "lg:grid-cols-2" : ""
+              }`}
             >
               <div
                 className={`flex flex-col justify-center border-border p-8 lg:p-12 ${
-                  reversed ? "lg:order-2 lg:border-l" : "lg:border-r"
+                  product.imageSrc
+                    ? reversed
+                      ? "lg:order-2 lg:border-l"
+                      : "lg:border-r"
+                    : ""
                 }`}
               >
                 <p className="text-eyebrow">{product.label}</p>
@@ -59,12 +64,12 @@ export function ProductShowcase() {
                 </blockquote>
               </div>
 
-              <div
-                className={`relative min-h-[240px] bg-muted/20 p-6 lg:p-8 ${
-                  reversed ? "lg:order-1" : ""
-                }`}
-              >
-                {product.imageSrc ? (
+              {product.imageSrc ? (
+                <div
+                  className={`relative min-h-[240px] bg-muted/20 p-6 lg:p-8 ${
+                    reversed ? "lg:order-1" : ""
+                  }`}
+                >
                   <div className="relative h-full min-h-[220px] overflow-hidden border border-border bg-white">
                     <Image
                       src={product.imageSrc}
@@ -75,10 +80,8 @@ export function ProductShowcase() {
                     />
                     <div className="absolute inset-0 ring-1 ring-inset ring-foreground/5" />
                   </div>
-                ) : (
-                  <MockUiFrame variant={product.mockVariant} className="h-full" />
-                )}
-              </div>
+                </div>
+              ) : null}
             </div>
           );
         })}

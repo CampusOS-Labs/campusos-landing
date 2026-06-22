@@ -123,13 +123,13 @@ export function TheShift() {
   return (
     <section
       ref={sectionRef}
-      className="section-band-white relative mt-24 w-full self-stretch overflow-hidden md:mt-36 lg:mt-48"
+      className="section-band-white relative mt-16 w-full self-stretch overflow-hidden md:mt-36 lg:mt-48"
     >
-      <div className="relative mx-auto flex min-h-[100dvh] max-w-4xl flex-col justify-center px-6 py-20 text-center md:px-8 md:py-24">
+      <div className="relative mx-auto flex min-h-[80dvh] max-w-4xl flex-col justify-center px-4 py-16 text-center sm:min-h-[100dvh] sm:px-6 sm:py-20 md:px-8 md:py-24">
         <p className="text-eyebrow">The shift</p>
         <p
           ref={textRef}
-          className="mt-6 font-heading text-3xl font-normal leading-[1.12] tracking-[-0.03em] md:text-4xl lg:text-[2.75rem]"
+          className="mt-4 font-heading text-2xl font-normal leading-[1.12] tracking-[-0.03em] sm:mt-6 sm:text-3xl md:text-4xl lg:text-[2.75rem]"
         >
           <ShiftWords segments={lineOneSegments} className="block" />
           <ShiftWords segments={SHIFT_LINE_TWO} className="mt-3 block" />

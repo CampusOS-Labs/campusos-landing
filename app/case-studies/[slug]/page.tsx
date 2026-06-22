@@ -21,9 +21,9 @@ export default async function CaseStudyPage(props: Params) {
   const content = await markdownToHtml(caseStudy.content || "");
 
   return (
-    <main className="flex-1 flex flex-col items-center pt-32 px-6 pb-24">
-      <article className="max-w-3xl w-full">
-        <h1 className="text-5xl font-heading font-semibold tracking-tight leading-tight">
+    <main className="flex flex-1 flex-col items-center px-4 pt-24 pb-16 sm:px-6 sm:pt-32 sm:pb-24">
+      <article className="w-full max-w-3xl">
+        <h1 className="font-heading text-3xl font-semibold leading-tight tracking-tight sm:text-4xl md:text-5xl">
           {caseStudy.title}
         </h1>
         <PostMeta author={caseStudy.author} date={caseStudy.date} />

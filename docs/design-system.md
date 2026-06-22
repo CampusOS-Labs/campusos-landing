@@ -62,7 +62,6 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 
 <Link href="/contact" className={buttonVariants({ variant: "secondary" })}>Contact</Link>
-<Link href="/contact" className={buttonVariants()}>Get started</Link>
 ```
 
 Primary CTAs use the default black button on cream.

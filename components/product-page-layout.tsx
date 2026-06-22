@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { MockUiFrame } from "@/components/ui/mock-ui-frame";
 import { buttonVariants } from "@/components/ui/button";
 import PixelTransition from "@/components/ui/PixelTransition";
 import { BillingStackLoop } from "@/components/sections/billing-stack-loop";
@@ -19,9 +18,9 @@ export function ProductPageLayout({
   showBillingStack = false,
 }: ProductPageLayoutProps) {
   return (
-    <main className="flex flex-1 flex-col items-center px-6 pt-32">
+    <main className="flex flex-1 flex-col items-center px-4 pt-24 sm:px-6 sm:pt-32">
       <p className="text-eyebrow">{product.label}</p>
-      <h1 className="mt-4 max-w-3xl text-center font-heading text-5xl font-normal leading-[1.05] tracking-[-0.03em] md:text-6xl">
+      <h1 className="mt-4 max-w-3xl text-center text-display">
         {product.title}
       </h1>
       <p className="mt-5 max-w-xl text-center text-lead">{product.headline}</p>
@@ -49,11 +48,7 @@ export function ProductPageLayout({
           className="mt-16 w-full max-w-4xl"
           style={{ backgroundColor: "#ffffff" }}
         />
-      ) : (
-        <div className="mt-16 w-full max-w-4xl">
-          <MockUiFrame variant={product.mockVariant} className="min-h-[280px]" />
-        </div>
-      )}
+      ) : null}
 
       <div className="mt-16 grid w-full max-w-5xl grid-cols-1 gap-0 border border-border md:grid-cols-3">
         {product.stats.map((stat, index) => (
@@ -74,29 +69,23 @@ export function ProductPageLayout({
 
       <div className="mb-24 mt-24 w-full border-t" />
 
-      <div className="grid w-full max-w-5xl grid-cols-1 gap-12 lg:grid-cols-2">
-        <div>
-          <h2 className="font-heading text-4xl font-normal leading-[1.05] tracking-[-0.03em]">
-            What schools use this for
-          </h2>
-          <ul className="mt-6 space-y-3">
-            {product.useCases.map((item) => (
-              <li key={item} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
-                <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="border border-border bg-muted/10 p-8">
-          <MockUiFrame variant={product.mockVariant}  />
-        </div>
+      <div className="w-full max-w-3xl">
+      <h2 className="font-heading text-3xl font-normal leading-[1.05] tracking-[-0.03em] sm:text-4xl">
+        What schools use this for
+      </h2>
+        <ul className="mt-6 space-y-3">
+          {product.useCases.map((item) => (
+            <li key={item} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
+              <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" />
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="mb-24 mt-24 w-full border-t" />
 
-      <h2 className="mb-12 max-w-3xl text-center font-heading text-5xl font-normal leading-[1.05] tracking-[-0.03em]">
+      <h2 className="mb-12 max-w-3xl text-center text-display-sm">
         Outcomes for {product.label.toLowerCase()}
       </h2>
       <div className="max-w-2xl space-y-6">
@@ -118,7 +107,7 @@ export function ProductPageLayout({
         <>
           <div className="mb-24 mt-24 w-full border-t" />
           <div className="mb-12 text-center">
-            <h2 className="font-heading text-5xl font-normal leading-[1.05] tracking-[-0.03em]">
+            <h2 className="text-display-sm">
               Built with the entire stack in mind
             </h2>
             <p className="mx-auto mt-1 max-w-2xl text-lg leading-relaxed text-muted-foreground">
@@ -145,9 +134,6 @@ export function ProductPageLayout({
         ))}
       </div>
 
-      <Link href="/contact" className={`${buttonVariants({ size: "lg" })} mt-12`}>
-        Get started
-      </Link>
     </main>
   );
 }

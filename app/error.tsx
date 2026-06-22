@@ -23,8 +23,7 @@ export default function Error({
         We hit a snag
       </h1>
       <p className="mt-5 max-w-md text-lead">
-        An unexpected error occurred while loading this page. Try again, or
-        return home.
+        I see you're eager but this page doesn't exist.
       </p>
       <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
         <button type="button" onClick={reset} className={buttonVariants({ variant: "secondary" })}>
