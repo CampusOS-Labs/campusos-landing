@@ -18,7 +18,7 @@ export default function Home() {
       <HomeHero />
       <TheShift />
       <HowItWorks />
-      <CapabilityGrid />
+      {/*<CapabilityGrid />*/}
       <CustomerStories />
     </main>
   );

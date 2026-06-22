@@ -159,6 +159,18 @@
     @apply text-lg leading-relaxed tracking-[-0.02em] text-muted-foreground;
   }
 
+  .text-body {
+    @apply text-base leading-relaxed text-muted-foreground;
+  }
+
+  .text-body-sm {
+    @apply text-sm leading-relaxed text-muted-foreground;
+  }
+
+  .text-caption {
+    @apply text-xs leading-snug text-muted-foreground;
+  }
+
   .section-pad {
     @apply py-12 sm:py-16 md:py-28;
   }
@@ -169,6 +181,26 @@
 
   .text-display-sm {
     @apply font-heading text-3xl font-normal leading-[1.08] tracking-[-0.03em] sm:text-4xl md:text-5xl;
+  }
+
+  .text-h1 {
+    @apply font-heading text-3xl font-semibold leading-tight tracking-tight sm:text-4xl md:text-5xl;
+  }
+
+  .text-h2 {
+    @apply font-heading text-3xl font-normal leading-[1.08] tracking-[-0.03em] sm:text-4xl md:text-5xl;
+  }
+
+  .text-h3 {
+    @apply font-heading text-2xl font-normal leading-[1.12] tracking-[-0.03em] md:text-3xl;
+  }
+
+  .motion-text-enter {
+    @apply transition-[opacity,transform,filter] duration-200 ease-out;
+  }
+
+  .motion-text-interactive {
+    @apply transition-[color,background-color,transform] duration-150 ease-out;
   }
 
   .section-band-dark {
@@ -199,6 +231,13 @@
     background:
       radial-gradient(120% 70% at 50% 0%, rgba(8, 16, 24, 0.18) 0%, rgba(8, 16, 24, 0) 55%),
       linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.26) 100%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .motion-text-enter {
+      transition-property: opacity;
+      transition-duration: 150ms;
+    }
   }
 
 }

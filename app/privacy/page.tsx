@@ -159,7 +159,7 @@ const sections = [
         </ul>
         <p className="mt-4">
           We do not use third-party advertising or analytics cookies on our website or application. For more details, see our{" "}
-          <Link href="/cookies" className="underline underline-offset-2 hover:text-foreground transition-colors">
+          <Link href="/cookies" className="motion-text-interactive underline underline-offset-2 hover:text-foreground">
             Cookie Policy
           </Link>
           .
@@ -224,7 +224,7 @@ const sections = [
       <>
         <p>
           If you have questions about this Privacy Policy or how we handle your data, contact us at{" "}
-          <Link href="/contact" className="underline underline-offset-2 hover:text-foreground transition-colors">
+          <Link href="/contact" className="motion-text-interactive underline underline-offset-2 hover:text-foreground">
             usecampusos.com/contact
           </Link>
           .
@@ -239,18 +239,18 @@ export default function Privacy() {
   return (
     <>
       <main className="flex flex-1 flex-col items-center px-4 pt-24 sm:px-6 sm:pt-32">
-        <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+        <p className="text-eyebrow">
           Legal
         </p>
-        <h1 className="mt-4 max-w-3xl text-center font-heading text-4xl font-light leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+        <h1 className="mt-4 max-w-3xl text-center text-display">
           Privacy Policy
         </h1>
-        <p className="mt-4 max-w-xl text-center text-base text-muted-foreground sm:text-lg">
+        <p className="mt-4 max-w-xl text-center text-lead">
           Last updated: June 12, 2026
         </p>
 
         <div className="mt-10 max-w-2xl space-y-0 sm:mt-16">
-          <div className="border border-border p-5 text-sm leading-relaxed text-muted-foreground sm:p-8">
+          <div className="text-body-sm border border-border p-5 sm:p-8">
             CampusOS, Inc. (&quot;CampusOS&quot;, &quot;we&quot;, &quot;our&quot;) respects your privacy.
             This Privacy Policy explains how we collect, use, disclose, and protect personal
             information when you visit our website or use our school operations platform and related
@@ -262,10 +262,10 @@ export default function Privacy() {
               key={section.title}
               className={`border border-border border-t-0 p-8 ${index === sections.length - 1 ? "" : ""}`}
             >
-              <h2 className="font-heading text-3xl font-light leading-[1.1] tracking-tight">
+              <h2 className="text-h2 font-light tracking-tight sm:text-3xl">
                 {section.title}
               </h2>
-              <div className="mt-4 space-y-4 text-sm leading-relaxed text-muted-foreground">
+              <div className="text-body-sm mt-4 space-y-4">
                 {section.content}
               </div>
             </section>

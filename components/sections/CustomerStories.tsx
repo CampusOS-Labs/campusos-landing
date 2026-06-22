@@ -4,12 +4,12 @@ import { cn } from "@/lib/utils";
 const STORIES = [
   {
     title: "How Kidzee, Vadgaon Sheri handles their billing infra with CampusOS",
-    href: "/case-studies/kidzee-vadgaon-sheri",
+    href: "/case-studies/billing-infra",
     textOnLeft: false,
   },
   {
     title: "How Kidzee, Mundhwa handles their attendance and announcements with CampusOS",
-    href: "/case-studies/kidzee-mundhwa",
+    href: "/case-studies/attendance-announcements",
     textOnLeft: true,
   },
 ] as const;

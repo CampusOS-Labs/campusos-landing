@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState, useCallback, type ReactNode } from 'react';
+import { useRef, useEffect, useState, useCallback, useEffectEvent, type ReactNode } from 'react';
 import { gsap } from 'gsap';
 import './PixelTransition.css';
 
@@ -17,6 +17,8 @@ interface PixelTransitionProps {
   style?: React.CSSProperties;
 }
 
+const EMPTY_STYLE: React.CSSProperties = {};
+
 function PixelTransition({
   firstContent,
   secondContent,
@@ -27,7 +29,7 @@ function PixelTransition({
   autoPlay = false,
   aspectRatio = '100%',
   className = '',
-  style = {}
+  style = EMPTY_STYLE
 }: PixelTransitionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const pixelGridRef = useRef<HTMLDivElement>(null);
@@ -51,13 +53,8 @@ function PixelTransition({
       for (let col = 0; col < gridSize; col++) {
         const pixel = document.createElement('div');
         pixel.classList.add('pixelated-image-card__pixel');
-        pixel.style.backgroundColor = pixelColor;
-
         const size = 100 / gridSize;
-        pixel.style.width = `${size}%`;
-        pixel.style.height = `${size}%`;
-        pixel.style.left = `${col * size}%`;
-        pixel.style.top = `${row * size}%`;
+        pixel.style.cssText = `background-color:${pixelColor};width:${size}%;height:${size}%;left:${col * size}%;top:${row * size}%;`;
         pixelGridEl.appendChild(pixel);
       }
     }
@@ -108,16 +105,20 @@ function PixelTransition({
     });
   }, [setIsActive, animationStepDuration]);
 
+  const animatePixelsEvent = useEffectEvent((activate: boolean) => {
+    animatePixels(activate);
+  });
+
   useEffect(() => {
     if (!autoPlay || mountedRef.current) return;
     mountedRef.current = true;
 
     const timer = requestAnimationFrame(() => {
-      animatePixels(true);
+      animatePixelsEvent(true);
     });
 
     return () => cancelAnimationFrame(timer);
-  }, [autoPlay, animatePixels]);
+  }, [autoPlay]);
 
   const handleEnter = () => {
     if (!isActive) animatePixels(true);
@@ -128,6 +129,12 @@ function PixelTransition({
   const handleClick = () => {
     if (!isActive) animatePixels(true);
     else if (isActive && !once) animatePixels(false);
+  };
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleClick();
+    }
   };
 
   return (
@@ -140,6 +147,9 @@ function PixelTransition({
       onClick={isTouchDevice ? handleClick : undefined}
       onFocus={!isTouchDevice ? handleEnter : undefined}
       onBlur={!isTouchDevice ? handleLeave : undefined}
+      onKeyDown={isTouchDevice ? handleKeyDown : undefined}
+      role={isTouchDevice ? 'button' : undefined}
+      aria-pressed={isTouchDevice ? isActive : undefined}
       tabIndex={0}
     >
       <div style={{ paddingTop: aspectRatio }} />

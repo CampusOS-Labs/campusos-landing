@@ -1,5 +1,4 @@
 import { getManifesto } from "@/lib/manifesto";
-import { MANIFESTO_SECTIONS } from "@/lib/content-pages";
 import markdownToHtml from "@/lib/markdownToHtml";
 import { notFound } from "next/navigation";
 import { createPageMetadata } from "@/lib/site";
@@ -31,13 +30,13 @@ export default async function ManifestoPage() {
   return (
     <>
       <main className="flex flex-1 flex-col items-center px-4 pt-24 sm:px-6 sm:pt-32">
-        <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+        <p className="text-eyebrow">
           Manifesto
         </p>
-        <h1 className="mt-4 max-w-3xl text-center font-heading text-4xl font-light leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+        <h1 className="mt-4 max-w-3xl text-center text-display">
           {manifesto.data.title}
         </h1>
-        <p className="mt-4 max-w-xl text-center text-base text-muted-foreground sm:text-lg">
+        <p className="mt-4 max-w-xl text-center text-lead">
           {manifesto.data.description}
         </p>
 

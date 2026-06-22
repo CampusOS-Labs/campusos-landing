@@ -208,29 +208,23 @@ export function getProductById(id: string): ProductDefinition | undefined {
   return PRODUCTS.find((p) => p.id === id);
 }
 
-export const SHIFT_STATS = [
-  { value: "98.4%", label: "parent read rate on WhatsApp notices" },
-  { value: "< 2 min", label: "to broadcast school-wide" },
-  { value: "97.2%", label: "on-time fee collection" },
-];
-
 export const HOW_IT_WORKS_STEPS = [
   {
     step: "01",
-    title: "Get on a call or meet us",
-    description: "Tell us what's painful. We listen first",
+    title: "Tell us where operations break",
+    description: "We start with your current workflow and identify the handoffs that keep failing.",
   },
   {
     step: "02",
-    title: "We adapt or build it for YOU",
+    title: "We tailor the system to your school",
     description:
-      "We configure CampusOS for your situation, or spin up a custom tool that fits.",
+      "We configure what you need now, so your team gets useful workflows instead of bloated software.",
   },
   {
     step: "03",
-    title: "We install it for you",
+    title: "We launch it on campus with your team",
     description:
-      "We come to your school — data migrated, everything set up, staff walked through it.",
+      "We handle setup and onboarding on-site so staff can run it confidently from day one.",
   },
 ] as const;
 
@@ -243,6 +237,12 @@ export type Capability = {
   imageSrc?: string;
   imageAlt?: string;
   visual?: "payment-stack" | "whatsapp-comparison";
+  comparisonImages?: CapabilityComparisonImage[];
+};
+
+export type CapabilityComparisonImage = {
+  src: string;
+  alt: string;
 };
 
 export const CAPABILITIES: Capability[] = [

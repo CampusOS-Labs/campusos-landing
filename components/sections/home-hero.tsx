@@ -6,7 +6,6 @@ import { gsap } from "gsap";
 
 import { buttonVariants } from "@/components/ui/button";
 import { TrustedBy } from "@/components/sections/trusted-by";
-import { WhatsAppHalftone } from "@/components/sections/whatsapp-halftone";
 
 function HeadlineWords({ text }: { text: string }) {
   const words = text.split(" ");
@@ -45,9 +44,9 @@ export function HomeHero() {
 
       if (words.length === 0) return;
 
-      gsap.set(words, { autoAlpha: 0, filter: "blur(10px)", y: 18 });
-      if (subheadEl) gsap.set(subheadEl, { autoAlpha: 0, filter: "blur(8px)", y: 12 });
-      if (buttonEl) gsap.set(buttonEl, { autoAlpha: 0, y: 10 });
+      gsap.set(words, { autoAlpha: 0, filter: "blur(3px)", y: 8 });
+      if (subheadEl) gsap.set(subheadEl, { autoAlpha: 0, filter: "blur(2px)", y: 8 });
+      if (buttonEl) gsap.set(buttonEl, { autoAlpha: 0, y: 6 });
 
       matchMedia = gsap.matchMedia();
 
@@ -66,8 +65,8 @@ export function HomeHero() {
           autoAlpha: 1,
           filter: "blur(0px)",
           y: 0,
-          duration: 0.85,
-          stagger: 0.07,
+          duration: 0.5,
+          stagger: 0.035,
           ease: "power2.out",
           clearProps: "filter",
         });
@@ -79,11 +78,11 @@ export function HomeHero() {
               autoAlpha: 1,
               filter: "blur(0px)",
               y: 0,
-              duration: 0.7,
+              duration: 0.4,
               ease: "power2.out",
               clearProps: "filter",
             },
-            "-=0.35",
+            "-=0.2",
           );
         }
 
@@ -93,10 +92,10 @@ export function HomeHero() {
             {
               autoAlpha: 1,
               y: 0,
-              duration: 0.55,
+              duration: 0.32,
               ease: "power2.out",
             },
-            "-=0.4",
+            "-=0.18",
           );
         }
       });
@@ -116,13 +115,13 @@ export function HomeHero() {
       <div className="flex w-full flex-col items-center text-center">
         <h1
           ref={headlineRef}
-          className="max-w-3xl font-heading text-4xl font-normal leading-[1.05] tracking-[-0.03em] sm:text-5xl md:text-6xl"
+          className="max-w-3xl text-display"
         >
           <HeadlineWords text="Run your school" />
           <br />
           <HeadlineWords text="without running on spreadsheets" />
         </h1>
-        <p ref={subheadRef} className="mt-4 max-w-lg text-base leading-relaxed tracking-[-0.02em] text-muted-foreground sm:mt-5 sm:text-lg">
+        <p ref={subheadRef} className="mt-4 max-w-lg text-lead sm:mt-5">
           Save your school, use CampusOS
         </p>
         <Link ref={buttonRef} href="/contact" className={`${buttonVariants({ size: "lg" })} mt-6 sm:mt-8`}>

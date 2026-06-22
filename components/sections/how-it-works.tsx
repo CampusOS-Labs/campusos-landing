@@ -22,10 +22,10 @@ function HowItWorksStepCard({
         <span className="hidden h-px flex-1 bg-border md:block" aria-hidden />
       </div>
 
-      <h3 className="mt-4 font-heading text-2xl font-normal tracking-[-0.03em] md:text-3xl">
+      <h3 className="mt-4 text-h3">
         {step.title}
       </h3>
-      <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+      <p className="mt-3 text-body-sm md:text-base">
         {step.description}
       </p>
     </article>
@@ -38,11 +38,11 @@ export function HowItWorks() {
       <div className="w-full px-4 pb-10 md:px-8 md:pb-14 lg:px-12">
         <div className="mx-auto max-w-2xl pt-6 text-center md:pt-8">
           <p className="text-eyebrow">How it works</p>
-          <h2 className="mt-3 font-heading text-3xl font-normal leading-[1.08] tracking-[-0.03em] md:text-4xl lg:text-5xl">
-            Ground your school in one source of truth
+          <h2 className="mt-3 text-h2 lg:text-5xl">
+            From messy handoffs to one working system
           </h2>
           <p className="mx-auto mt-4 max-w-md text-lead">
-            Same foundation underneath billing, announcements, and parent communication.
+            We diagnose the gaps, tailor the setup, and launch it with your team on campus.
           </p>
         </div>
 

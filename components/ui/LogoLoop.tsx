@@ -80,7 +80,7 @@ const useResizeObserver = (
     return () => {
       observers.forEach((observer) => observer?.disconnect());
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-doctor/exhaustive-deps
   }, [callback, elements, ...dependencies]);
 };
 
@@ -114,7 +114,7 @@ const useImageLoader = (
         img.removeEventListener('error', handleImageLoad);
       });
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-doctor/exhaustive-deps
   }, [onLoad, seqRef, ...dependencies]);
 };
 
@@ -308,7 +308,7 @@ export const LogoLoop = memo(function LogoLoop({
     (item: LogoItem, key: Key) => {
       if (renderItem) {
         return (
-          <li className="logoloop__item" key={key} role="listitem">
+          <li className="logoloop__item" key={key}>
             {renderItem(item, key)}
           </li>
         );
@@ -346,7 +346,7 @@ export const LogoLoop = memo(function LogoLoop({
         content
       );
       return (
-        <li className="logoloop__item" key={key} role="listitem">
+        <li className="logoloop__item" key={key}>
           {itemContent}
         </li>
       );
@@ -360,7 +360,6 @@ export const LogoLoop = memo(function LogoLoop({
         <ul
           className="logoloop__list"
           key={`copy-${copyIndex}`}
-          role="list"
           aria-hidden={copyIndex > 0}
           ref={copyIndex === 0 ? seqRef : undefined}
         >
@@ -384,11 +383,10 @@ export const LogoLoop = memo(function LogoLoop({
   );
 
   return (
-    <div
+    <section
       ref={containerRef}
       className={rootClassName}
       style={containerStyle}
-      role="region"
       aria-label={ariaLabel}
     >
       <div
@@ -399,7 +397,7 @@ export const LogoLoop = memo(function LogoLoop({
       >
         {logoLists}
       </div>
-    </div>
+    </section>
   );
 });
 

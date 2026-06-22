@@ -10,7 +10,7 @@ import { PRODUCTS } from "@/lib/products";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const linkClassName = "text-base text-white/60 transition-colors hover:text-white";
+const linkClassName = "motion-text-interactive text-base text-white/60 hover:text-white";
 
 const FOOTER_HEADLINE = "Your spreadsheets are optional now";
 const FOOTER_SUBHEAD =
@@ -56,9 +56,9 @@ export function Footer() {
 
       if (words.length === 0) return;
 
-      gsap.set(words, { autoAlpha: 0, color: "#ffffff", filter: "blur(10px)", y: 18 });
-      if (subheadEl) gsap.set(subheadEl, { autoAlpha: 0, filter: "blur(8px)", y: 12 });
-      if (buttonEl) gsap.set(buttonEl, { autoAlpha: 0, y: 10 });
+      gsap.set(words, { autoAlpha: 0, color: "#ffffff", filter: "blur(3px)", y: 8 });
+      if (subheadEl) gsap.set(subheadEl, { autoAlpha: 0, filter: "blur(2px)", y: 8 });
+      if (buttonEl) gsap.set(buttonEl, { autoAlpha: 0, y: 6 });
 
       matchMedia = gsap.matchMedia();
 
@@ -85,8 +85,8 @@ export function Footer() {
           color: "#ffffff",
           filter: "blur(0px)",
           y: 0,
-          duration: 0.85,
-          stagger: 0.07,
+          duration: 0.5,
+          stagger: 0.035,
           ease: "power2.out",
           clearProps: "filter",
         });
@@ -98,11 +98,11 @@ export function Footer() {
               autoAlpha: 1,
               filter: "blur(0px)",
               y: 0,
-              duration: 0.7,
+              duration: 0.4,
               ease: "power2.out",
               clearProps: "filter",
             },
-            "-=0.35",
+            "-=0.2",
           );
         }
 
@@ -112,10 +112,10 @@ export function Footer() {
             {
               autoAlpha: 1,
               y: 0,
-              duration: 0.55,
+              duration: 0.32,
               ease: "power2.out",
             },
-            "-=0.4",
+            "-=0.18",
           );
         }
 
@@ -137,11 +137,14 @@ export function Footer() {
             <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
               <h2
                 ref={headlineRef}
-                className="font-heading text-3xl font-normal leading-[1.1] tracking-[-0.03em] text-white sm:text-4xl md:text-5xl"
+                className="text-h2 text-white"
               >
                 <HeadlineWords text={FOOTER_HEADLINE} />
               </h2>
-              <p ref={subheadRef} className="mt-5 max-w-lg text-lg leading-relaxed text-white/60">
+              <p
+                ref={subheadRef}
+                className="mt-5 max-w-lg text-lg leading-relaxed tracking-[-0.02em] text-white/60"
+              >
                 {FOOTER_SUBHEAD}
               </p>
               <Link
@@ -225,7 +228,7 @@ export function Footer() {
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between md:mt-20">
             <Link
               href="/"
-              className="font-sans text-lg font-normal tracking-[-0.02em] text-white"
+              className="font-sans text-lg font-normal tracking-[-0.02em] text-white motion-text-interactive"
             >
               CampusOS
             </Link>

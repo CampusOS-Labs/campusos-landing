@@ -24,7 +24,7 @@ export const getCaseStudyBySlug = cache((slug: string): CaseStudy | null => {
   return readCaseStudyFromDisk(slug);
 });
 
-export function getCaseStudySlugs() {
+function getCaseStudySlugs() {
   if (!fs.existsSync(caseStudiesDirectory)) {
     return [];
   }

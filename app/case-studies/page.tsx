@@ -12,10 +12,10 @@ export default function CaseStudies() {
 
   return (
     <main className="flex flex-1 flex-col items-center px-4 pt-24 pb-16 sm:px-6 sm:pt-32 sm:pb-24">
-      <h1 className="max-w-3xl text-center font-heading text-4xl font-light leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+      <h1 className="max-w-3xl text-center text-display">
         Case Studies
       </h1>
-      <p className="mt-4 max-w-xl text-center text-base text-muted-foreground sm:text-lg">
+      <p className="mt-4 max-w-xl text-center text-lead">
         Real schools fixing real workflows — one at a time.
       </p>
       <div className="mt-10 w-full max-w-2xl space-y-12 sm:mt-16">

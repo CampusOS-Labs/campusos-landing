@@ -1,32 +1,3 @@
-export type CaseStudyCardMeta = {
-  products: string[];
-  highlight: string;
-};
-
-export const CASE_STUDY_CARD_META: Record<string, CaseStudyCardMeta> = {
-  "kidzee-vadgaon-sheri": {
-    products: ["Billing Infrastructure"],
-    highlight: "Live in under a week",
-  },
-  "kidzee-mundhwa": {
-    products: ["Attendance", "Announcements"],
-    highlight: "GPS check-in + WhatsApp DMs",
-  },
-  "company-brain-for-schools": {
-    products: ["Connect", "Audit", "Run"],
-    highlight: "One source of truth",
-  },
-};
-
-export function getCaseStudyCardMeta(slug: string): CaseStudyCardMeta {
-  return (
-    CASE_STUDY_CARD_META[slug] ?? {
-      products: ["CampusOS"],
-      highlight: "Workflow fixed in production",
-    }
-  );
-}
-
 export const MANIFESTO_SECTIONS = [
   {
     id: "problem",

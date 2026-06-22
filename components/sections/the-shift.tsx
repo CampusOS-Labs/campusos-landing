@@ -1,9 +1,9 @@
 "use client";
 
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { GrainGradient } from "@paper-design/shaders-react";
+// import { GrainGradient } from "@paper-design/shaders-react";
 import { Badge } from "@/components/ui/badge";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -65,22 +65,25 @@ export function TheShift() {
   const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
-  const [shaderSpeed, setShaderSpeed] = useState(1);
+  // Halftone shader animation disabled (kept for quick re-enable).
+  // const [shaderSpeed, setShaderSpeed] = useState(() =>
+  //   typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  //     ? 0
+  //     : 1,
+  // );
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    const updateSpeed = () => {
-      setShaderSpeed(mediaQuery.matches ? 0 : 1);
-    };
-
-    updateSpeed();
-    mediaQuery.addEventListener("change", updateSpeed);
-
-    return () => {
-      mediaQuery.removeEventListener("change", updateSpeed);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  //
+  //   const updateSpeed = () => {
+  //     setShaderSpeed(mediaQuery.matches ? 0 : 1);
+  //   };
+  //   mediaQuery.addEventListener("change", updateSpeed);
+  //
+  //   return () => {
+  //     mediaQuery.removeEventListener("change", updateSpeed);
+  //   };
+  // }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -115,8 +118,8 @@ export function TheShift() {
         const timeline = gsap.timeline({
           scrollTrigger: {
             trigger: container,
-            start: "top 85%",
-            end: "35% 50%",
+            start: "top 95%",
+            end: "bottom 75%",
             scrub: true,
             invalidateOnRefresh: true,
           },
@@ -156,6 +159,7 @@ export function TheShift() {
       ref={sectionRef}
       className="section-band-shift-shader relative w-full self-stretch overflow-hidden"
     >
+      {/* Halftone shader animation disabled (kept for quick re-enable).
       <div className="pointer-events-none absolute inset-0" aria-hidden>
         <GrainGradient
           colors={["#c6750c", "#beae60", "#d7cbc6"]}
@@ -172,13 +176,14 @@ export function TheShift() {
           style={{ width: "100%", height: "100%" }}
         />
       </div>
+      */}
       <div
         ref={containerRef}
-        className="relative z-10 mx-auto flex min-h-[70dvh] max-w-4xl flex-col justify-start px-4 pt-16 pb-16 text-center text-white sm:min-h-[78dvh] sm:px-6 sm:pt-24 sm:pb-20 md:min-h-[86dvh] md:px-8 md:pt-28 md:pb-24"
+        className="relative z-10 mx-auto flex min-h-[70dvh] max-w-4xl flex-col items-center justify-center px-4 py-16 text-center text-white sm:min-h-[78dvh] sm:px-6 sm:py-20 md:min-h-[86dvh] md:px-8 md:py-24"
       >
         <Badge
           variant="outline"
-          className="mx-auto border-white/35 bg-white/10 px-3 py-1 text-[0.68rem] font-medium tracking-[0.14em] text-white uppercase backdrop-blur-sm"
+          className="text-eyebrow mx-auto border-white/35 bg-white/10 px-3 py-1 text-white backdrop-blur-sm"
         >
           The shift
         </Badge>

@@ -1,14 +1,15 @@
 "use client";
 
-import { useActionState } from "react";
+import { useState } from "react";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import {
-  submitContactForm,
-  type ContactFormState,
-} from "@/app/contact/actions";
+
+type ContactFormState = {
+  status: "idle" | "success" | "error";
+  message?: string;
+};
 
 const initialState: ContactFormState = { status: "idle" };
 
@@ -28,19 +29,19 @@ function ContactIntro() {
 
 function ContactFields({
   state,
-  formAction,
   pending,
+  onSubmit,
 }: {
   state: ContactFormState;
-  formAction: (payload: FormData) => void;
   pending: boolean;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }) {
   return (
     <>
       <h3 className="font-heading text-2xl font-medium tracking-tight md:text-3xl">
         How can we help?
       </h3>
-      <form action={formAction} className="mt-6">
+      <form onSubmit={onSubmit} className="mt-6">
         <FieldGroup className="gap-4">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field>
@@ -125,7 +126,57 @@ function ContactFields({
 }
 
 export function ContactForm() {
-  const [state, formAction, pending] = useActionState(submitContactForm, initialState);
+  const [state, setState] = useState<ContactFormState>(initialState);
+  const [pending, setPending] = useState(false);
+
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
+    const payload = {
+      name: String(formData.get("name") ?? "").trim(),
+      schoolName: String(formData.get("school-name") ?? "").trim(),
+      email: String(formData.get("email") ?? "").trim(),
+      message: String(formData.get("message") ?? "").trim(),
+    };
+
+    if (!payload.name || !payload.schoolName || !payload.email || !payload.message) {
+      setState({
+        status: "error",
+        message: "Please fill in every field before submitting.",
+      });
+      return;
+    }
+
+    setPending(true);
+    setState(initialState);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const data = (await response.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(data?.error ?? "Could not save your message. Please try again.");
+      }
+
+      setState({
+        status: "success",
+        message: "Thanks — we'll be in touch shortly.",
+      });
+      event.currentTarget.reset();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Please try again in a moment.";
+      setState({
+        status: "error",
+        message,
+      });
+    } finally {
+      setPending(false);
+    }
+  }
 
   return (
     <section className="w-full overflow-hidden border border-border">
@@ -137,7 +188,7 @@ export function ContactForm() {
         </div>
 
         <div className="flex flex-col gap-6 p-6 sm:p-8 lg:border-r lg:border-border">
-          <ContactFields state={state} formAction={formAction} pending={pending} />
+          <ContactFields state={state} pending={pending} onSubmit={onSubmit} />
         </div>
 
         <div className="hidden lg:block" aria-hidden />

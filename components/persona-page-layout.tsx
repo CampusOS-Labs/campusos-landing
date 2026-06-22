@@ -1,21 +1,12 @@
 import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
-import { getPersonaById, type PersonaDefinition } from "@/lib/products";
-import { createPageMetadata } from "@/lib/site";
+import { getPersonaById } from "@/lib/products";
 import { notFound } from "next/navigation";
 
 type PersonaPageProps = {
   personaId: string;
 };
-
-export function createPersonaMetadata(persona: PersonaDefinition) {
-  return createPageMetadata({
-    title: `CampusOS for ${persona.label}`,
-    description: persona.subhead,
-    path: persona.href,
-  });
-}
 
 export function PersonaPageLayout({ personaId }: PersonaPageProps) {
   const persona = getPersonaById(personaId);
@@ -34,7 +25,7 @@ export function PersonaPageLayout({ personaId }: PersonaPageProps) {
 
       <div className="mt-16 w-full max-w-3xl surface-panel sm:mt-24">
         <div className="border-b border-border px-5 py-5 sm:px-8 sm:py-6">
-          <h2 className="font-heading text-3xl font-normal tracking-[-0.03em]">
+          <h2 className="text-h2 sm:text-3xl">
             What {persona.label.toLowerCase()} use CampusOS for
           </h2>
         </div>
@@ -48,7 +39,7 @@ export function PersonaPageLayout({ personaId }: PersonaPageProps) {
             <span className="font-heading text-2xl font-normal tabular-nums text-muted-foreground">
               {String(index + 1).padStart(2, "0")}
             </span>
-            <p className="text-sm leading-relaxed text-muted-foreground">{item}</p>
+            <p className="text-body-sm">{item}</p>
           </div>
         ))}
       </div>
@@ -66,8 +57,8 @@ export function PersonaPageLayout({ personaId }: PersonaPageProps) {
             }`}
           >
             <span className="text-xs text-muted-foreground">{step.step}</span>
-            <h3 className="mt-2 font-heading text-2xl font-normal tracking-[-0.03em]">{step.title}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">{step.text}</p>
+            <h3 className="mt-2 text-h3">{step.title}</h3>
+            <p className="text-body-sm mt-2">{step.text}</p>
           </div>
         ))}
       </div>

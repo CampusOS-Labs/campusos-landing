@@ -1,7 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
 
-import { buttonVariants } from "@/components/ui/button";
 import PixelTransition from "@/components/ui/PixelTransition";
 import { BillingStackLoop } from "@/components/sections/billing-stack-loop";
 import { PRODUCT_FAQ, type ProductDefinition } from "@/lib/products";
@@ -60,7 +58,7 @@ export function ProductPageLayout({
           >
             <span className="font-heading text-4xl font-semibold tabular-nums">{stat.value}</span>
             <span className="text-sm font-medium">{stat.label}</span>
-            <span className="max-w-[220px] text-xs leading-snug text-muted-foreground">
+            <span className="max-w-[220px] text-caption">
               {stat.detail}
             </span>
           </div>
@@ -70,12 +68,12 @@ export function ProductPageLayout({
       <div className="mb-24 mt-24 w-full border-t" />
 
       <div className="w-full max-w-3xl">
-      <h2 className="font-heading text-3xl font-normal leading-[1.05] tracking-[-0.03em] sm:text-4xl">
-        What schools use this for
-      </h2>
+        <h2 className="text-h2 sm:text-4xl">
+          What schools use this for
+        </h2>
         <ul className="mt-6 space-y-3">
           {product.useCases.map((item) => (
-            <li key={item} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
+            <li key={item} className="text-body-sm flex gap-3">
               <span className="mt-1.5 size-1.5 shrink-0 bg-foreground" />
               {item}
             </li>
@@ -90,7 +88,7 @@ export function ProductPageLayout({
       </h2>
       <div className="max-w-2xl space-y-6">
         {product.outcomes.map((paragraph) => (
-          <p key={paragraph} className="leading-relaxed text-muted-foreground">
+          <p key={paragraph} className="text-body">
             {paragraph}
           </p>
         ))}
@@ -110,7 +108,7 @@ export function ProductPageLayout({
             <h2 className="text-display-sm">
               Built with the entire stack in mind
             </h2>
-            <p className="mx-auto mt-1 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            <p className="mx-auto mt-1 max-w-2xl text-lead">
               Collect from systems you already trust.
             </p>
           </div>
@@ -122,14 +120,14 @@ export function ProductPageLayout({
 
       <div className="mb-24 mt-24 w-full border-t" />
 
-      <h2 className="mb-8 font-heading text-3xl font-normal tracking-[-0.03em]">Questions?</h2>
+      <h2 className="mb-8 text-h2 sm:text-3xl">Questions?</h2>
       <div className="w-full max-w-2xl divide-y divide-border border border-border">
         {PRODUCT_FAQ.map((item) => (
           <details key={item.question} className="group px-6 py-4">
             <summary className="cursor-pointer list-none text-sm font-medium [&::-webkit-details-marker]:hidden">
               {item.question}
             </summary>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.answer}</p>
+            <p className="text-body-sm mt-3">{item.answer}</p>
           </details>
         ))}
       </div>

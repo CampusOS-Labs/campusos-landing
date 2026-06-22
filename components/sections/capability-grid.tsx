@@ -109,14 +109,14 @@ function CapabilityVisual({ capability }: { capability: Capability }) {
 function CapabilityCopy({ capability }: { capability: Capability }) {
   return (
     <>
-      <h3 className="font-heading text-2xl font-normal leading-[1.12] tracking-[-0.03em] md:text-3xl">
+      <h3 className="text-h3">
         {capability.title}
       </h3>
-      <p className="mt-3 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+      <p className="mt-3 max-w-xl text-body md:text-lg">
         {capability.description}
       </p>
       {capability.imageCaption ? (
-        <p className="mt-3 max-w-xl text-sm leading-relaxed text-greige">
+        <p className="mt-3 max-w-xl text-body-sm text-greige">
           {capability.imageCaption}
         </p>
       ) : null}
@@ -155,7 +155,7 @@ export function CapabilityGrid() {
       <div className="w-full px-4 pb-10 md:px-8 md:pb-14 lg:px-12">
         <div className="mx-auto max-w-2xl pt-6 text-center md:pt-8">
           <p className="text-eyebrow">Capabilities</p>
-          <h2 className="mt-3 font-heading text-3xl font-normal leading-[1.08] tracking-[-0.03em] md:text-4xl">
+          <h2 className="mt-3 text-h2 md:text-4xl">
             Not just faster. Built for how schools work.
           </h2>
         </div>

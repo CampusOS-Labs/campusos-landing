@@ -1,12 +1,10 @@
-import markdownToHtml from "@/lib/markdownToHtml";
 import { ContentPageShell } from "@/components/content-page-shell";
 import { createPageMetadata } from "@/lib/site";
-import { FounderPortrait } from "@/components/team/founder-portrait";
 
 export const metadata = createPageMetadata({
   title: "Team",
   description:
-    "The people behind CampusOS, fixing schools one workflow at a time.",
+    "The relentless team behind the magic of saving schools.",
   path: "/team",
 });
 
@@ -14,7 +12,6 @@ type Founder = {
   name: string;
   role: string;
   bio: string;
-  image?: string;
   linkedin?: string;
   github?: string;
   x?: string;
@@ -24,7 +21,6 @@ const founders: Founder[] = [
   {
     name: "Amaan Bilwar",
     role: "Co-founder",
-    image: "/team/amaan.jpg",
     linkedin: "https://www.linkedin.com/in/amaanbilwar/",
     github: "https://github.com/AmaanBilwar",
     x: "https://x.com/BilwarAmaan",
@@ -71,27 +67,26 @@ const socials = [
   },
 ];
 
-function bioToMarkdown(bio: string) {
+function bioToParagraphs(bio: string) {
   return bio
     .split("\n")
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .join("  \n");
+    .flatMap((line) => {
+      const trimmed = line.trim();
+      return trimmed ? [trimmed] : [];
+    });
 }
 
 export default async function TeamPage() {
-  const team = await Promise.all(
-    founders.map(async (founder) => ({
-      ...founder,
-      bioHtml: await markdownToHtml(bioToMarkdown(founder.bio)),
-    })),
-  );
+  const team = founders.map((founder) => ({
+    ...founder,
+    bioParagraphs: bioToParagraphs(founder.bio),
+  }));
 
   return (
     <ContentPageShell
       label="Company"
       title="Team"
-      description="The people building school infrastructure, one workflow at a time."
+      description="The relentless team behind the magic of saving schools."
       fullWidth
     >
       <div className="mx-auto max-w-6xl space-y-0 pb-24 md:pb-32">
@@ -101,58 +96,45 @@ export default async function TeamPage() {
             className={`border border-border p-8 md:p-10 ${index > 0 ? "border-t-0" : ""}`}
           >
             <div className="flex flex-col items-start gap-6 sm:flex-row sm:gap-10">
-              <div className="relative flex aspect-square w-24 shrink-0 items-center justify-center overflow-hidden border bg-muted md:w-28">
-                {founder.image ? (
-                  <FounderPortrait
-                    src={founder.image}
-                    alt={founder.name}
-                    className="absolute inset-0"
-                  />
-                ) : (
-                  <span className="text-xl font-light font-heading text-muted-foreground/70">
-                    {founder.name
-                      .split(" ")
-                      .map((part) => part[0])
-                      .join("")
-                      .slice(0, 2)}
-                  </span>
-                )}
-              </div>
-
               <div className="space-y-4 min-w-0 flex-1">
-                <h2 className="text-4xl font-light tracking-tight font-heading leading-[1.1]">
-                  {founder.name}
-                </h2>
-                <p className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
-                  {founder.role}
-                </p>
-
-                {founder.linkedin || founder.github || founder.x ? (
-                  <div className="flex items-center gap-1.5">
-                    {socials.map(({ key, label, icon }) => {
-                      const href = founder[key];
-                      if (!href) return null;
-
-                      return (
-                        <a
-                          key={key}
-                          href={href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={label}
-                          className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                        >
-                          {icon}
-                        </a>
-                      );
-                    })}
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <h2 className="text-4xl font-light tracking-tight font-heading leading-[1.1]">
+                      {founder.name}
+                    </h2>
+                    <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                      {founder.role}
+                    </p>
                   </div>
-                ) : null}
 
-                <div
-                  className="prose prose-neutral max-w-none text-muted-foreground leading-relaxed [&_p]:m-0 [&_a]:font-normal [&_a]:text-inherit [&_a]:underline [&_a]:underline-offset-2 [&_a]:decoration-current [&_a]:transition-colors [&_a]:hover:text-foreground"
-                  dangerouslySetInnerHTML={{ __html: founder.bioHtml }}
-                />
+                  {founder.linkedin || founder.github || founder.x ? (
+                    <div className="flex shrink-0 items-center gap-1.5">
+                      {socials.map(({ key, label, icon }) => {
+                        const href = founder[key];
+                        if (!href) return null;
+
+                        return (
+                          <a
+                            key={key}
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={label}
+                            className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                          >
+                            {icon}
+                          </a>
+                        );
+                      })}
+                    </div>
+                  ) : null}
+                </div>
+
+                <div className="prose prose-neutral max-w-none text-muted-foreground leading-relaxed [&_p]:m-0">
+                  {founder.bioParagraphs.map((paragraph) => (
+                    <p key={`${founder.name}-${paragraph}`}>{paragraph}</p>
+                  ))}
+                </div>
               </div>
             </div>
           </section>

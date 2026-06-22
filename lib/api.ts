@@ -24,7 +24,7 @@ export const getPostBySlug = cache((slug: string): Post | null => {
   return readPostFromDisk(slug);
 });
 
-export function getPostSlugs() {
+function getPostSlugs() {
   if (!fs.existsSync(postsDirectory)) {
     return [];
   }

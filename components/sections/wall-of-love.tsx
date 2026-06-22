@@ -7,10 +7,10 @@ export function WallOfLove() {
         <div className="grid grid-cols-4 gap-0">
           <div />
           <div className="col-span-2 p-8 pt-0 text-center">
-            <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+            <p className="text-eyebrow">
               Wall of love
             </p>
-            <h2 className="mt-4 font-heading text-5xl font-light tracking-tight leading-[1.05]">
+            <h2 className="mt-4 text-h2 font-light tracking-tight">
               Schools that stopped fighting their ops
             </h2>
           </div>
