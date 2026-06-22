@@ -16,7 +16,7 @@ export default function CaseStudies() {
         Case Studies
       </h1>
       <p className="mt-4 max-w-xl text-center text-lead">
-        Real schools fixing real workflows — one at a time.
+        Real schools fixing real workflows, one at a time.
       </p>
       <div className="mt-10 w-full max-w-2xl space-y-12 sm:mt-16">
         {allCaseStudies.length > 0 ? (

@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/sections/footer";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "@/components/theme-provider";
 import {
   SITE_DESCRIPTION,
   SITE_NAME,
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#ffffff",
+  themeColor: "#0b0b0b",
 };
 
 export default function RootLayout({
@@ -56,13 +57,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("h-full", "antialiased", inter.variable, crimsonText.variable)}>
-      <body className="flex min-h-full flex-col bg-white text-black">
-        <TooltipProvider>
-          <Navbar />
-          {children}
-          <Footer />
-        </TooltipProvider>
+    <html
+      lang="en"
+      className={cn("h-full", "antialiased", inter.variable, crimsonText.variable)}
+      suppressHydrationWarning
+    >
+      <body className="flex min-h-full flex-col bg-background text-foreground">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <TooltipProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </TooltipProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

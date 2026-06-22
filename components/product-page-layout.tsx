@@ -25,7 +25,7 @@ export function ProductPageLayout({
 
       {product.imageSrc ? (
         <PixelTransition
-          firstContent={<div className="h-full w-full bg-white" />}
+          firstContent={<div className="h-full w-full bg-card" />}
           secondContent={
             <Image
               src={product.imageSrc}
@@ -38,13 +38,13 @@ export function ProductPageLayout({
             />
           }
           gridSize={30}
-          pixelColor="#ffffff"
+          pixelColor="#1a1a1a"
           animationStepDuration={0.8}
           autoPlay
           once
           aspectRatio="44.85%"
           className="mt-16 w-full max-w-4xl"
-          style={{ backgroundColor: "#ffffff" }}
+          style={{ backgroundColor: "var(--card)" }}
         />
       ) : null}
 
@@ -52,7 +52,7 @@ export function ProductPageLayout({
         {product.stats.map((stat, index) => (
           <div
             key={stat.label}
-            className={`flex aspect-[2/1] flex-col items-center justify-center gap-1.5 border-border bg-white px-4 py-6 text-center ${
+            className={`flex aspect-[2/1] flex-col items-center justify-center gap-1.5 border-border bg-card px-4 py-6 text-center ${
               index < product.stats.length - 1 ? "md:border-r" : ""
             } ${index > 0 ? "border-t md:border-t-0" : ""}`}
           >

@@ -4,7 +4,6 @@ import { Fragment, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 // import { GrainGradient } from "@paper-design/shaders-react";
-import { Badge } from "@/components/ui/badge";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,7 +19,6 @@ const SHIFT_LINE_TWO: ShiftSegment[] = [
   { text: "in" },
   { text: "the" },
   { text: "handoffs" },
-  { text: "—" },
   { text: "between" },
   { text: "spreadsheets," },
   { text: "WhatsApp" },
@@ -106,32 +104,35 @@ export function TheShift() {
         sectionStyles.getPropertyValue("--shift-word-active").trim() ||
         rootStyles.getPropertyValue("--foreground").trim();
 
-      gsap.set(words, { autoAlpha: 0, color: mutedColor });
+      gsap.set(words, { autoAlpha: 0, color: mutedColor, y: 10, filter: "blur(3px)" });
 
       matchMedia = gsap.matchMedia();
 
       matchMedia.add("(prefers-reduced-motion: reduce)", () => {
-        gsap.set(words, { autoAlpha: 1, color: activeColor });
+        gsap.set(words, { autoAlpha: 1, color: activeColor, y: 0, filter: "blur(0px)", clearProps: "filter" });
       });
 
       matchMedia.add("(prefers-reduced-motion: no-preference)", () => {
+        const scrollDistance = Math.max(words.length * 34, 620);
         const timeline = gsap.timeline({
           scrollTrigger: {
             trigger: container,
-            start: "top 95%",
-            end: "bottom 75%",
-            scrub: true,
+            start: "top 74%",
+            end: `+=${scrollDistance}`,
+            scrub: 0.35,
             invalidateOnRefresh: true,
           },
         });
 
-        words.forEach((word) => {
-          timeline.to(word, {
-            autoAlpha: 1,
-            color: activeColor,
-            ease: "none",
-            duration: 1,
-          });
+        timeline.to(words, {
+          autoAlpha: 1,
+          color: activeColor,
+          y: 0,
+          filter: "blur(0px)",
+          ease: "none",
+          duration: 0.6,
+          stagger: 0.08,
+          clearProps: "filter",
         });
 
         const refresh = () => ScrollTrigger.refresh();
@@ -181,12 +182,9 @@ export function TheShift() {
         ref={containerRef}
         className="relative z-10 mx-auto flex min-h-[70dvh] max-w-4xl flex-col items-center justify-center px-4 py-16 text-center text-white sm:min-h-[78dvh] sm:px-6 sm:py-20 md:min-h-[86dvh] md:px-8 md:py-24"
       >
-        <Badge
-          variant="outline"
-          className="text-eyebrow mx-auto border-white/35 bg-white/10 px-3 py-1 text-white backdrop-blur-sm"
-        >
-          The shift
-        </Badge>
+      <p>
+      	The shift
+      </p>
         <p
           ref={textRef}
           className="mt-4 font-heading text-2xl font-normal leading-[1.12] tracking-[-0.03em] sm:mt-6 sm:text-3xl md:text-4xl lg:text-[2.75rem]"

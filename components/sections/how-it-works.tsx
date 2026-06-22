@@ -39,7 +39,7 @@ export function HowItWorks() {
         <div className="mx-auto max-w-2xl pt-6 text-center md:pt-8">
           <p className="text-eyebrow">How it works</p>
           <h2 className="mt-3 text-h2 lg:text-5xl">
-            From messy handoffs to one working system
+            Let us help
           </h2>
           <p className="mx-auto mt-4 max-w-md text-lead">
             We diagnose the gaps, tailor the setup, and launch it with your team on campus.

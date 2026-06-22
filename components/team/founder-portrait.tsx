@@ -23,7 +23,7 @@ export function FounderPortrait({ src, alt, className }: FounderPortraitProps) {
           originalColors
           inverted={false}
           colorFront="#000000"
-          colorBack="#ffffff"
+          colorBack="#111111"
           colorHighlight="#000000"
           scale={1.55}
           offsetX={-0.1}

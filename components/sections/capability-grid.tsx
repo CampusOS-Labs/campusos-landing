@@ -62,7 +62,7 @@ function CapabilityImage({ capability }: { capability: Capability }) {
   if (!capability.imageSrc) return null;
 
   return (
-    <figure className="flex w-full items-center justify-center bg-white p-4 md:p-5">
+    <figure className="flex w-full items-center justify-center bg-card p-4 md:p-5">
       <Image
         src={capability.imageSrc}
         alt={capability.imageAlt ?? capability.title}
@@ -77,10 +77,10 @@ function CapabilityImage({ capability }: { capability: Capability }) {
 
 function CapabilityPlaceholder({ title }: { title: string }) {
   return (
-    <figure className="flex w-full items-center justify-center bg-white p-4 md:p-5">
+    <figure className="flex w-full items-center justify-center bg-card p-4 md:p-5">
       <div
         aria-hidden
-        className="flex aspect-4/3 w-full max-w-md items-center justify-center border border-dashed border-border/80 bg-white"
+        className="flex aspect-4/3 w-full max-w-md items-center justify-center border border-dashed border-border/80 bg-card"
       >
         <span className="px-4 text-center text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
           {title}

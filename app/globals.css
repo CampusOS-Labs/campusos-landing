@@ -209,7 +209,7 @@
   }
 
   .section-band-white {
-    @apply bg-white;
+    @apply bg-background;
   }
 
   .section-band-shift-shader {
@@ -240,4 +240,8 @@
     }
   }
 
+}
+
+a[target="_blank"]::after{
+    content: ' ↗';
 }

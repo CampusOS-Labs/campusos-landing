@@ -4,6 +4,7 @@ import { CapabilityGrid } from "@/components/sections/capability-grid";
 import { createPageMetadata } from "@/lib/site";
 import { CustomerStories } from "@/components/sections/CustomerStories";
 import { HowItWorks } from "@/components/sections/how-it-works";
+import { Problems } from "@/components/sections/Problems";
 
 export const metadata = createPageMetadata({
   title: "Run your school without running on spreadsheets",
@@ -17,6 +18,7 @@ export default function Home() {
     <main className="flex flex-1 flex-col items-center">
       <HomeHero />
       <TheShift />
+      <Problems />
       <HowItWorks />
       {/*<CapabilityGrid />*/}
       <CustomerStories />

@@ -70,7 +70,7 @@ export function ProductShowcase() {
                     reversed ? "lg:order-1" : ""
                   }`}
                 >
-                  <div className="relative h-full min-h-[220px] overflow-hidden border border-border bg-white">
+                  <div className="relative h-full min-h-[220px] overflow-hidden border border-border bg-card">
                     <Image
                       src={product.imageSrc}
                       alt={product.title}

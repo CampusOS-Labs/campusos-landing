@@ -9,7 +9,7 @@ type Props = {
 
 export function PostMeta({ author, date }: Props) {
   return (
-    <div className="mt-4 text-sm text-muted-foreground">
+    <div className="mt-4 text-sm text-foreground/75">
       <span className="font-medium text-foreground">{author.name}</span>
       <span aria-hidden="true"> · </span>
       <DateFormatter dateString={date} />

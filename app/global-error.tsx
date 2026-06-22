@@ -9,8 +9,8 @@ const BODY_STYLE: CSSProperties = {
   alignItems: "center",
   justifyContent: "center",
   fontFamily: "system-ui, sans-serif",
-  background: "#ffffff",
-  color: "#000000",
+  background: "#0f0f0f",
+  color: "#f2f2f2",
 };
 
 const MAIN_STYLE: CSSProperties = {
@@ -26,15 +26,16 @@ const HEADING_STYLE: CSSProperties = {
 };
 
 const PARAGRAPH_STYLE: CSSProperties = {
-  color: "rgba(0,0,0,0.55)",
+  color: "rgba(255,255,255,0.7)",
   lineHeight: 1.6,
   marginBottom: "1.5rem",
 };
 
 const BUTTON_STYLE: CSSProperties = {
-  border: "1px solid rgba(0,0,0,0.12)",
+  border: "1px solid rgba(255,255,255,0.22)",
   borderRadius: "9999px",
-  background: "#fff",
+  background: "#1a1a1a",
+  color: "#f2f2f2",
   padding: "0.5rem 1rem",
   cursor: "pointer",
 };

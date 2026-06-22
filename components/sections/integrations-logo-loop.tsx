@@ -10,7 +10,7 @@ type IntegrationsLogoLoopProps = {
 export function IntegrationsLogoLoop({ compact = false }: IntegrationsLogoLoopProps) {
   return (
     <figure
-      className={`flex w-full items-center justify-center bg-white ${
+      className={`flex w-full items-center justify-center bg-card ${
         compact ? "p-4 md:p-5" : "p-6 md:p-10 xl:p-12"
       }`}
     >
@@ -27,7 +27,7 @@ export function IntegrationsLogoLoop({ compact = false }: IntegrationsLogoLoopPr
           gap={compact ? 48 : 56}
           hoverSpeed={0}
           fadeOut
-          fadeOutColor="#ffffff"
+          fadeOutColor="#1a1a1a"
           ariaLabel="Payment methods supported through Razorpay and UPI"
         />
       </div>

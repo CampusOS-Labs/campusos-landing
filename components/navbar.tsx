@@ -12,6 +12,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { buttonVariants } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 import {
   Sheet,
   SheetContent,
@@ -35,7 +36,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-white/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 backdrop-blur-sm">
       <div className="mx-auto flex h-14 max-w-7xl items-center gap-3 px-4 sm:h-16 sm:px-6 lg:px-8">
         <Link href="/" className="shrink-0 font-heading text-lg tracking-[-0.02em]">
           <span className="font-sans font-bold">CampusOS</span>
@@ -45,7 +46,7 @@ export function Navbar() {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent text-muted-foreground">
+                <NavigationMenuTrigger className="bg-transparent text-foreground/80 hover:text-foreground">
                   Products
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -83,7 +84,7 @@ export function Navbar() {
                 <NavigationMenuItem key={link.href}>
                   <NavigationMenuLink
                     href={link.href}
-                    className="px-2.5 py-1.5 text-sm font-medium text-muted-foreground"
+                    className="px-2.5 py-1.5 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
                   >
                     {link.label}
                   </NavigationMenuLink>
@@ -94,6 +95,7 @@ export function Navbar() {
         </div>
 
         <div className="ml-auto flex shrink-0 items-center gap-2">
+          <ThemeToggle />
           <Link
             href="/contact"
             className={cn(buttonVariants({ variant: "secondary", size: "sm" }), "hidden sm:inline-flex")}
