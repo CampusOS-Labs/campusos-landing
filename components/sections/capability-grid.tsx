@@ -109,16 +109,10 @@ function CapabilityVisual({ capability }: { capability: Capability }) {
 function CapabilityCopy({ capability }: { capability: Capability }) {
   return (
     <>
-      <h3 className="text-h3">
-        {capability.title}
-      </h3>
-      <p className="mt-3 max-w-xl text-body md:text-lg">
-        {capability.description}
-      </p>
+      <h3 className="text-h3">{capability.title}</h3>
+      <p className="mt-3 max-w-xl text-body md:text-lg">{capability.description}</p>
       {capability.imageCaption ? (
-        <p className="mt-3 max-w-xl text-body-sm text-greige">
-          {capability.imageCaption}
-        </p>
+        <p className="mt-3 max-w-xl text-body-sm text-greige">{capability.imageCaption}</p>
       ) : null}
     </>
   );
@@ -155,9 +149,7 @@ export function CapabilityGrid() {
       <div className="w-full px-4 pb-10 md:px-8 md:pb-14 lg:px-12">
         <div className="mx-auto max-w-2xl pt-6 text-center md:pt-8">
           <p className="text-eyebrow">Capabilities</p>
-          <h2 className="mt-3 text-h2 md:text-4xl">
-            Not just faster. Built for how schools work.
-          </h2>
+          <h2 className="mt-3 text-h2 md:text-4xl">Not just faster. Built for how schools work.</h2>
         </div>
 
         <div className="mt-8 flex flex-col gap-8 md:mt-10 md:gap-10">

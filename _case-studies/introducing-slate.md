@@ -10,6 +10,7 @@ ogImage:
 ---
 
 ## What does it mean?
+
 When I say a "school brain," I mean a system that can capture knowledge, store it reliably, and surface the right information instantly when someone needs it.
 
 So what does that look like for a school or organization?

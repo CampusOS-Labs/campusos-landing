@@ -40,13 +40,7 @@ function ShiftWord({ segment }: { segment: ShiftSegment }) {
   );
 }
 
-function ShiftWords({
-  segments,
-  className,
-}: {
-  segments: ShiftSegment[];
-  className?: string;
-}) {
+function ShiftWords({ segments, className }: { segments: ShiftSegment[]; className?: string }) {
   return (
     <span className={className}>
       {segments.map((segment, index) => (
@@ -109,7 +103,13 @@ export function TheShift() {
       matchMedia = gsap.matchMedia();
 
       matchMedia.add("(prefers-reduced-motion: reduce)", () => {
-        gsap.set(words, { autoAlpha: 1, color: activeColor, y: 0, filter: "blur(0px)", clearProps: "filter" });
+        gsap.set(words, {
+          autoAlpha: 1,
+          color: activeColor,
+          y: 0,
+          filter: "blur(0px)",
+          clearProps: "filter",
+        });
       });
 
       matchMedia.add("(prefers-reduced-motion: no-preference)", () => {
@@ -182,9 +182,7 @@ export function TheShift() {
         ref={containerRef}
         className="relative z-10 mx-auto flex min-h-[70dvh] max-w-4xl flex-col items-center justify-center px-4 py-16 text-center text-white sm:min-h-[78dvh] sm:px-6 sm:py-20 md:min-h-[86dvh] md:px-8 md:py-24"
       >
-      <p>
-      	The Shift
-      </p>
+        <p>The Shift</p>
         <p
           ref={textRef}
           className="mt-4 font-heading text-2xl font-normal leading-[1.12] tracking-[-0.03em] sm:mt-6 sm:text-3xl md:text-4xl lg:text-[2.75rem]"

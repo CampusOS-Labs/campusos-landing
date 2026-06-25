@@ -22,12 +22,8 @@ function HowItWorksStepCard({
         <span className="hidden h-px flex-1 bg-border md:block" aria-hidden />
       </div>
 
-      <h3 className="mt-4 text-h3">
-        {step.title}
-      </h3>
-      <p className="mt-3 text-body-sm md:text-base">
-        {step.description}
-      </p>
+      <h3 className="mt-4 text-h3">{step.title}</h3>
+      <p className="mt-3 text-body-sm md:text-base">{step.description}</p>
     </article>
   );
 }
@@ -38,9 +34,7 @@ export function HowItWorks() {
       <div className="w-full px-4 pb-10 md:px-8 md:pb-14 lg:px-12">
         <div className="mx-auto max-w-2xl pt-6 text-center md:pt-8">
           <p className="text-eyebrow">How we work</p>
-          <h2 className="mt-3 text-h2 lg:text-5xl">
-            Let us help
-          </h2>
+          <h2 className="mt-3 text-h2 lg:text-5xl">Let us help</h2>
           <p className="mx-auto mt-4 max-w-md text-lead">
             We diagnose the gaps, tailor the setup, and launch it with your team on campus.
           </p>

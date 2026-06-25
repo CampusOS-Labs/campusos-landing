@@ -7,8 +7,7 @@ const product = getProductById("billing-infrastructure");
 
 export const metadata = createPageMetadata({
   title: "Billing Infrastructure",
-  description:
-    "Fee collection that reconciles itself — one source of truth for school finance.",
+  description: "Fee collection that reconciles itself — one source of truth for school finance.",
   path: "/products/billing-infrastructure",
 });
 

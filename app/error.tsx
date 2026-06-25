@@ -22,9 +22,7 @@ export default function Error({
       <h1 className="mt-4 max-w-lg font-heading text-5xl font-normal leading-[1.05] tracking-[-0.03em]">
         We hit a snag
       </h1>
-      <p className="mt-5 max-w-md text-lead">
-        I see you're eager but this page doesn't exist.
-      </p>
+      <p className="mt-5 max-w-md text-lead">I see you're eager but this page doesn't exist.</p>
       <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
         <button type="button" onClick={reset} className={buttonVariants({ variant: "secondary" })}>
           Try again
