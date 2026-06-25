@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { PauseIcon, PlayIcon } from "@phosphor-icons/react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ScatteredToolsMock, SpreadsheetMock, WhatsAppMock } from "@/components/sections/problems-mocks";
 
 const ROTATION_MS = 10000;
 
@@ -135,7 +136,7 @@ export function Problems() {
               <TabsTrigger
                 key={point.value}
                 value={point.value}
-                className="justify-start rounded-2xl border border-border/70 bg-card p-4 text-left text-foreground shadow-[0_1px_0_0_rgba(15,23,42,0.04)] data-active:border-foreground data-active:bg-foreground data-active:text-background data-active:shadow-[0_10px_30px_-18px_rgba(0,0,0,0.45)] aria-selected:border-foreground aria-selected:bg-foreground aria-selected:text-background aria-selected:shadow-[0_10px_30px_-18px_rgba(0,0,0,0.45)]"
+                className="justify-start border border-border/70 bg-card p-4 text-left text-foreground shadow-[0_1px_0_0_rgba(15,23,42,0.04)] data-active:border-foreground data-active:bg-foreground data-active:text-background data-active:shadow-[0_10px_30px_-18px_rgba(0,0,0,0.45)] aria-selected:border-foreground aria-selected:bg-foreground aria-selected:text-background aria-selected:shadow-[0_10px_30px_-18px_rgba(0,0,0,0.45)]"
               >
                 <p className="text-sm leading-relaxed text-inherit">{point.trigger}</p>
               </TabsTrigger>
@@ -143,9 +144,9 @@ export function Problems() {
           </TabsList>
 
           <div className="flex items-center gap-3">
-            <div className="h-1 w-full overflow-hidden rounded-full bg-border/60">
+            <div className="h-1 w-full overflow-hidden bg-border/60">
               <div
-                className="h-full rounded-full bg-foreground transition-[width] duration-75 ease-linear"
+                className="h-full bg-foreground transition-[width] duration-75 ease-linear"
                 style={{ width: `${progress}%` }}
               />
             </div>
@@ -162,7 +163,7 @@ export function Problems() {
                   return !prev;
                 })
               }
-              className="shrink-0 rounded-md border border-border/70 bg-card p-1.5 text-foreground transition-colors hover:bg-muted"
+              className="shrink-0 border border-border/70 bg-card p-1.5 text-foreground transition-colors hover:bg-muted"
             >
               {isPaused ? <PlayIcon className="size-3.5" aria-hidden="true" /> : <PauseIcon className="size-3.5" aria-hidden="true" />}
             </button>
@@ -172,38 +173,23 @@ export function Problems() {
             <TabsContent
               key={point.value}
               value={point.value}
-              className="mt-0 rounded-2xl border border-border/70 bg-card p-5"
+              className="mt-0 border border-border/70 bg-card p-5"
             >
               <p className="text-body-sm text-muted-foreground">{point.summary}</p>
             </TabsContent>
           ))}
         </div>
 
-        <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-6 md:p-8">
-          {PAIN_POINTS.map((point) => (
-            <TabsContent key={point.value} value={point.value} className="mt-0 space-y-4">
-              <div className="rounded-xl border border-border bg-muted p-4">
-                <p className="text-body-sm">{point.panel.title}</p>
-                <p className="mt-1 text-sm text-foreground">{point.panel.stat}</p>
-              </div>
-
-              {point.panel.details.map((detail) => (
-                <div key={detail.label} className="rounded-xl border border-border bg-muted p-4">
-                  <p className="text-body-sm">{detail.label}</p>
-                  <p className="mt-1 text-sm text-foreground">{detail.value}</p>
-                </div>
-              ))}
-
-              <div className="rounded-xl border border-border bg-secondary p-4">
-                <p className="text-body-sm">Primary contact</p>
-                <p className="mt-1 text-sm font-medium text-foreground">
-                  {point.panel.contact.role}: {point.panel.contact.person}
-                </p>
-                <p className="mt-1 text-sm text-foreground">{point.panel.contact.channel}</p>
-                <p className="mt-2 text-sm text-muted-foreground">{point.panel.contact.note}</p>
-              </div>
-            </TabsContent>
-          ))}
+        <div className="relative min-h-[420px] overflow-hidden border border-border bg-card p-6 md:min-h-[460px] md:p-8">
+          <TabsContent value="fees" className="mt-0">
+            <SpreadsheetMock />
+          </TabsContent>
+          <TabsContent value="comms" className="mt-0">
+            <WhatsAppMock />
+          </TabsContent>
+          <TabsContent value="reports" className="mt-0">
+            <ScatteredToolsMock />
+          </TabsContent>
         </div>
       </Tabs>
     </section>

@@ -2,20 +2,20 @@ import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
 
 const STORIES = [
   {
-    title: "How Kidzee, Vadgaon Sheri handles their billing infra with CampusOS",
-    href: "/case-studies/billing-infra",
-  },
-  {
-    title: "How Kidzee, Mundhwa handles their attendance and announcements with CampusOS",
-    href: "/case-studies/attendance-announcements",
-  },
-  {
     title: "Building a brain for your school with Slate",
     href: "/case-studies/introducing-slate",
   },
   {
+    title: "How Kidzee, Vadgaon Sheri handles their billing infra with CampusOS",
+    href: "/case-studies/billing-infra",
+  },
+  {
     title: "What a fried chicken shop taught us about social media",
     href: "/case-studies/shaamas",
+  },
+  {
+    title: "How Kidzee, Mundhwa handles their attendance and announcements with CampusOS",
+    href: "/case-studies/attendance-announcements",
   },
 ] as const;
 

@@ -117,7 +117,7 @@ export function HomeHero() {
           ref={headlineRef}
           className="w-fit max-w-full text-display"
         >
-          <HeadlineWords text="Less Spreadsheets chaos." />
+          <HeadlineWords text="Less spreadsheets chaos." />
           <br />
           <HeadlineWords text="Fewer follow-up calls." />
           <br />
