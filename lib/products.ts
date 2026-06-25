@@ -73,8 +73,7 @@ export const PRODUCTS: ProductDefinition[] = [
     label: "Announcements",
     title: "Announcements",
     headline: "The fastest way to reach every parent",
-    description:
-      "Notices delivered as direct WhatsApp messages — not buried in group scroll.",
+    description: "Notices delivered as direct WhatsApp messages — not buried in group scroll.",
     href: "/products/announcements",
     // imageSrc: "/announcements-header.png",
     stats: [
@@ -117,8 +116,7 @@ export const PRODUCTS: ProductDefinition[] = [
     label: "Attendance",
     title: "Attendance",
     headline: "See who's on campus in real time",
-    description:
-      "Teachers check in on their phone. You see live attendance on your dashboard.",
+    description: "Teachers check in on their phone. You see live attendance on your dashboard.",
     href: "/products/attendance",
     stats: [
       {
@@ -160,8 +158,7 @@ export const PRODUCTS: ProductDefinition[] = [
     label: "Social Media",
     title: "Social Media",
     headline: "Your school's story, published consistently",
-    description:
-      "Plan, draft, and publish outreach without another agency retainer.",
+    description: "Plan, draft, and publish outreach without another agency retainer.",
     href: "/products/socials",
     stats: [
       {
@@ -312,8 +309,7 @@ export const PERSONAS: PersonaDefinition[] = [
     label: "Teachers",
     href: "/for-teachers",
     headline: "Check in on your phone. Done.",
-    subhead:
-      "GPS-verified attendance from your pocket — no shared kiosk, no paper register.",
+    subhead: "GPS-verified attendance from your pocket — no shared kiosk, no paper register.",
     useCases: [
       "Morning check-in in under 30 seconds",
       "Send quick class updates without chasing admin",
@@ -340,8 +336,7 @@ export const WALL_OF_LOVE = [
     school: "Kidzee Mundhwa",
   },
   {
-    quote:
-      "We know who's on campus before the bell rings. No more chasing paper registers at 9am.",
+    quote: "We know who's on campus before the bell rings. No more chasing paper registers at 9am.",
     name: "Administration",
     school: "Kidzee Mundhwa",
   },

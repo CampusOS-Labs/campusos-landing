@@ -10,8 +10,8 @@ export default function NotFound() {
         This page doesn&apos;t exist
       </h1>
       <p className="mt-5 max-w-md text-lead">
-        The link may be outdated, or the page may have moved. Head back home or
-        get in touch if you need help.
+        The link may be outdated, or the page may have moved. Head back home or get in touch if you
+        need help.
       </p>
       <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
         <Link href="/" className={buttonVariants({ size: "lg" })}>

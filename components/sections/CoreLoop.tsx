@@ -12,12 +12,8 @@ function PillarCell({
       className={`flex h-full items-center border-r border-border p-8 ${align === "right" ? "justify-end" : "justify-center"}`}
     >
       <div className={`max-w-xs ${align === "right" ? "text-right" : "text-left"}`}>
-        <h2 className="text-5xl font-light tracking-tight font-heading leading-[1.05]">
-          {title}
-        </h2>
-        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-          {blurb}
-        </p>
+        <h2 className="text-5xl font-light tracking-tight font-heading leading-[1.05]">{title}</h2>
+        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{blurb}</p>
       </div>
     </div>
   );

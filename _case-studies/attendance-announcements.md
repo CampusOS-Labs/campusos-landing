@@ -31,7 +31,7 @@ Announcements live on the same dashboard too: WhatsApp messages that land as dir
 
 ## Why it mattered
 
-They didn't need another ERP. They needed one answer to a question someone asks every morning: *who's here?*
+They didn't need another ERP. They needed one answer to a question someone asks every morning: _who's here?_
 
 This gave them that, under twenty seconds per teacher, and a record they can actually trust without chasing people on WhatsApp.
 

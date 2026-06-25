@@ -25,11 +25,11 @@ export function WhatsAppHalftone({ className }: WhatsAppHalftoneProps) {
           inverted={false}
           size={0.5}
           radius={1.25}
-          contrast={0.40}
-          grainMixer={0.20}
-          grainOverlay={0.20}
+          contrast={0.4}
+          grainMixer={0.2}
+          grainOverlay={0.2}
           grainSize={0.5}
-          scale={1.00}
+          scale={1.0}
           speed={0}
           style={{ width: "100%", height: "100%" }}
         />

@@ -15,9 +15,7 @@ export function PersonaPageLayout({ personaId }: PersonaPageProps) {
   return (
     <main className="flex flex-1 flex-col items-center px-4 pt-24 sm:px-6 sm:pt-32">
       <p className="text-eyebrow">For {persona.label.toLowerCase()}</p>
-      <h1 className="mt-4 max-w-3xl text-center text-display">
-        {persona.headline}
-      </h1>
+      <h1 className="mt-4 max-w-3xl text-center text-display">{persona.headline}</h1>
       <p className="mt-5 max-w-xl text-center text-lead">{persona.subhead}</p>
       <Link href="/contact" className={`${buttonVariants({ size: "lg" })} mt-8`}>
         Contact us

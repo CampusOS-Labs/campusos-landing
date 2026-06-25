@@ -4,8 +4,7 @@ export const SITE_NAME = "CampusOS";
 export const SITE_TAGLINE = "Campus Operating System";
 export const SITE_DESCRIPTION =
   "School infrastructure for every workflow — billing, announcements, and operations that stop living in spreadsheets.";
-export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://usecampusos.vercel.app";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://usecampusos.vercel.app";
 
 type PageMetadataOptions = {
   title: string;

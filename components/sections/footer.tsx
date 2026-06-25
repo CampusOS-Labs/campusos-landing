@@ -13,8 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 const linkClassName = "motion-text-interactive text-base text-white/60 hover:text-white";
 
 const FOOTER_HEADLINE = "Your spreadsheets are optional now";
-const FOOTER_SUBHEAD =
-  "Fix one broken workflow, flawlessly.";
+const FOOTER_SUBHEAD = "Fix one broken workflow, flawlessly.";
 
 function HeadlineWords({ text }: { text: string }) {
   const words = text.split(" ");
@@ -63,7 +62,13 @@ export function Footer() {
       matchMedia = gsap.matchMedia();
 
       matchMedia.add("(prefers-reduced-motion: reduce)", () => {
-        gsap.set(words, { autoAlpha: 1, color: "#ffffff", filter: "blur(0px)", y: 0, clearProps: "filter" });
+        gsap.set(words, {
+          autoAlpha: 1,
+          color: "#ffffff",
+          filter: "blur(0px)",
+          y: 0,
+          clearProps: "filter",
+        });
         if (subheadEl) {
           gsap.set(subheadEl, { autoAlpha: 1, filter: "blur(0px)", y: 0, clearProps: "filter" });
         }
@@ -135,10 +140,7 @@ export function Footer() {
         <div className="mx-auto max-w-275">
           <div className="border-b border-white/10 pb-12 md:pb-16">
             <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-              <h2
-                ref={headlineRef}
-                className="text-h2 text-white"
-              >
+              <h2 ref={headlineRef} className="text-h2 text-white">
                 <HeadlineWords text={FOOTER_HEADLINE} />
               </h2>
               <p

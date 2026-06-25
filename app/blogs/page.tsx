@@ -13,12 +13,9 @@ export default function Blogs() {
 
   return (
     <main className="flex flex-1 flex-col items-center px-4 pt-24 pb-16 sm:px-6 sm:pt-32 sm:pb-24">
-      <h1 className="max-w-3xl text-center text-display">
-        Blog
-      </h1>
+      <h1 className="max-w-3xl text-center text-display">Blog</h1>
       <p className="mt-4 max-w-xl text-center text-lead">
-        Thoughts on campus operations, education technology, and building better
-        tools for schools.
+        Thoughts on campus operations, education technology, and building better tools for schools.
       </p>
       <div className="mt-10 w-full max-w-2xl space-y-12 sm:mt-16">
         {allPosts.length > 0 ? (
@@ -32,9 +29,7 @@ export default function Blogs() {
             />
           ))
         ) : (
-          <p className="text-muted-foreground text-center">
-            No posts yet. Check back soon.
-          </p>
+          <p className="text-muted-foreground text-center">No posts yet. Check back soon.</p>
         )}
       </div>
     </main>

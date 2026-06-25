@@ -113,10 +113,7 @@ export function HomeHero() {
       className="relative flex min-h-[calc(100dvh-3.5rem)] w-full flex-col items-center justify-between bg-background px-4 pt-16 pb-6 sm:min-h-[calc(100dvh-4rem)] sm:px-6 sm:pt-24 sm:pb-8 md:pt-32 md:pb-10"
     >
       <div className="flex w-full flex-col items-center text-center">
-        <h1
-          ref={headlineRef}
-          className="w-fit max-w-full text-display"
-        >
+        <h1 ref={headlineRef} className="w-fit max-w-full text-display">
           <HeadlineWords text="Less spreadsheets chaos." />
           <br />
           <HeadlineWords text="Fewer follow-up calls." />
@@ -126,7 +123,7 @@ export function HomeHero() {
           </span>
         </h1>
         <p ref={subheadRef} className="mt-4 max-w-lg text-lead sm:mt-5">
-         Stop wasting hours on spreadsheets, WhatsApp groups, and bloated ERP apps.
+          Stop wasting hours on spreadsheets, WhatsApp groups, and bloated ERP apps.
         </p>
         <div className="mt-6 flex items-center gap-3 sm:mt-8">
           <Link ref={buttonRef} href="/contact" className={buttonVariants({ size: "lg" })}>
