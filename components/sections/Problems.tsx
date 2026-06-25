@@ -180,7 +180,7 @@ export function Problems() {
           ))}
         </div>
 
-        <div className="relative min-h-[420px] overflow-hidden border border-border bg-card p-6 md:min-h-[460px] md:p-8">
+        <div className="relative min-h-105 overflow-hidden border border-border bg-card p-6 md:min-h-115 md:p-8">
           <TabsContent value="fees" className="mt-0">
             <SpreadsheetMock />
           </TabsContent>
