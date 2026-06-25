@@ -1,55 +1,23 @@
 import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
-import { cn } from "@/lib/utils";
 
 const STORIES = [
   {
     title: "How Kidzee, Vadgaon Sheri handles their billing infra with CampusOS",
     href: "/case-studies/billing-infra",
-    textOnLeft: false,
   },
   {
     title: "How Kidzee, Mundhwa handles their attendance and announcements with CampusOS",
     href: "/case-studies/attendance-announcements",
-    textOnLeft: true,
+  },
+  {
+    title: "Building a brain for your school with Slate",
+    href: "/case-studies/introducing-slate",
+  },
+  {
+    title: "What a fried chicken shop taught us about social media",
+    href: "/case-studies/shaamas",
   },
 ] as const;
-
-function StoryRow({
-  title,
-  href,
-  textOnLeft,
-}: {
-  title: string;
-  href: string;
-  textOnLeft: boolean;
-}) {
-  return (
-    <article
-      className={cn(
-        "grid min-h-144 grid-cols-1 items-center",
-        textOnLeft
-          ? "lg:grid-cols-[1fr_1.25fr_2.5fr_1fr]"
-          : "lg:grid-cols-[1fr_2.5fr_1.25fr_1fr]",
-      )}
-    >
-      <div
-        className={cn(
-          "flex flex-col justify-center px-4 py-6 md:px-6 md:py-8 lg:px-8",
-          textOnLeft ? "lg:col-start-2" : "lg:col-start-3",
-        )}
-      >
-        <h3 className="max-w-xl font-heading text-2xl font-normal leading-[1.12] tracking-[-0.03em] md:text-3xl lg:text-4xl">
-          {title}
-        </h3>
-        <div className="mt-6">
-          <NeumorphicButton href={href} compact>
-            Read more about it
-          </NeumorphicButton>
-        </div>
-      </div>
-    </article>
-  );
-}
 
 export function CustomerStories() {
   return (
@@ -64,14 +32,21 @@ export function CustomerStories() {
           </p>
         </div>
 
-        <div className="mt-8 flex flex-col gap-8 md:mt-10 md:gap-10">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:mt-10 md:grid-cols-2 lg:gap-8">
           {STORIES.map((story) => (
-            <StoryRow
+            <article
               key={story.href}
-              title={story.title}
-              href={story.href}
-              textOnLeft={story.textOnLeft}
-            />
+              className="flex min-h-72 flex-col justify-between rounded-3xl border border-border/70 bg-card p-6 shadow-[0_1px_0_0_rgba(15,23,42,0.04)] md:p-8"
+            >
+              <h3 className="max-w-xl font-heading text-2xl font-normal leading-[1.12] tracking-[-0.03em] md:text-3xl">
+                {story.title}
+              </h3>
+              <div className="mt-6">
+                <NeumorphicButton href={story.href} compact>
+                  Read more about it
+                </NeumorphicButton>
+              </div>
+            </article>
           ))}
         </div>
       </div>

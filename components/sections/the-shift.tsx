@@ -183,7 +183,7 @@ export function TheShift() {
         className="relative z-10 mx-auto flex min-h-[70dvh] max-w-4xl flex-col items-center justify-center px-4 py-16 text-center text-white sm:min-h-[78dvh] sm:px-6 sm:py-20 md:min-h-[86dvh] md:px-8 md:py-24"
       >
       <p>
-      	The shift
+      	The Shift
       </p>
         <p
           ref={textRef}

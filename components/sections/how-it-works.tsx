@@ -37,7 +37,7 @@ export function HowItWorks() {
     <section className="section-band-white w-full self-stretch">
       <div className="w-full px-4 pb-10 md:px-8 md:pb-14 lg:px-12">
         <div className="mx-auto max-w-2xl pt-6 text-center md:pt-8">
-          <p className="text-eyebrow">How it works</p>
+          <p className="text-eyebrow">How we work</p>
           <h2 className="mt-3 text-h2 lg:text-5xl">
             Let us help
           </h2>

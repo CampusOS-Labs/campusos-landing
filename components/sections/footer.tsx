@@ -204,7 +204,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className={`block ${linkClassName}`}
               >
-                X <s>(Twitter)</s>
+                X
               </a>
               <a
                 href="https://linkedin.com"

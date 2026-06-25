@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { buttonVariants } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { LinkPending } from "@/components/ui/link-pending";
 import {
   Sheet,
   SheetContent,
@@ -100,7 +101,8 @@ export function Navbar() {
             href="/contact"
             className={cn(buttonVariants({ variant: "secondary", size: "sm" }), "hidden sm:inline-flex")}
           >
-           Get Started
+            <LinkPending />
+            Get Started
           </Link>
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger

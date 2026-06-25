@@ -115,14 +115,18 @@ export function HomeHero() {
       <div className="flex w-full flex-col items-center text-center">
         <h1
           ref={headlineRef}
-          className="max-w-3xl text-display"
+          className="w-fit max-w-full text-display"
         >
-          <HeadlineWords text="Run your school" />
+          <HeadlineWords text="Less Spreadsheets chaos." />
           <br />
-          <HeadlineWords text="without running on spreadsheets" />
+          <HeadlineWords text="Fewer follow-up calls." />
+          <br />
+          <span className="inline-block whitespace-nowrap">
+            <HeadlineWords text="One operating system for your school." />
+          </span>
         </h1>
         <p ref={subheadRef} className="mt-4 max-w-lg text-lead sm:mt-5">
-          Save your school, use CampusOS
+         Stop wasting hours on spreadsheets, WhatsApp groups, and bloated ERP apps.
         </p>
         <div className="mt-6 flex items-center gap-3 sm:mt-8">
           <Link ref={buttonRef} href="/contact" className={buttonVariants({ size: "lg" })}>
@@ -130,9 +134,6 @@ export function HomeHero() {
           </Link>
         </div>
       </div>
-
-      {/*<WhatsAppHalftone className="pointer-events-none mt-10 h-[min(34vw,280px)] w-[min(82vw,500px)] flex-none [mask-image:radial-gradient(ellipse_at_center,black_58%,transparent_82%)] md:mt-14 md:h-[min(30vw,340px)] md:w-[min(64vw,620px)]" />*/}
-
       <TrustedBy className="mt-10 w-full shrink-0 sm:mt-12 md:absolute md:bottom-10 md:left-1/2 md:mt-0 md:-translate-x-1/2" />
     </div>
   );

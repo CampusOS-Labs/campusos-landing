@@ -5,6 +5,7 @@ import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { Drizzle } from "@/components/ui/drizzle";
 
 type ContactFormState = {
   status: "idle" | "success" | "error";
@@ -16,10 +17,10 @@ const initialState: ContactFormState = { status: "idle" };
 function ContactIntro() {
   return (
     <>
-      <h2 className="font-heading text-2xl font-medium leading-snug tracking-tight text-white md:text-3xl">
+      <h2 className="font-heading text-2xl font-medium leading-snug tracking-tight text-foreground md:text-3xl">
         Let&apos;s talk about what&apos;s breaking
       </h2>
-      <p className="mt-3 max-w-md text-sm leading-relaxed text-white/70 sm:text-base">
+      <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
         Most ERP solutions were not built for your school and it shows. Clunky tools, and patchwork
         systems quietly cost your school hours every single day.
       </p>
@@ -108,7 +109,14 @@ function ContactFields({
             </p>
           ) : null}
           <Button type="submit" className="w-full sm:w-auto sm:min-w-40" disabled={pending}>
-            {pending ? "Sending..." : "Submit"}
+            {pending ? (
+              <>
+                <Drizzle size={16} label="Sending" />
+                Sending...
+              </>
+            ) : (
+              "Submit"
+            )}
           </Button>
           <Button
             type="button"
@@ -183,7 +191,7 @@ export function ContactForm() {
       <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,22rem)_minmax(24rem,32rem)_minmax(0,1fr)]">
         <div className="hidden border-r border-border lg:block" aria-hidden />
 
-        <div className="border-b border-border bg-black p-6 sm:p-8 lg:border-b-0 lg:border-r lg:border-border">
+        <div className="border-b border-border p-6 sm:p-8 lg:border-b-0 lg:border-r lg:border-border">
           <ContactIntro />
         </div>
 

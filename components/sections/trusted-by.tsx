@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import { useTheme } from 'next-themes';
 import LogoLoop, { type LogoItem } from '@/components/ui/LogoLoop';
 
 type SchoolEntry =
@@ -7,16 +9,21 @@ type SchoolEntry =
   | { name: string };
 
 const TRUSTED_SCHOOLS: SchoolEntry[] = [
-  { name: 'Kidzee Mundhwa, Pune', src: '/logos/schools/kidzee-mundhwa.png', alt: 'Kidzee' },
+  {
+    name: 'Kidzee Mundhwa, Pune',
+    src: '/logos/schools/kidzee-mundhwa-white.png',
+    alt: 'Kidzee Mundhwa logo',
+  },
   {
     name: "St. Arnold's Central School, Pune",
     src: '/logos/schools/arnolds-logo.webp',
     alt: "St. Arnold's Central School logo",
   },
-  // { name: 'Riverside School' },
-  // { name: 'Greenwood International' },
-  // { name: 'Horizon Institute' },
-  // { name: 'Cedar Valley School' },
+  {
+    name: 'Kidzee VadgaonSheri, Pune',
+    src: '/logos/schools/kidzee-vadgaonsheri-white.png',
+    alt: 'Kidzee VadgaonSheri logo',
+  },
 ];
 
 const trustedLogos: LogoItem[] = TRUSTED_SCHOOLS.map((school) => {
@@ -30,7 +37,7 @@ const trustedLogos: LogoItem[] = TRUSTED_SCHOOLS.map((school) => {
 
   return {
     node: (
-      <span className="whitespace-nowrap text-sm font-semibold tracking-wide text-white/80">
+      <span className="whitespace-nowrap text-sm font-semibold tracking-wide text-foreground/80">
         {school.name}
       </span>
     ),
@@ -39,9 +46,18 @@ const trustedLogos: LogoItem[] = TRUSTED_SCHOOLS.map((school) => {
 });
 
 export function TrustedBy({ className }: { className?: string }) {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const fadeOutColor = mounted && resolvedTheme === 'light' ? '#ffffff' : '#0f0f0f';
+
   return (
-    <section className={`mx-auto w-full max-w-5xl px-4 sm:px-6 ${className ?? "mt-24"}`}>
-      <p className="mb-6 text-center text-eyebrow !text-white sm:mb-8">
+    <section className={`mx-auto w-full max-w-5xl px-4 sm:px-6 ${className ?? 'mt-24'}`}>
+      <p className="mb-6 text-center text-eyebrow sm:mb-8">
         Trusted by
       </p>
       <div className="relative h-16 overflow-hidden sm:h-20">
@@ -53,7 +69,7 @@ export function TrustedBy({ className }: { className?: string }) {
           gap={56}
           hoverSpeed={0}
           fadeOut
-          fadeOutColor="#0f0f0f"
+          fadeOutColor={fadeOutColor}
           ariaLabel="Schools that trust CampusOS"
         />
       </div>
