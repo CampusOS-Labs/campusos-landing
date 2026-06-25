@@ -3,8 +3,7 @@ import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   title: "Team",
-  description:
-    "The relentless team behind the magic of saving schools.",
+  description: "The relentless team behind the magic of saving schools.",
   path: "/team",
 });
 
@@ -68,12 +67,10 @@ const socials = [
 ];
 
 function bioToParagraphs(bio: string) {
-  return bio
-    .split("\n")
-    .flatMap((line) => {
-      const trimmed = line.trim();
-      return trimmed ? [trimmed] : [];
-    });
+  return bio.split("\n").flatMap((line) => {
+    const trimmed = line.trim();
+    return trimmed ? [trimmed] : [];
+  });
 }
 
 export default async function TeamPage() {

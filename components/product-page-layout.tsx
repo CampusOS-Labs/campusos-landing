@@ -18,9 +18,7 @@ export function ProductPageLayout({
   return (
     <main className="flex flex-1 flex-col items-center px-4 pt-24 sm:px-6 sm:pt-32">
       <p className="text-eyebrow">{product.label}</p>
-      <h1 className="mt-4 max-w-3xl text-center text-display">
-        {product.title}
-      </h1>
+      <h1 className="mt-4 max-w-3xl text-center text-display">{product.title}</h1>
       <p className="mt-5 max-w-xl text-center text-lead">{product.headline}</p>
 
       {product.imageSrc ? (
@@ -58,9 +56,7 @@ export function ProductPageLayout({
           >
             <span className="font-heading text-4xl font-semibold tabular-nums">{stat.value}</span>
             <span className="text-sm font-medium">{stat.label}</span>
-            <span className="max-w-[220px] text-caption">
-              {stat.detail}
-            </span>
+            <span className="max-w-[220px] text-caption">{stat.detail}</span>
           </div>
         ))}
       </div>
@@ -68,9 +64,7 @@ export function ProductPageLayout({
       <div className="mb-24 mt-24 w-full border-t" />
 
       <div className="w-full max-w-3xl">
-        <h2 className="text-h2 sm:text-4xl">
-          What schools use this for
-        </h2>
+        <h2 className="text-h2 sm:text-4xl">What schools use this for</h2>
         <ul className="mt-6 space-y-3">
           {product.useCases.map((item) => (
             <li key={item} className="text-body-sm flex gap-3">
@@ -95,7 +89,9 @@ export function ProductPageLayout({
       </div>
 
       <blockquote className="mt-16 max-w-2xl border-l-2 border-border pl-6">
-        <p className="text-lg font-light leading-relaxed">&ldquo;{product.testimonial.quote}&rdquo;</p>
+        <p className="text-lg font-light leading-relaxed">
+          &ldquo;{product.testimonial.quote}&rdquo;
+        </p>
         <cite className="mt-4 block text-sm not-italic text-muted-foreground">
           — {product.testimonial.name}, {product.testimonial.role} · {product.testimonial.school}
         </cite>
@@ -105,9 +101,7 @@ export function ProductPageLayout({
         <>
           <div className="mb-24 mt-24 w-full border-t" />
           <div className="mb-12 text-center">
-            <h2 className="text-display-sm">
-              Built with the entire stack in mind
-            </h2>
+            <h2 className="text-display-sm">Built with the entire stack in mind</h2>
             <p className="mx-auto mt-1 max-w-2xl text-lead">
               Collect from systems you already trust.
             </p>
@@ -131,7 +125,6 @@ export function ProductPageLayout({
           </details>
         ))}
       </div>
-
     </main>
   );
 }

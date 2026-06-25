@@ -14,13 +14,7 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LinkPending } from "@/components/ui/link-pending";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { PRODUCTS } from "@/lib/products";
 import { cn } from "@/lib/utils";
 
@@ -99,17 +93,17 @@ export function Navbar() {
           <ThemeToggle />
           <Link
             href="/contact"
-            className={cn(buttonVariants({ variant: "secondary", size: "sm" }), "hidden sm:inline-flex")}
+            className={cn(
+              buttonVariants({ variant: "secondary", size: "sm" }),
+              "hidden sm:inline-flex",
+            )}
           >
             <LinkPending />
             Get Started
           </Link>
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon-sm" }),
-                "lg:hidden",
-              )}
+              className={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }), "lg:hidden")}
               aria-label="Open menu"
             >
               <ListIcon className="size-5" />

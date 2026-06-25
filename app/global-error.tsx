@@ -51,17 +51,9 @@ export default function GlobalError({
     <html lang="en">
       <body style={BODY_STYLE}>
         <main style={MAIN_STYLE}>
-          <h1 style={HEADING_STYLE}>
-            Something went wrong
-          </h1>
-          <p style={PARAGRAPH_STYLE}>
-            CampusOS ran into an unexpected error. Please try again.
-          </p>
-          <button
-            type="button"
-            onClick={reset}
-            style={BUTTON_STYLE}
-          >
+          <h1 style={HEADING_STYLE}>Something went wrong</h1>
+          <p style={PARAGRAPH_STYLE}>CampusOS ran into an unexpected error. Please try again.</p>
+          <button type="button" onClick={reset} style={BUTTON_STYLE}>
             Try again
           </button>
         </main>

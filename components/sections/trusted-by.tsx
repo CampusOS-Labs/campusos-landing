@@ -1,33 +1,31 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useTheme } from 'next-themes';
-import LogoLoop, { type LogoItem } from '@/components/ui/LogoLoop';
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
+import LogoLoop, { type LogoItem } from "@/components/ui/LogoLoop";
 
-type SchoolEntry =
-  | { name: string; src: string; alt?: string }
-  | { name: string };
+type SchoolEntry = { name: string; src: string; alt?: string } | { name: string };
 
 const TRUSTED_SCHOOLS: SchoolEntry[] = [
   {
-    name: 'Kidzee Mundhwa, Pune',
-    src: '/logos/schools/kidzee-mundhwa-white.png',
-    alt: 'Kidzee Mundhwa logo',
+    name: "Kidzee Mundhwa, Pune",
+    src: "/logos/schools/kidzee-mundhwa-white.png",
+    alt: "Kidzee Mundhwa logo",
   },
   {
     name: "St. Arnold's Central School, Pune",
-    src: '/logos/schools/arnolds-logo.webp',
+    src: "/logos/schools/arnolds-logo.webp",
     alt: "St. Arnold's Central School logo",
   },
   {
-    name: 'Kidzee VadgaonSheri, Pune',
-    src: '/logos/schools/kidzee-vadgaonsheri-white.png',
-    alt: 'Kidzee VadgaonSheri logo',
+    name: "Kidzee VadgaonSheri, Pune",
+    src: "/logos/schools/kidzee-vadgaonsheri-white.png",
+    alt: "Kidzee VadgaonSheri logo",
   },
 ];
 
 const trustedLogos: LogoItem[] = TRUSTED_SCHOOLS.map((school) => {
-  if ('src' in school) {
+  if ("src" in school) {
     return {
       src: school.src,
       alt: school.alt ?? school.name,
@@ -53,13 +51,11 @@ export function TrustedBy({ className }: { className?: string }) {
     setMounted(true);
   }, []);
 
-  const fadeOutColor = mounted && resolvedTheme === 'light' ? '#ffffff' : '#0f0f0f';
+  const fadeOutColor = mounted && resolvedTheme === "light" ? "#ffffff" : "#0f0f0f";
 
   return (
-    <section className={`mx-auto w-full max-w-5xl px-4 sm:px-6 ${className ?? 'mt-24'}`}>
-      <p className="mb-6 text-center text-eyebrow sm:mb-8">
-        Trusted by
-      </p>
+    <section className={`mx-auto w-full max-w-5xl px-4 sm:px-6 ${className ?? "mt-24"}`}>
+      <p className="mb-6 text-center text-eyebrow sm:mb-8">Trusted by</p>
       <div className="relative h-16 overflow-hidden sm:h-20">
         <LogoLoop
           logos={trustedLogos}

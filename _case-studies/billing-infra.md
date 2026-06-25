@@ -3,7 +3,7 @@ title: "How we set up a billing infra in a week"
 excerpt: "Kidzee Vadgaon Sheri needed a modern billing solution. CampusOS helped them streamline fee collection and daily billing operations."
 date: "2026-06-15T10:00:00.000Z"
 author:
-  name: Amaan 
+  name: Amaan
   picture: ""
 ogImage:
   url: ""
@@ -17,8 +17,8 @@ She mentioned that Kidzee already has a dedicated system that works flawlessly, 
 
 The second thing she mentioned is how Meta now charges money for > 256 messages, and they do so with a per-message cost, damn you big evil corp. But it was good for us because now we had an idea of what the problem was.
 
-
 ## a far fetched statement
+
 Calling it billing infra is a far-fetched statement, not because we didn't build it, but because we had a lot of help from our friends at Razorpay. I didn't have a clue what Razorpay was until I attended YC Startup School in Bangalore, and nothing is going to sell me more about a company that can solve real problems then it being backed by YC (though my beliefs have changed for a few)
 
 Razorpay's API docs are decent. We decided to use those docs as building blocks for our billing infra, and within 16 hours and a sleepless night, we had a working billing infra system up and running. The funny part is the KYC took us longer than writing the actual code. If anyone wants to start helping people out with that, there's a free startup idea.

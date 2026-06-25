@@ -68,7 +68,7 @@ Pick one pair (headline + subhead):
 
 **Label:** Trusted by
 
-*(School names / logos — already in `TrustedBy` component)*
+_(School names / logos — already in `TrustedBy` component)_
 
 Optional case study link: **Read case study** → `/case-studies/[slug]` when ready
 
@@ -82,11 +82,11 @@ Optional case study link: **Read case study** → `/case-studies/[slug]` when re
 
 ### Pillars (3-word titles + one-line blurbs)
 
-| Pillar | Blurb |
-|--------|-------|
-| **Connect** | WhatsApp, payment gateways, accounting exports, your existing tools. |
-| **Audit** | Unpaid fees, missed notices, duplicate records — flagged before they become end-of-term fires. |
-| **Run** | One dashboard, one workflow, live at your school — not a platform you fight for six months. |
+| Pillar      | Blurb                                                                                          |
+| ----------- | ---------------------------------------------------------------------------------------------- |
+| **Connect** | WhatsApp, payment gateways, accounting exports, your existing tools.                           |
+| **Audit**   | Unpaid fees, missed notices, duplicate records — flagged before they become end-of-term fires. |
+| **Run**     | One dashboard, one workflow, live at your school — not a platform you fight for six months.    |
 
 ---
 
@@ -98,11 +98,11 @@ Optional case study link: **Read case study** → `/case-studies/[slug]` when re
 
 ### Example gap cards (for mock UI)
 
-| Conflict | Sources | Severity |
-|----------|---------|----------|
-| "Fee paid in cash" vs "Still marked unpaid in Excel" | Finance / Class teacher | Critical |
-| "Notice sent in WhatsApp group" vs "Parent never saw it" | Admin / Parent inbox | Warning |
-| "Timetable updated" vs "Substitute not notified" | Office / Staff group | Warning |
+| Conflict                                                      | Sources                 | Severity |
+| ------------------------------------------------------------- | ----------------------- | -------- |
+| "Fee paid in cash" vs "Still marked unpaid in Excel"          | Finance / Class teacher | Critical |
+| "Notice sent in WhatsApp group" vs "Parent never saw it"      | Admin / Parent inbox    | Warning  |
+| "Timetable updated" vs "Substitute not notified"              | Office / Staff group    | Warning  |
 | "Tuition due Friday" vs "Reminder sent Monday after deadline" | Billing / Announcements | Critical |
 
 ---
@@ -157,11 +157,11 @@ Optional case study link: **Read case study** → `/case-studies/[slug]` when re
 
 ### Feature cards
 
-| Title | Blurb |
-|-------|-------|
+| Title                             | Blurb                                                      |
+| --------------------------------- | ---------------------------------------------------------- |
 | **Drafts in your school's voice** | Templates and reminders that sound like you, not a vendor. |
-| **Built for educators** | Not ERP consultants. Not enterprise theater. |
-| **Open by default** | No black boxes. No vendor lock-in. |
+| **Built for educators**           | Not ERP consultants. Not enterprise theater.               |
+| **Open by default**               | No black boxes. No vendor lock-in.                         |
 
 ---
 
@@ -183,13 +183,13 @@ Optional case study link: **Read case study** → `/case-studies/[slug]` when re
 
 Use on homepage or solution pages as needed:
 
-| Stat | Label |
-|------|-------|
-| 14,283 | Students served |
-| 97.2% | On-time payments |
-| $2.4M | Monthly processed |
+| Stat   | Label             |
+| ------ | ----------------- |
+| 14,283 | Students served   |
+| 97.2%  | On-time payments  |
+| $2.4M  | Monthly processed |
 
-*(Replace with real numbers when available)*
+_(Replace with real numbers when available)_
 
 ---
 
@@ -203,11 +203,11 @@ Use on homepage or solution pages as needed:
 
 ## Solution page hero subheads (quick reference)
 
-| Page | Current | Human Delta–style |
-|------|---------|-------------------|
-| Billing | End-to-end fee collection and reconciliation for schools | Fee collection that reconciles itself — one source of truth for finance. |
-| Announcements | School-wide and personalized announcements delivered, instantly | Notices that reach every parent — on WhatsApp, as a direct message. |
-| Socials | Manage your social media outreach, growth, and more | Your school's story — published consistently, without a marketing team. |
+| Page          | Current                                                         | Human Delta–style                                                        |
+| ------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Billing       | End-to-end fee collection and reconciliation for schools        | Fee collection that reconciles itself — one source of truth for finance. |
+| Announcements | School-wide and personalized announcements delivered, instantly | Notices that reach every parent — on WhatsApp, as a direct message.      |
+| Socials       | Manage your social media outreach, growth, and more             | Your school's story — published consistently, without a marketing team.  |
 
 ---
 
@@ -240,17 +240,17 @@ From `_manifesto/our-manifesto.md` — already strong; compress for UI:
 
 Scroll narrative adapted from [Willow Voice](https://willowvoice.com/) — structure only, CampusOS box-corner visuals.
 
-| # | Section | Component | Copy anchor |
-|---|---------|-----------|-------------|
-| 1 | Hero | inline | "Run your school without running on spreadsheets" |
-| 2 | Trusted by | `TrustedBy` | School logos |
-| 3 | The shift | `TheShift` | Thesis + 98.4% / < 2 min / 97.2% stats |
-| 4 | How it works | `HowItWorks` | Connect → Audit → Run + mock UI |
-| 5 | Products | `ProductShowcase` | Billing, Announcements, Attendance modules |
-| 6 | Capabilities | `CapabilityGrid` | 9 capability rows |
-| 7 | Wall of love | `WallOfLove` | Kidzee quotes |
-| 8 | Customer stories | `CustomerStories` | Case study promos |
-| 9 | Bottom CTA | `BottomCta` | "Your spreadsheets are optional now" |
+| #   | Section          | Component         | Copy anchor                                       |
+| --- | ---------------- | ----------------- | ------------------------------------------------- |
+| 1   | Hero             | inline            | "Run your school without running on spreadsheets" |
+| 2   | Trusted by       | `TrustedBy`       | School logos                                      |
+| 3   | The shift        | `TheShift`        | Thesis + 98.4% / < 2 min / 97.2% stats            |
+| 4   | How it works     | `HowItWorks`      | Connect → Audit → Run + mock UI                   |
+| 5   | Products         | `ProductShowcase` | Billing, Announcements, Attendance modules        |
+| 6   | Capabilities     | `CapabilityGrid`  | 9 capability rows                                 |
+| 7   | Wall of love     | `WallOfLove`      | Kidzee quotes                                     |
+| 8   | Customer stories | `CustomerStories` | Case study promos                                 |
+| 9   | Bottom CTA       | `BottomCta`       | "Your spreadsheets are optional now"              |
 
 Persona pages: `/for-owners`, `/for-admins`, `/for-teachers`
 

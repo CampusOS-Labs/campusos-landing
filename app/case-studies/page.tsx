@@ -12,9 +12,7 @@ export default function CaseStudies() {
 
   return (
     <main className="flex flex-1 flex-col items-center px-4 pt-24 pb-16 sm:px-6 sm:pt-32 sm:pb-24">
-      <h1 className="max-w-3xl text-center text-display">
-        Case Studies
-      </h1>
+      <h1 className="max-w-3xl text-center text-display">Case Studies</h1>
       <p className="mt-4 max-w-xl text-center text-lead">
         Real schools fixing real workflows, one at a time.
       </p>
@@ -30,9 +28,7 @@ export default function CaseStudies() {
             />
           ))
         ) : (
-          <p className="text-muted-foreground text-center">
-            No case studies yet. Check back soon.
-          </p>
+          <p className="text-muted-foreground text-center">No case studies yet. Check back soon.</p>
         )}
       </div>
     </main>

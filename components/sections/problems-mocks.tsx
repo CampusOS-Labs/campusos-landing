@@ -23,9 +23,7 @@ function Pill({ status }: { status: FeeStatus }) {
     Overdue: "bg-red-50 text-red-700",
   };
   return (
-    <span
-      className={`inline-flex px-2 py-0.5 text-[10px] font-medium ${styles[status]}`}
-    >
+    <span className={`inline-flex px-2 py-0.5 text-[10px] font-medium ${styles[status]}`}>
       {status}
     </span>
   );
@@ -89,7 +87,9 @@ export function SpreadsheetMock() {
             >
               {row.name}
             </span>
-            <span className="flex-1 border-b border-r border-black/10 px-2 py-1.5 tabular-nums">{row.fee}</span>
+            <span className="flex-1 border-b border-r border-black/10 px-2 py-1.5 tabular-nums">
+              {row.fee}
+            </span>
             <span className="flex flex-1 items-center border-b border-r border-black/10 px-2 py-1.5">
               <Pill status={row.status} />
             </span>
@@ -126,7 +126,12 @@ type ChatMessage = {
 };
 
 const MESSAGES: ChatMessage[] = [
-  { from: "in", sender: "Priya (Aarav's mom)", text: "Ma'am, is tomorrow a holiday?", time: "9:02" },
+  {
+    from: "in",
+    sender: "Priya (Aarav's mom)",
+    text: "Ma'am, is tomorrow a holiday?",
+    time: "9:02",
+  },
   { from: "in", sender: "Rohit S.", text: "When is the term fee due?", time: "9:04" },
   { from: "out", text: "Sharing the circular shortly 🙏", time: "9:11" },
   { from: "in", sender: "Meena K.", text: "Bus didn't come today??", time: "9:12" },

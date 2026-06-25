@@ -3,7 +3,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { PauseIcon, PlayIcon } from "@phosphor-icons/react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ScatteredToolsMock, SpreadsheetMock, WhatsAppMock } from "@/components/sections/problems-mocks";
+import {
+  ScatteredToolsMock,
+  SpreadsheetMock,
+  WhatsAppMock,
+} from "@/components/sections/problems-mocks";
 
 const ROTATION_MS = 10000;
 
@@ -124,10 +128,12 @@ export function Problems() {
         <div className="space-y-8">
           <div>
             <p className="text-eyebrow">The problem</p>
-            <h2 className="mt-3 text-h2 md:text-4xl">Say goodbye to your school&apos;s messy ops stack</h2>
+            <h2 className="mt-3 text-h2 md:text-4xl">
+              Say goodbye to your school&apos;s messy ops stack
+            </h2>
             <p className="mt-4 max-w-xl text-body md:text-lg">
-              If your team is still juggling chats, sheets, and disconnected tools, important work slips
-              through every day.
+              If your team is still juggling chats, sheets, and disconnected tools, important work
+              slips through every day.
             </p>
           </div>
 
@@ -158,14 +164,21 @@ export function Problems() {
                 setIsPaused((prev) => {
                   if (!prev) {
                     // Pausing: remember how far into the cycle we are.
-                    pausedElapsedRef.current = Math.min(Date.now() - startedAtRef.current, ROTATION_MS);
+                    pausedElapsedRef.current = Math.min(
+                      Date.now() - startedAtRef.current,
+                      ROTATION_MS,
+                    );
                   }
                   return !prev;
                 })
               }
               className="shrink-0 border border-border/70 bg-card p-1.5 text-foreground transition-colors hover:bg-muted"
             >
-              {isPaused ? <PlayIcon className="size-3.5" aria-hidden="true" /> : <PauseIcon className="size-3.5" aria-hidden="true" />}
+              {isPaused ? (
+                <PlayIcon className="size-3.5" aria-hidden="true" />
+              ) : (
+                <PauseIcon className="size-3.5" aria-hidden="true" />
+              )}
             </button>
           </div>
 
