@@ -1,4 +1,4 @@
-import { PaperPlaneRightIcon } from "@phosphor-icons/react";
+import Image from "next/image";
 
 /**
  * Decorative pain-point mockups for the Problems section. Each panel mirrors the
@@ -118,79 +118,26 @@ export function SpreadsheetMock() {
   );
 }
 
-type ChatMessage = {
-  from: "in" | "out";
-  sender?: string;
-  text: string;
-  time: string;
-};
-
-const MESSAGES: ChatMessage[] = [
-  {
-    from: "in",
-    sender: "Priya (Aarav's mom)",
-    text: "Ma'am, is tomorrow a holiday?",
-    time: "9:02",
-  },
-  { from: "in", sender: "Rohit S.", text: "When is the term fee due?", time: "9:04" },
-  { from: "out", text: "Sharing the circular shortly 🙏", time: "9:11" },
-  { from: "in", sender: "Meena K.", text: "Bus didn't come today??", time: "9:12" },
-  { from: "in", sender: "Anonymous", text: "Fee due date please?", time: "9:15" },
-];
-
 export function WhatsAppMock() {
+  // Real iOS WhatsApp screen authored from the community UI kit's components
+  // (header, message bubbles, reply-quote, input bar) and rewritten to the
+  // parent-comms scenario, exported at 4x. See public/problems-whatsapp-chat.png.
+  // It's a tall phone screen, so object-contain centers the full device in the
+  // panel and a rounded border + shadow makes it read as a physical phone.
   return (
     <div
       role="presentation"
       aria-hidden="true"
-      className={`${MOCK_ROOT} flex flex-col overflow-hidden border border-black/10 shadow-sm`}
+      className={`${MOCK_ROOT} flex items-center justify-center`}
     >
-      {/* Header */}
-      <div className="flex items-center gap-3 bg-[#075e54] px-3 py-2.5 text-white">
-        <span className="size-8 shrink-0 rounded-full bg-white/25" />
-        <span className="min-w-0 flex-1">
-          <span className="block truncate text-[13px] font-medium">Grade 6 — Parents Group</span>
-          <span className="block text-[11px] text-white/70">12 members · 7 unread</span>
-        </span>
-        <span className="flex flex-col gap-0.5">
-          {[0, 1, 2].map((d) => (
-            <span key={d} className="size-1 rounded-full bg-white/70" />
-          ))}
-        </span>
-      </div>
-
-      {/* Chat body */}
-      <div className="flex-1 space-y-2 overflow-hidden bg-[#ece5dd] px-3 py-3">
-        {MESSAGES.map((msg, i) =>
-          msg.from === "in" ? (
-            <div key={i} className="max-w-[80%] bg-white px-3 py-1.5 text-[12px] shadow-sm">
-              <p className="text-[10px] font-medium text-[#1f40ed]">{msg.sender}</p>
-              <p className="text-zinc-800">{msg.text}</p>
-              <p className="mt-0.5 text-right text-[10px] text-zinc-400">{msg.time}</p>
-            </div>
-          ) : (
-            <div
-              key={i}
-              className="ml-auto max-w-[80%] bg-[#dcf8c6] px-3 py-1.5 text-[12px] shadow-sm"
-            >
-              <p className="text-zinc-800">{msg.text}</p>
-              <p className="mt-0.5 text-right text-[10px] text-zinc-500">
-                {msg.time} <span className="text-[#34b7f1]">✓✓</span>
-              </p>
-            </div>
-          ),
-        )}
-      </div>
-
-      {/* Composer */}
-      <div className="flex items-center gap-2 border-t border-black/10 bg-[#f0f0f0] px-2 py-2">
-        <span className="flex-1 bg-white px-3 py-1.5 text-[11px] text-zinc-400">
-          Type a message
-        </span>
-        <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[#25d366] text-white">
-          <PaperPlaneRightIcon className="size-4" aria-hidden="true" />
-        </span>
-      </div>
+      <Image
+        src="/problems-whatsapp-chat.png"
+        alt=""
+        width={393}
+        height={852}
+        className="h-full w-auto max-w-full rounded-[2rem] border border-black/10 object-contain shadow-[0_18px_40px_-20px_rgba(0,0,0,0.5)]"
+        sizes="(max-width: 1024px) 60vw, 280px"
+      />
     </div>
   );
 }

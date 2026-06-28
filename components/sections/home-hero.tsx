@@ -1,10 +1,10 @@
 "use client";
 
 import { Fragment, useEffect, useRef } from "react";
-import Link from "next/link";
+import Image from "next/image";
 import { gsap } from "gsap";
 
-import { buttonVariants } from "@/components/ui/button";
+import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
 import { TrustedBy } from "@/components/sections/trusted-by";
 
 function HeadlineWords({ text }: { text: string }) {
@@ -28,7 +28,7 @@ export function HomeHero() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subheadRef = useRef<HTMLParagraphElement>(null);
-  const buttonRef = useRef<HTMLAnchorElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -110,28 +110,33 @@ export function HomeHero() {
   return (
     <div
       ref={sectionRef}
-      className="relative flex min-h-[calc(100dvh-3.5rem)] w-full flex-col items-center justify-between bg-background px-4 pt-16 pb-6 sm:min-h-[calc(100dvh-4rem)] sm:px-6 sm:pt-24 sm:pb-8 md:pt-32 md:pb-10"
+      className="relative flex min-h-[58dvh] w-full flex-col items-start justify-start bg-background px-4 pt-20 pb-2 sm:min-h-[60dvh] sm:px-6 sm:pt-24 sm:pb-3 md:min-h-[64dvh] md:pt-28 md:pb-4 lg:min-h-[48dvh] lg:pt-20 lg:pb-2"
     >
-      <div className="flex w-full flex-col items-center text-center">
-        <h1 ref={headlineRef} className="w-fit max-w-full text-display">
-          <HeadlineWords text="Less spreadsheets chaos." />
-          <br />
-          <HeadlineWords text="Fewer follow-up calls." />
-          <br />
-          <span className="inline-block whitespace-nowrap">
-            <HeadlineWords text="One operating system for your school." />
-          </span>
-        </h1>
-        <p ref={subheadRef} className="mt-4 max-w-lg text-lead sm:mt-5">
-          Stop wasting hours on spreadsheets, WhatsApp groups, and bloated ERP apps.
-        </p>
-        <div className="mt-6 flex items-center gap-3 sm:mt-8">
-          <Link ref={buttonRef} href="/contact" className={buttonVariants({ size: "lg" })}>
-            Contact us
-          </Link>
+      <div className="mx-auto grid w-full max-w-5xl grid-cols-1 items-start gap-4 text-left lg:grid-cols-2 lg:gap-6">
+        <div className="flex flex-col items-start lg:items-end lg:text-right">
+          <h1 ref={headlineRef} className="w-fit max-w-full text-display">
+            <HeadlineWords text="less calls" />
+            <br />
+            <HeadlineWords text="less spreadsheets" />
+            <br />
+            <HeadlineWords text="more control" />
+          </h1>
+          <div ref={buttonRef} className="mt-6 flex items-center gap-3 sm:mt-8">
+            <NeumorphicButton href="/contact" blue>Contact us</NeumorphicButton>
+          </div>
+        </div>
+        <div className="w-full max-w-[360px] justify-self-start overflow-hidden border border-border/60 bg-card lg:max-w-[340px]">
+          <Image
+            src="/calm-guy.jpg"
+            alt="Calm person with hands on face"
+            width={660}
+            height={641}
+            className="h-auto w-full object-cover"
+            priority
+          />
         </div>
       </div>
-      <TrustedBy className="mt-10 w-full shrink-0 sm:mt-12 md:absolute md:bottom-10 md:left-1/2 md:mt-0 md:-translate-x-1/2" />
+      <TrustedBy className="mt-12 w-full shrink-0 sm:mt-14 md:mt-16" />
     </div>
   );
 }

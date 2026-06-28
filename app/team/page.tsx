@@ -18,21 +18,19 @@ type Founder = {
 
 const founders: Founder[] = [
   {
-    name: "Amaan Bilwar",
+    name: "amaan bilwar",
     role: "Co-founder",
     linkedin: "https://www.linkedin.com/in/amaanbilwar/",
     github: "https://github.com/AmaanBilwar",
     x: "https://x.com/BilwarAmaan",
-    bio: `Amaan writes code and does collison installations for CampusOS.
-Before CampusOS, he was scaling infra and building pipelines at big tech.
-If he's not being the reply guy on twitter, he's either working or ... working.`,
+    bio: `amaan writes code and does collison installations for CampusOS.
+Before CampusOS, he was scaling infra and building pipelines at big tech(ptsd).`
   },
   {
-    name: "Samarth Ghadipatil",
+    name: "samarth ghadipatil",
     role: "Co-founder",
-    bio: `Samarth, game dev, he's all things optimization and operation at CampusOS.
-Before CampusOS, he was on a random discord call. Right now he's probably catching up on sleep.
-When he's not working on CampusOS, he's either watching UFC or being emo online.`,
+    bio: `samarth, game dev, he's all optimizations and operations at CampusOS.
+When he's not working on CampusOS, he's either watching UFC or being emo online ^_^`,
   },
 ];
 
@@ -81,9 +79,8 @@ export default async function TeamPage() {
 
   return (
     <ContentPageShell
-      label="Company"
       title="Team"
-      description="The relentless team behind the magic of saving schools."
+      description="the team that does the heavy lifting"
       fullWidth
     >
       <div className="mx-auto max-w-6xl space-y-0 pb-24 md:pb-32">

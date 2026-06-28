@@ -2,7 +2,7 @@ import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
 
 const STORIES = [
   {
-    title: "Building a brain for your school with Slate",
+    title: "Slate — The Brain for your school",
     href: "/case-studies/introducing-slate",
   },
   {

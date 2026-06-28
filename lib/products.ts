@@ -30,9 +30,8 @@ export const PRODUCTS: ProductDefinition[] = [
     title: "Billing Infrastructure",
     headline: "Fee collection that reconciles itself",
     description:
-      "One ledger for tuition, events, and ad-hoc fees — no end-of-term reconciliation marathons.",
+      "stop chasing parents, reconcile payments faster than ever before",
     href: "/products/billing-infrastructure",
-    // imageSrc: "/billing-infrastructure-header.png",
     stats: [
       {
         value: "97.2%",
@@ -73,7 +72,7 @@ export const PRODUCTS: ProductDefinition[] = [
     label: "Announcements",
     title: "Announcements",
     headline: "The fastest way to reach every parent",
-    description: "Notices delivered as direct WhatsApp messages — not buried in group scroll.",
+    description: "send personalized whastapp messages to thousands in a single click. yes its magic",
     href: "/products/announcements",
     // imageSrc: "/announcements-header.png",
     stats: [
@@ -116,7 +115,7 @@ export const PRODUCTS: ProductDefinition[] = [
     label: "Attendance",
     title: "Attendance",
     headline: "See who's on campus in real time",
-    description: "Teachers check in on their phone. You see live attendance on your dashboard.",
+    description: "track any attendance in real time, all u need is a phone",
     href: "/products/attendance",
     stats: [
       {
@@ -158,7 +157,7 @@ export const PRODUCTS: ProductDefinition[] = [
     label: "Social Media",
     title: "Social Media",
     headline: "Your school's story, published consistently",
-    description: "Plan, draft, and publish outreach without another agency retainer.",
+    description: "scale your socials with ease. we know what works, so lets get you out there",
     href: "/products/socials",
     stats: [
       {

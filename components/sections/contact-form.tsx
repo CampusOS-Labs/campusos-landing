@@ -21,8 +21,9 @@ function ContactIntro() {
         Let&apos;s talk about what&apos;s breaking
       </h2>
       <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
-        Most ERP solutions were not built for your school and it shows. Clunky tools, and patchwork
-        systems quietly cost your school hours every single day.
+        stop slowing your school down.<br />
+        get good at things that matter.<br />
+        let us help.
       </p>
     </>
   );
@@ -125,7 +126,7 @@ function ContactFields({
             disabled={pending}
             onClick={() => window.open("https://cal.com/amaan-campusos/15min", "_blank")}
           >
-            Schedule a demo
+         call us
           </Button>
         </FieldGroup>
       </form>

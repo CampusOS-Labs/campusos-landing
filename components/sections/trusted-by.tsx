@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
 import LogoLoop, { type LogoItem } from "@/components/ui/LogoLoop";
 
 type SchoolEntry = { name: string; src: string; alt?: string } | { name: string };
@@ -44,18 +42,11 @@ const trustedLogos: LogoItem[] = TRUSTED_SCHOOLS.map((school) => {
 });
 
 export function TrustedBy({ className }: { className?: string }) {
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const fadeOutColor = mounted && resolvedTheme === "light" ? "#ffffff" : "#0f0f0f";
+  const fadeOutColor = "#ffffff";
 
   return (
-    <section className={`mx-auto w-full max-w-5xl px-4 sm:px-6 ${className ?? "mt-24"}`}>
-      <p className="mb-6 text-center text-eyebrow sm:mb-8">Trusted by</p>
+    <section className={`relative left-1/2 w-screen -translate-x-1/2 ${className ?? "mt-24"}`}>
+      <p className="mb-3 text-center text-eyebrow sm:mb-4">Trusted by</p>
       <div className="relative h-16 overflow-hidden sm:h-20">
         <LogoLoop
           logos={trustedLogos}

@@ -140,3 +140,20 @@
 .neo-button--compact .neo-button-inner span {
   font-size: 0.8125rem;
 }
+
+.neo-button--blue .neo-button-inner {
+  background-image: linear-gradient(135deg, #3b82f6, #2563eb);
+  box-shadow:
+    0 0 0 0 inset rgba(8, 47, 130, 0.2),
+    -0.05em -0.05em 0.05em 0 inset rgba(147, 197, 253, 0.45),
+    0 0 0 0 inset rgba(8, 47, 130, 0.2),
+    0 0 0.05em 0.2em inset rgba(191, 219, 254, 0.2),
+    0.025em 0.05em 0.1em 0 inset rgba(255, 255, 255, 0.35),
+    0.12em 0.12em 0.12em inset rgba(147, 197, 253, 0.2),
+    -0.075em -0.25em 0.25em 0.1em inset rgba(29, 78, 216, 0.35);
+}
+
+.neo-button--blue .neo-button-inner span {
+  color: #ffffff;
+  background-image: none;
+}
