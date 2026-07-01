@@ -3,6 +3,7 @@ import { HomeHero } from "@/components/sections/home-hero";
 import { createPageMetadata } from "@/lib/site";
 import { CustomerStories } from "@/components/sections/CustomerStories";
 import { Problems } from "@/components/sections/Problems";
+import { Solutions } from "@/components/sections/Solutions";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Run your school without running on spreadsheets",
@@ -16,6 +17,7 @@ export default function Home() {
     <main className="flex flex-1 flex-col items-center">
       <HomeHero />
       <Problems />
+      <Solutions />
       {/*<CustomerStories />*/}
     </main>
   );
