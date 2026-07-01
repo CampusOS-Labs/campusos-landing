@@ -3,7 +3,7 @@ import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   title: "Values",
-  description: "We work the best when we can rely on teammates with these values.",
+  description: "we work best with people that uphold these.",
   path: "/values",
 });
 
@@ -27,9 +27,18 @@ const values = [
   {
     title: "About our software",
     points: [
-      "Schools deserve to understand what they're running and own their data.",
+      "attention to detail always is rewarded",
+      "go the extra mile, to make it flawless",
       "Software should fit how schools already work.",
       "We build for educators and administrators, not ERP consultants.",
+    ],
+  },
+  {
+    title: "Privacy",
+    points: [
+      "Schools deserve to understand what they're running and own their data.",
+      "if they haven't said yes, they've said no.",
+      "no selling any data ever."
     ],
   },
   {
@@ -46,13 +55,13 @@ export default function ValuesPage() {
     <ContentPageShell
       label="Company"
       title="Our Values"
-      description="We work the best when we can rely on teammates with these values."
+      description="hills we'll die on"
     >
       <div className="mx-auto max-w-3xl space-y-0">
         {values.map((value, index) => (
           <section
             key={value.title}
-            className={`border border-border p-8 md:p-10 ${index > 0 ? "border-t-0" : ""}`}
+            className={`p-8 md:p-10 ${index > 0 ? "border-t-0" : ""}`}
           >
             <h2 className="font-heading text-3xl font-light leading-[1.1] tracking-tight">
               {value.title}
