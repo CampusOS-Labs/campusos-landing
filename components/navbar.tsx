@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
+import { useState } from "react"; import Link from "next/link";
 import { ListIcon } from "@phosphor-icons/react";
 import { buttonVariants } from "@/components/ui/button";
 import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
@@ -10,7 +9,6 @@ import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
   { href: "/products", label: "Products" },
-  { href: "/blogs", label: "Blog" },
   { href: "/case-studies", label: "Case Studies" },
   { href: "/manifesto", label: "Manifesto" },
 ] as const;
@@ -60,9 +58,8 @@ export function Navbar() {
 
               <nav className="flex flex-1 flex-col gap-6 px-4 pb-6">
                 <div>
-                  <p className="mb-2 px-3 text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground">
-                    Navigation
-                  </p>
+                  <p className="mb-2 px-3 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                    Navigation </p>
                   <div className="flex flex-col gap-0.5">
                     {NAV_LINKS.map((link) => (
                       <Link

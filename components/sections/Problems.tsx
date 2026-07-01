@@ -14,7 +14,7 @@ const PAIN_POINTS = [
   },
   {
     value: "reports",
-    trigger: "daily reports, more like 'where did my day go'",
+    trigger: "daily reports, oh god",
   },
 ] as const;
 
@@ -44,7 +44,7 @@ export function Problems() {
             setActiveTab(value as (typeof PAIN_POINTS)[number]["value"]);
           }
         }}
-        className="mx-auto grid min-h-[70vh] w-full max-w-6xl grid-cols-1 gap-10 px-4 pt-6 pb-16 md:min-h-[76vh] md:px-8 md:pt-8 md:pb-20 lg:grid-cols-2 lg:gap-14 lg:px-12 lg:pt-10 lg:pb-24"
+        className="mx-auto grid min-h-[calc(100dvh-3.5rem)] w-full max-w-6xl grid-cols-1 content-center gap-10 px-4 py-12 sm:min-h-[calc(100dvh-4rem)] md:px-8 md:py-16 lg:grid-cols-2 lg:items-center lg:gap-14 lg:px-12"
       >
         <div className="space-y-8">
           <div>
@@ -67,13 +67,21 @@ export function Problems() {
           </TabsList>        </div>
 
         <div className="relative min-h-105 overflow-hidden bg-card p-6 md:min-h-115 md:p-8">
-          <TabsContent value="fees" className="mt-0">
+          <TabsContent value="fees" className="mt-0 flex h-full items-center justify-center">
             {/*<SpreadsheetMock />*/}
-           spreadsheet mock haha
+            <img
+              src="/spreadsheets-mock.svg"
+              alt="Spreadsheet mockup"
+              className="h-120 w-auto max-w-full object-contain object-center md:h-136"
+            />
           </TabsContent>
           <TabsContent value="comms" className="mt-0">
             {/*<WhatsAppMock />*/}
-            whastapp mock haha
+            <img
+              src="/wa-mock-2.svg"
+              alt="WhatsApp mockup"
+              className="h-120 w-auto max-w-full object-contain object-center md:h-136"
+            />
           </TabsContent>
           <TabsContent value="reports" className="mt-0">
             {/*<ScatteredToolsMock />*/}
