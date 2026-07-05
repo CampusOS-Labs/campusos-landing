@@ -19,7 +19,10 @@ export function NeumorphicButton({
 }: NeumorphicButtonProps) {
   return (
     <Link href={href} className={cn("neo-button-link", className)}>
-      <span className={cn("neo-button", compact && "neo-button--compact", blue && "neo-button--blue")} role="presentation">
+      <span
+        className={cn("neo-button", compact && "neo-button--compact", blue && "neo-button--blue")}
+        role="presentation"
+      >
         <span className="neo-button-outer">
           <span className="neo-button-inner">
             <span>{children}</span>

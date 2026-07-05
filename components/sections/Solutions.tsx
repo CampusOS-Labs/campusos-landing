@@ -18,8 +18,8 @@ const SOLUTIONS = [
     title: "Start with Announcements",
     blurb: (
       <>
-        stop manually typing messages in 2026, send <strong>personalized</strong> messages in
-        bulk, all through WhatsApp
+        stop manually typing messages in 2026, send <strong>personalized</strong> messages in bulk,
+        all through WhatsApp
       </>
     ),
     imageSrc: "/placeholder.svg",

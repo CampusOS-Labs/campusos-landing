@@ -31,7 +31,7 @@ export function ProductPageLayout({
               className="h-full w-full object-cover"
               width={1200}
               height={538}
-              priority
+              preload
               sizes="(max-width: 768px) 100vw, 896px"
             />
           }
@@ -46,22 +46,22 @@ export function ProductPageLayout({
         />
       ) : null}
 
-      <div className="mt-16 grid w-full max-w-5xl grid-cols-1 gap-0 border border-border md:grid-cols-3">
+      {/*<div className="mt-16 grid w-full max-w-5xl grid-cols-1 gap-0 border border-border md:grid-cols-3">
         {product.stats.map((stat, index) => (
           <div
             key={stat.label}
-            className={`flex aspect-[2/1] flex-col items-center justify-center gap-1.5 border-border bg-card px-4 py-6 text-center ${
+            className={`flex aspect-2/1 flex-col items-center justify-center gap-1.5 border-border bg-card px-4 py-6 text-center ${
               index < product.stats.length - 1 ? "md:border-r" : ""
             } ${index > 0 ? "border-t md:border-t-0" : ""}`}
           >
             <span className="font-heading text-4xl font-semibold tabular-nums">{stat.value}</span>
             <span className="text-sm font-medium">{stat.label}</span>
-            <span className="max-w-[220px] text-caption">{stat.detail}</span>
+            <span className="max-w-55 text-caption">{stat.detail}</span>
           </div>
         ))}
-      </div>
+      </div>*/}
 
-      <div className="mb-24 mt-24 w-full border-t" />
+      <div className="mb-24 mt-24 w-full" />
 
       <div className="w-full max-w-3xl">
         <h2 className="text-h2 sm:text-4xl">What schools use this for</h2>
@@ -75,7 +75,7 @@ export function ProductPageLayout({
         </ul>
       </div>
 
-      <div className="mb-24 mt-24 w-full border-t" />
+      <div className="mb-24 mt-24 w-full " />
 
       <h2 className="mb-12 max-w-3xl text-center text-display-sm">
         Outcomes for {product.label.toLowerCase()}
@@ -99,7 +99,7 @@ export function ProductPageLayout({
 
       {showBillingStack ? (
         <>
-          <div className="mb-24 mt-24 w-full border-t" />
+          <div className="mb-24 mt-24 w-full " />
           <div className="mb-12 text-center">
             <h2 className="text-display-sm">Built with the entire stack in mind</h2>
             <p className="mx-auto mt-1 max-w-2xl text-lead">
@@ -112,10 +112,10 @@ export function ProductPageLayout({
 
       {children}
 
-      <div className="mb-24 mt-24 w-full border-t" />
+      <div className="mb-24 mt-24 w-full " />
 
       <h2 className="mb-8 text-h2 sm:text-3xl">Questions?</h2>
-      <div className="w-full max-w-2xl divide-y divide-border border border-border">
+      <div className="mb-24 w-full max-w-2xl divide-y divide-border border border-border">
         {PRODUCT_FAQ.map((item) => (
           <details key={item.question} className="group px-6 py-4">
             <summary className="cursor-pointer list-none text-sm font-medium [&::-webkit-details-marker]:hidden">

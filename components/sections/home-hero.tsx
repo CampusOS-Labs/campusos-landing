@@ -132,7 +132,8 @@ export function HomeHero() {
             width={660}
             height={641}
             className="h-auto w-full object-cover"
-            priority
+            preload
+            sizes="(max-width: 1024px) 360px, 340px"
           />
         </div>
       </div>

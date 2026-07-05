@@ -29,8 +29,7 @@ export const PRODUCTS: ProductDefinition[] = [
     label: "Billing Infrastructure",
     title: "Billing Infrastructure",
     headline: "Fee collection that reconciles itself",
-    description:
-      "stop chasing parents, reconcile payments faster than ever before",
+    description: "stop chasing parents, reconcile payments faster than ever before",
     href: "/products/billing-infrastructure",
     stats: [
       {
@@ -69,10 +68,11 @@ export const PRODUCTS: ProductDefinition[] = [
   },
   {
     id: "announcements",
-    label: "Announcements",
-    title: "Announcements",
+    label: "Announcement Integrations",
+    title: "Announcement Integrations",
     headline: "The fastest way to reach every parent",
-    description: "send personalized whastapp messages to thousands in a single click. yes its magic",
+    description:
+      "send personalized whastapp messages to thousands in a single click. yes its magic",
     href: "/products/announcements",
     // imageSrc: "/announcements-header.png",
     stats: [
@@ -105,14 +105,14 @@ export const PRODUCTS: ProductDefinition[] = [
       school: "Kidzee Mundhwa",
     },
     outcomes: [
-      "Sync parent contacts on onboarding — no manual WhatsApp group setup.",
-      "Each parent receives a direct message that feels personal.",
-      "Templates for mass announcements, payment reminders, and media sharing.",
+      "We connect to the admin's whatsapp acccounts",
+      "Create or use pre-existing templates to send hundreds if not thousands of messages",
+      "Add multiple accounts and send to multiple parents at once while keeping it personalized",
     ],
   },
   {
     id: "attendance",
-    label: "Attendance",
+    label: "Attendance Tracking",
     title: "Attendance",
     headline: "See who's on campus in real time",
     description: "track any attendance in real time, all u need is a phone",
@@ -152,48 +152,48 @@ export const PRODUCTS: ProductDefinition[] = [
       "Live dashboard replaces end-of-day register reconciliation.",
     ],
   },
-  {
-    id: "socials",
-    label: "Social Media",
-    title: "Social Media",
-    headline: "Your school's story, published consistently",
-    description: "scale your socials with ease. we know what works, so lets get you out there",
-    href: "/products/socials",
-    stats: [
-      {
-        value: "3×",
-        label: "Posting consistency",
-        detail: "Scheduled content keeps your school's feed active.",
-      },
-      {
-        value: "Weekly",
-        label: "Content calendar",
-        detail: "Plan events, admissions, and milestones in one place.",
-      },
-      {
-        value: "1",
-        label: "Brand voice",
-        detail: "Templates keep every post on-message.",
-      },
-    ],
-    useCases: [
-      "Schedule admissions season posts across Instagram and Facebook",
-      "Repurpose event photos from announcements into social content",
-      "Track engagement without switching between five tabs",
-    ],
-    testimonial: {
-      quote:
-        "Our Instagram finally looks like a real school — not a ghost account updated once a term.",
-      name: "Marketing coordinator",
-      role: "Outreach",
-      school: "Partner school",
-    },
-    outcomes: [
-      "Consistent posting cadence without hiring a full-time social manager.",
-      "Reuse content from school events and announcements.",
-      "One place to plan, draft, and publish.",
-    ],
-  },
+  // {
+  //   id: "socials",
+  //   label: "Social Media",
+  //   title: "Social Media",
+  //   headline: "Your school's story, published consistently",
+  //   description: "scale your socials with ease. we know what works, so lets get you out there",
+  //   href: "/products/socials",
+  //   stats: [
+  //     {
+  //       value: "3×",
+  //       label: "Posting consistency",
+  //       detail: "Scheduled content keeps your school's feed active.",
+  //     },
+  //     {
+  //       value: "Weekly",
+  //       label: "Content calendar",
+  //       detail: "Plan events, admissions, and milestones in one place.",
+  //     },
+  //     {
+  //       value: "1",
+  //       label: "Brand voice",
+  //       detail: "Templates keep every post on-message.",
+  //     },
+  //   ],
+  //   useCases: [
+  //     "Schedule admissions season posts across Instagram and Facebook",
+  //     "Repurpose event photos from announcements into social content",
+  //     "Track engagement without switching between five tabs",
+  //   ],
+  //   testimonial: {
+  //     quote:
+  //       "Our Instagram finally looks like a real school — not a ghost account updated once a term.",
+  //     name: "Marketing coordinator",
+  //     role: "Outreach",
+  //     school: "Partner school",
+  //   },
+  //   outcomes: [
+  //     "Consistent posting cadence without hiring a full-time social manager.",
+  //     "Reuse content from school events and announcements.",
+  //     "One place to plan, draft, and publish.",
+  //   ],
+  // },
 ];
 
 export const HOMEPAGE_PRODUCTS = PRODUCTS.filter((p) =>

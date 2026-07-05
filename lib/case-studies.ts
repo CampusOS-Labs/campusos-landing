@@ -1,3 +1,5 @@
+import "server-only";
+
 import { CaseStudy } from "@/interfaces/case-study";
 import fs from "fs";
 import matter from "gray-matter";
@@ -37,6 +39,7 @@ export const getAllCaseStudies = cache((): CaseStudy[] => {
   const caseStudies = slugs
     .map((slug) => getCaseStudyBySlug(slug.replace(/\.md$/, "")))
     .filter((caseStudy): caseStudy is CaseStudy => caseStudy !== null)
+    .filter((caseStudy) => caseStudy.published !== false)
     .sort((a, b) => (a.date > b.date ? -1 : 1));
 
   return caseStudies;

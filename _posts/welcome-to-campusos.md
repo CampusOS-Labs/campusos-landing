@@ -5,6 +5,7 @@ date: "2026-01-15T10:00:00.000Z"
 author:
   name: Amaan
   picture: ""
+published: true
 ogImage:
   url: ""
 ---

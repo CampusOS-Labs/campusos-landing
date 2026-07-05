@@ -24,7 +24,7 @@ const founders: Founder[] = [
     github: "https://github.com/AmaanBilwar",
     x: "https://x.com/BilwarAmaan",
     bio: `amaan writes code and does collison installations for CampusOS.
-Before CampusOS, he was scaling infra and building pipelines at big tech(ptsd).`
+Before CampusOS, he was scaling infra and building pipelines at big tech(ptsd).`,
   },
   {
     name: "samarth ghadipatil",
@@ -78,11 +78,7 @@ export default async function TeamPage() {
   }));
 
   return (
-    <ContentPageShell
-      title="Team"
-      description="the team that does the heavy lifting"
-      fullWidth
-    >
+    <ContentPageShell title="Team" description="the team that does the heavy lifting" fullWidth>
       <div className="mx-auto max-w-6xl space-y-0 pb-24 md:pb-32">
         {team.map((founder, index) => (
           <section
@@ -114,7 +110,7 @@ export default async function TeamPage() {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={label}
-                            className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                            className="flex h-8 w-8 items-center justify-center rounded-none text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                           >
                             {icon}
                           </a>

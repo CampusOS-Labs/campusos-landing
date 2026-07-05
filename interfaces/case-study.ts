@@ -12,4 +12,5 @@ export type CaseStudy = {
   };
   content: string;
   preview?: boolean;
+  published?: boolean;
 };

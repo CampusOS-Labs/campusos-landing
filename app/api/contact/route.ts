@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 
 import { createContactInquiry } from "@/lib/contact-inquiries";
 
+export const runtime = "nodejs";
+
 type ContactBody = {
   name?: string;
   schoolName?: string;

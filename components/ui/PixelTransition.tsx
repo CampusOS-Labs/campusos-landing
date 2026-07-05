@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState, useCallback, useEffectEvent, type ReactNode } from "react";
 import { gsap } from "gsap";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import "./PixelTransition.css";
 
 interface PixelTransitionProps {
@@ -38,12 +39,22 @@ function PixelTransition({
   const mountedRef = useRef(false);
 
   const [isActive, setIsActive] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
-  const isTouchDevice =
-    typeof window !== "undefined" &&
-    ("ontouchstart" in window ||
-      navigator.maxTouchPoints > 0 ||
-      window.matchMedia("(pointer: coarse)").matches);
+  useEffect(() => {
+    const pointerQuery = window.matchMedia("(pointer: coarse)");
+    const updateTouchDevice = () => {
+      setIsTouchDevice(
+        "ontouchstart" in window || navigator.maxTouchPoints > 0 || pointerQuery.matches,
+      );
+    };
+
+    updateTouchDevice();
+    pointerQuery.addEventListener("change", updateTouchDevice);
+
+    return () => pointerQuery.removeEventListener("change", updateTouchDevice);
+  }, []);
 
   useEffect(() => {
     const pixelGridEl = pixelGridRef.current;
@@ -115,7 +126,7 @@ function PixelTransition({
   });
 
   useEffect(() => {
-    if (!autoPlay || mountedRef.current) return;
+    if (!autoPlay || mountedRef.current || prefersReducedMotion) return;
     mountedRef.current = true;
 
     const timer = requestAnimationFrame(() => {
@@ -123,7 +134,7 @@ function PixelTransition({
     });
 
     return () => cancelAnimationFrame(timer);
-  }, [autoPlay]);
+  }, [autoPlay, prefersReducedMotion]);
 
   const handleEnter = () => {
     if (!isActive) animatePixels(true);

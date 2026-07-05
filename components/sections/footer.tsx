@@ -1,11 +1,11 @@
 "use client";
 
+import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
 import { Fragment, useEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import { buttonVariants } from "@/components/ui/button";
 import { PRODUCTS } from "@/lib/products";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -149,13 +149,9 @@ export function Footer() {
               >
                 {FOOTER_SUBHEAD}
               </p>
-              <Link
-                ref={buttonRef}
-                href="/contact"
-                className={`${buttonVariants({ variant: "inverse", size: "lg" })} mt-8`}
-              >
-                Contact us
-              </Link>
+              <NeumorphicButton href="/contact" compact className="mt-4 hidden sm:inline-flex">
+                Contact Us
+              </NeumorphicButton>
             </div>
           </div>
 
@@ -170,7 +166,7 @@ export function Footer() {
                 ))}
               </div>
             </div>
-            <div>
+            {/*<div>
               <p className="mb-2 text-base font-medium text-white">Company</p>
               <div className="flex flex-col gap-1">
                 <Link href="/manifesto" className={linkClassName}>
@@ -186,7 +182,7 @@ export function Footer() {
                   Team
                 </Link>
               </div>
-            </div>
+            </div>*/}
             <div>
               <p className="mb-2 text-base font-medium text-white">Follow</p>
               <a

@@ -38,7 +38,7 @@ const values = [
     points: [
       "Schools deserve to understand what they're running and own their data.",
       "if they haven't said yes, they've said no.",
-      "no selling any data ever."
+      "no selling any data ever.",
     ],
   },
   {
@@ -52,17 +52,10 @@ const values = [
 
 export default function ValuesPage() {
   return (
-    <ContentPageShell
-      label="Company"
-      title="Our Values"
-      description="hills we'll die on"
-    >
+    <ContentPageShell label="Company" title="Our Values" description="hills we'll die on">
       <div className="mx-auto max-w-3xl space-y-0">
         {values.map((value, index) => (
-          <section
-            key={value.title}
-            className={`p-8 md:p-10 ${index > 0 ? "border-t-0" : ""}`}
-          >
+          <section key={value.title} className={`p-8 md:p-10 ${index > 0 ? "border-t-0" : ""}`}>
             <h2 className="font-heading text-3xl font-light leading-[1.1] tracking-tight">
               {value.title}
             </h2>

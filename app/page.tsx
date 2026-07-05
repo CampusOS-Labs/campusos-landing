@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { HomeHero } from "@/components/sections/home-hero";
 import { createPageMetadata } from "@/lib/site";
-import { CustomerStories } from "@/components/sections/CustomerStories";
 import { Problems } from "@/components/sections/Problems";
 import { Solutions } from "@/components/sections/Solutions";
 

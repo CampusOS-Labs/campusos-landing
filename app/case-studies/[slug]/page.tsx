@@ -10,11 +10,13 @@ type Params = {
   params: Promise<{ slug: string }>;
 };
 
+export const dynamicParams = false;
+
 export default async function CaseStudyPage(props: Params) {
   const params = await props.params;
   const caseStudy = getCaseStudyBySlug(params.slug);
 
-  if (!caseStudy) {
+  if (!caseStudy || caseStudy.published === false) {
     notFound();
   }
 
@@ -38,7 +40,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
   const params = await props.params;
   const caseStudy = getCaseStudyBySlug(params.slug);
 
-  if (!caseStudy) {
+  if (!caseStudy || caseStudy.published === false) {
     notFound();
   }
 

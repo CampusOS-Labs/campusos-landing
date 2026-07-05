@@ -1,3 +1,5 @@
+import "server-only";
+
 import { sql } from "@/lib/db";
 
 export type ContactInquiryInput = {

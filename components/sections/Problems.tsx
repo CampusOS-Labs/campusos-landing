@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 const PAIN_POINTS = [
   {
@@ -23,8 +25,12 @@ const ROTATION_MS = 10000;
 export function Problems() {
   const tabValues = useMemo(() => PAIN_POINTS.map((point) => point.value), []);
   const [activeTab, setActiveTab] = useState<(typeof PAIN_POINTS)[number]["value"]>(tabValues[0]);
+  const [autoRotate, setAutoRotate] = useState(true);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
+    if (!autoRotate || prefersReducedMotion) return;
+
     const timer = window.setInterval(() => {
       setActiveTab((prev) => {
         const nextIndex = (tabValues.indexOf(prev) + 1) % tabValues.length;
@@ -33,7 +39,7 @@ export function Problems() {
     }, ROTATION_MS);
 
     return () => window.clearInterval(timer);
-  }, [tabValues]);
+  }, [autoRotate, prefersReducedMotion, tabValues]);
 
   return (
     <section className="section-band-white w-full self-stretch">
@@ -41,6 +47,7 @@ export function Problems() {
         value={activeTab}
         onValueChange={(value) => {
           if (typeof value === "string") {
+            setAutoRotate(false);
             setActiveTab(value as (typeof PAIN_POINTS)[number]["value"]);
           }
         }}
@@ -49,11 +56,8 @@ export function Problems() {
         <div className="space-y-8">
           <div>
             <p className="text-eyebrow">The problem</p>
-            <h2 className="mt-3 text-h2">
-              run a school, not a circus
-            </h2>
+            <h2 className="mt-3 text-h2">run a school, not a circus</h2>
           </div>
-
           <TabsList className="grid h-auto grid-cols-1 gap-2 bg-transparent p-0">
             {PAIN_POINTS.map((point) => (
               <TabsTrigger
@@ -64,23 +68,30 @@ export function Problems() {
                 <p className="text-sm leading-relaxed text-inherit">{point.trigger}</p>
               </TabsTrigger>
             ))}
-          </TabsList>        </div>
+          </TabsList>{" "}
+        </div>
 
         <div className="relative min-h-105 overflow-hidden bg-card p-6 md:min-h-115 md:p-8">
           <TabsContent value="fees" className="mt-0 flex h-full items-center justify-center">
             {/*<SpreadsheetMock />*/}
-            <img
+            <Image
               src="/spreadsheets-mock.svg"
               alt="Spreadsheet mockup"
+              width={1056}
+              height={500}
               className="h-120 w-auto max-w-full object-contain object-center md:h-136"
+              unoptimized
             />
           </TabsContent>
           <TabsContent value="comms" className="mt-0">
             {/*<WhatsAppMock />*/}
-            <img
+            <Image
               src="/wa-mock-2.svg"
               alt="WhatsApp mockup"
+              width={786}
+              height={1141}
               className="h-120 w-auto max-w-full object-contain object-center md:h-136"
+              unoptimized
             />
           </TabsContent>
           <TabsContent value="reports" className="mt-0">

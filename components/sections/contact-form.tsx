@@ -21,8 +21,10 @@ function ContactIntro() {
         Let&apos;s talk about what&apos;s breaking
       </h2>
       <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
-        stop slowing your school down.<br />
-        get good at things that matter.<br />
+        stop slowing your school down.
+        <br />
+        get good at things that matter.
+        <br />
         let us help.
       </p>
     </>
@@ -126,7 +128,7 @@ function ContactFields({
             disabled={pending}
             onClick={() => window.open("https://cal.com/amaan-campusos/15min", "_blank")}
           >
-         call us
+            call us
           </Button>
         </FieldGroup>
       </form>

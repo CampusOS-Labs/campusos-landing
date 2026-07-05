@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 const product = getProductById("announcements");
 
 export const metadata = createPageMetadata({
-  title: "Announcements",
+  title: "Announcement Integrations",
   description: "Notices that reach every parent on WhatsApp, as a direct message.",
   path: "/products/announcements",
 });

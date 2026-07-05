@@ -26,7 +26,6 @@ function WhatsAppComparisonVisual({ images }: { images: CapabilityComparisonImag
               height={2160}
               className="h-auto w-full object-contain drop-shadow-sm"
               sizes="(max-width: 1024px) 78vw, 420px"
-              priority
             />
           </div>
         ) : null}
@@ -45,7 +44,6 @@ function WhatsAppComparisonVisual({ images }: { images: CapabilityComparisonImag
               height={2160}
               className="h-auto w-full object-contain drop-shadow-sm"
               sizes="(max-width: 1024px) 78vw, 420px"
-              priority
             />
           </div>
         ) : null}

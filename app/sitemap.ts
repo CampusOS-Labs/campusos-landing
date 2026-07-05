@@ -11,6 +11,7 @@ const staticRoutes = [
   "/case-studies",
   "/contact",
   "/manifesto",
+  "/products",
   "/privacy",
   "/values",
   "/team",
@@ -18,21 +19,23 @@ const staticRoutes = [
   ...PERSONAS.map((p) => p.href),
 ];
 
+const absoluteUrl = (path: string) => new URL(path, SITE_URL).toString();
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   const staticEntries = staticRoutes.map((path) => ({
-    url: `${SITE_URL}${path}`,
+    url: absoluteUrl(path),
     lastModified: now,
   }));
 
   const blogEntries = getAllPosts().map((post) => ({
-    url: `${SITE_URL}/blogs/${post.slug}`,
+    url: absoluteUrl(`/blogs/${post.slug}`),
     lastModified: new Date(post.date),
   }));
 
   const caseStudyEntries = getAllCaseStudies().map((caseStudy) => ({
-    url: `${SITE_URL}/case-studies/${caseStudy.slug}`,
+    url: absoluteUrl(`/case-studies/${caseStudy.slug}`),
     lastModified: new Date(caseStudy.date),
   }));
 

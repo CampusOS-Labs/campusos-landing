@@ -13,6 +13,7 @@ import {
   type ReactNode,
   type RefObject,
 } from "react";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import "./LogoLoop.css";
 
 const ANIMATION_CONFIG = { SMOOTH_TAU: 0.25, MIN_COPIES: 2, COPY_HEADROOM: 2 };
@@ -126,6 +127,7 @@ const useAnimationLoop = (
   isHovered: boolean,
   hoverSpeed: number | undefined,
   isVertical: boolean,
+  prefersReducedMotion: boolean,
 ) => {
   const rafRef = useRef<number | null>(null);
   const lastTimestampRef = useRef<number | null>(null);
@@ -137,6 +139,11 @@ const useAnimationLoop = (
     if (!track) return;
 
     const seqSize = isVertical ? seqHeight : seqWidth;
+
+    if (prefersReducedMotion) {
+      track.style.transform = "translate3d(0, 0, 0)";
+      return;
+    }
 
     if (seqSize > 0) {
       offsetRef.current = ((offsetRef.current % seqSize) + seqSize) % seqSize;
@@ -182,7 +189,16 @@ const useAnimationLoop = (
       }
       lastTimestampRef.current = null;
     };
-  }, [targetVelocity, seqWidth, seqHeight, isHovered, hoverSpeed, isVertical, trackRef]);
+  }, [
+    targetVelocity,
+    seqWidth,
+    seqHeight,
+    isHovered,
+    hoverSpeed,
+    isVertical,
+    prefersReducedMotion,
+    trackRef,
+  ]);
 };
 
 export const LogoLoop = memo(function LogoLoop({
@@ -210,6 +226,7 @@ export const LogoLoop = memo(function LogoLoop({
   const [seqHeight, setSeqHeight] = useState(0);
   const [copyCount, setCopyCount] = useState(ANIMATION_CONFIG.MIN_COPIES);
   const [isHovered, setIsHovered] = useState(false);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   const effectiveHoverSpeed = useMemo(() => {
     if (hoverSpeed !== undefined) return hoverSpeed;
@@ -271,6 +288,7 @@ export const LogoLoop = memo(function LogoLoop({
     isHovered,
     effectiveHoverSpeed,
     isVertical,
+    prefersReducedMotion,
   );
 
   const cssVariables = useMemo(
