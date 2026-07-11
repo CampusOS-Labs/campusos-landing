@@ -3,7 +3,6 @@ import { Crimson_Text, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/navbar";
-import { getAllCaseStudies } from "@/lib/case-studies";
 import { Footer } from "@/components/sections/footer";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -52,11 +51,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const caseStudies = getAllCaseStudies().map((cs) => ({
-    slug: cs.slug,
-    title: cs.title,
-  }));
-
   return (
     <html
       lang="en"
@@ -66,7 +60,7 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <ThemeProvider attribute="class" forcedTheme="light" enableSystem={false}>
           <TooltipProvider>
-            <Navbar caseStudies={caseStudies} />
+            <Navbar />
             {children}
             <Footer />
           </TooltipProvider>
