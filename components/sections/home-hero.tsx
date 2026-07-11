@@ -1,34 +1,20 @@
 "use client";
 
-import { Fragment, useEffect, useRef } from "react";
-import Image from "next/image";
+import { useEffect, useRef } from "react";
+// import Image from "next/image";
 import { gsap } from "gsap";
 
-import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
+// import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
 import { TrustedBy } from "@/components/sections/trusted-by";
-
-function HeadlineWords({ text }: { text: string }) {
-  const words = text.split(" ");
-
-  return (
-    <>
-      {words.map((word, index) => (
-        <Fragment key={`${word}-${index}`}>
-          {index > 0 ? " " : null}
-          <span data-hero-word className="inline-block will-change-[transform,filter,opacity]">
-            {word}
-          </span>
-        </Fragment>
-      ))}
-    </>
-  );
-}
+import { TileField } from "@/components/sections/tile-field/engine";
+import { TyperText } from "@/components/ui/typer/TyperText";
 
 export function HomeHero() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subheadRef = useRef<HTMLParagraphElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
+  const tileFieldHostRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -107,25 +93,55 @@ export function HomeHero() {
     };
   }, []);
 
+  useEffect(() => {
+    const host = tileFieldHostRef.current;
+    if (!host) return;
+
+    const tileField = new TileField(host);
+    tileField.start();
+
+    const onResize = () => tileField.resize();
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+      tileField.destroy();
+    };
+  }, []);
+
   return (
     <div
       ref={sectionRef}
-      className="relative flex min-h-[calc(100dvh-3.5rem)] w-full flex-col bg-background px-4 pt-8 pb-8 sm:min-h-[calc(100dvh-4rem)] sm:px-6 sm:pb-10 lg:px-8"
+      className="relative flex min-h-[calc(100dvh-3.5rem)] w-full flex-col bg-black px-4 pt-8 pb-8 text-white sm:min-h-[calc(100dvh-4rem)] sm:px-6 sm:pb-10 lg:px-8"
     >
-      <div className="mx-auto grid w-full max-w-5xl flex-1 grid-cols-1 items-center gap-8 text-left lg:grid-cols-2 lg:gap-6">
-        <div className="flex flex-col items-start lg:items-end lg:text-right">
-          <h1 ref={headlineRef} className="w-fit max-w-full text-display">
-            <HeadlineWords text="Less calls" />
-            <br />
-            <HeadlineWords text="Less spreadsheets" />
-            <br />
-            <HeadlineWords text="More control" />
-          </h1>
-          <div ref={buttonRef} className="mt-6 flex items-center gap-3 sm:mt-8">
+      <div className="mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 items-center gap-8 text-center lg:grid-cols-2 lg:gap-12">
+        <div className="relative flex min-h-80 w-full min-w-0 flex-col items-center justify-center">
+          <div
+            ref={tileFieldHostRef}
+            aria-hidden
+            className="pointer-events-none relative h-40 w-full max-w-[38rem] opacity-85"
+          />
+          {/*<h1 ref={headlineRef} className="relative z-10 w-fit max-w-full text-display text-foreground/35"> CampusOS
+          </h1>*/}
+          <p ref={subheadRef} className="mt-6 max-w-2xl text-lg leading-relaxed text-white/40">
+            <TyperText
+              text="Less calls. Less spreadsheets. More control."
+              fps={20}
+              cycles={3}
+              style={{
+                "--typer-fg": "#ffffff",
+                "--typer-bg": "#000000",
+                "--typer-accent": "#ff2e5e",
+                "--typer-accent-ink": "#ffffff",
+              }}
+            />
+          </p>
+          {/*<div ref={buttonRef} className="mt-6 flex items-center gap-3 sm:mt-8">
             <NeumorphicButton href="/contact">Contact us</NeumorphicButton>
-          </div>
+          </div>*/}
         </div>
-        <div className="w-full max-w-90 justify-self-start overflow-hidden bg-card lg:max-w-85">
+        <div aria-hidden className="hidden min-h-96 min-w-0 lg:block" />
+        {/* <div className="w-full max-w-90 justify-self-start overflow-hidden bg-card lg:max-w-85">
           <Image
             src="/calm-guy.jpg"
             alt="Calm person with hands on face"
@@ -135,7 +151,7 @@ export function HomeHero() {
             preload
             sizes="(max-width: 1024px) 360px, 340px"
           />
-        </div>
+        </div> */}
       </div>
       <TrustedBy className="mt-10 w-full shrink-0" />
     </div>
