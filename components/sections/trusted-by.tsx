@@ -42,8 +42,6 @@ const trustedLogos: LogoItem[] = TRUSTED_SCHOOLS.map((school) => {
 });
 
 export function TrustedBy({ className }: { className?: string }) {
-  const fadeOutColor = "#ffffff";
-
   return (
     <section className={`relative left-1/2 w-screen -translate-x-1/2 ${className ?? "mt-24"}`}>
       <p className="mb-3 text-center text-eyebrow sm:mb-4">Trusted by</p>
@@ -56,7 +54,6 @@ export function TrustedBy({ className }: { className?: string }) {
           gap={56}
           hoverSpeed={0}
           fadeOut
-          fadeOutColor={fadeOutColor}
           ariaLabel="Schools that trust CampusOS"
         />
       </div>

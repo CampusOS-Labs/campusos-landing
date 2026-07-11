@@ -17,27 +17,22 @@ import {
 } from "@/components/ui/navigation-menu";
 import { PRODUCTS } from "@/lib/products";
 
-const OTHER_LINKS = [{ href: "/manifesto", label: "Manifesto" }] as const;
+const OTHER_LINKS = [] as const;
 
 const mobileLinkClassName =
-  "block rounded-none px-3 py-2.5 text-base font-medium text-foreground transition-colors hover:bg-secondary";
+  "block rounded-none px-3 py-2.5 text-base font-medium text-white transition-colors hover:bg-white/10";
 
 const mobileSubLinkClassName =
-  "block rounded-none px-3 py-2 pl-7 text-sm text-foreground/70 transition-colors hover:bg-secondary";
+  "block rounded-none px-3 py-2 pl-7 text-sm text-white/70 transition-colors hover:bg-white/10";
 
 const desktopLinkClassName =
-  "px-2.5 py-1.5 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground";
+  "px-2.5 py-1.5 text-sm font-medium text-white/80 transition-colors hover:text-white";
 
-type NavbarCaseStudy = {
-  slug: string;
-  title: string;
-};
-
-export function Navbar({ caseStudies }: { caseStudies: NavbarCaseStudy[] }) {
+export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-black/95 text-white backdrop-blur-sm">
       <div className="mx-auto flex h-14 max-w-7xl items-center gap-3 px-4 sm:h-16 sm:px-6 lg:px-8">
         <Link href="/" className="shrink-0 font-heading text-lg tracking-[-0.02em]">
           <span className="font-sans font-bold">CampusOS</span>
@@ -47,17 +42,17 @@ export function Navbar({ caseStudies }: { caseStudies: NavbarCaseStudy[] }) {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Products</NavigationMenuTrigger>
-                <NavigationMenuContent>
+                <NavigationMenuTrigger className="text-white data-open:bg-white/10 data-popup-open:bg-white/10">Products</NavigationMenuTrigger>
+                <NavigationMenuContent className="bg-neutral-900 text-white">
                   <ul className="w-105 p-2">
                     {PRODUCTS.map((product) => (
                       <li key={product.id}>
                         <NavigationMenuLink
                           href={product.href}
-                          className="block rounded-xl p-3 transition-colors hover:bg-muted"
+                          className="block rounded-xl p-3 transition-colors hover:bg-white/10"
                         >
-                          <div className="text-sm font-medium text-foreground">{product.label}</div>
-                          <div className="mt-0.5 text-xs text-muted-foreground line-clamp-1">
+                          <div className="text-sm font-medium text-white">{product.label}</div>
+                          <div className="mt-0.5 text-xs text-white/50 line-clamp-1">
                             {product.description}
                           </div>
                         </NavigationMenuLink>
@@ -66,25 +61,6 @@ export function Navbar({ caseStudies }: { caseStudies: NavbarCaseStudy[] }) {
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-              {caseStudies.length > 0 && (
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>Case Studies</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="w-105 p-2">
-                      {caseStudies.map((cs) => (
-                        <li key={cs.slug}>
-                          <NavigationMenuLink
-                            href={`/case-studies/${cs.slug}`}
-                            className="block rounded-xl px-4 py-3 transition-colors hover:bg-muted"
-                          >
-                            <div className="text-sm font-medium text-foreground">{cs.title}</div>
-                          </NavigationMenuLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              )}
               {OTHER_LINKS.map((link) => (
                 <NavigationMenuItem key={link.href}>
                   <Link href={link.href} className={desktopLinkClassName}>
@@ -102,19 +78,19 @@ export function Navbar({ caseStudies }: { caseStudies: NavbarCaseStudy[] }) {
           </NeumorphicButton>
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger
-              className={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }), "lg:hidden")}
+              className={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }), "lg:hidden text-white")}
               aria-label="Open menu"
             >
               <ListIcon className="size-5" />
             </SheetTrigger>
-            <SheetContent side="right" className="overflow-y-auto">
-              <SheetHeader className="border-b border-border pb-4">
-                <SheetTitle>Menu</SheetTitle>
+            <SheetContent side="right" className="overflow-y-auto border-l border-white/10 bg-black text-white">
+              <SheetHeader className="border-b border-white/10 pb-4">
+                <SheetTitle className="text-white">Menu</SheetTitle>
               </SheetHeader>
 
               <nav className="flex flex-1 flex-col gap-6 px-4 pb-6">
                 <div>
-                  <p className="mb-2 px-3 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                  <p className="mb-2 px-3 text-xs font-medium uppercase tracking-widest text-white/50">
                     Navigation
                   </p>
                   <div className="flex flex-col gap-0.5">
@@ -135,27 +111,6 @@ export function Navbar({ caseStudies }: { caseStudies: NavbarCaseStudy[] }) {
                         {product.label}
                       </Link>
                     ))}
-                    {caseStudies.length > 0 && (
-                      <>
-                        <Link
-                          href="/case-studies"
-                          className={mobileLinkClassName}
-                          onClick={() => setMobileOpen(false)}
-                        >
-                          All Case Studies
-                        </Link>
-                        {caseStudies.map((cs) => (
-                          <Link
-                            key={cs.slug}
-                            href={`/case-studies/${cs.slug}`}
-                            className={mobileSubLinkClassName}
-                            onClick={() => setMobileOpen(false)}
-                          >
-                            {cs.title}
-                          </Link>
-                        ))}
-                      </>
-                    )}
                     {OTHER_LINKS.map((link) => (
                       <Link
                         key={link.href}

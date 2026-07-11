@@ -1,0 +1,109 @@
+[data-typer-wrapper] {
+  --typer-fg: #1b1b1b;
+  --typer-bg: #fcfcfc;
+  --typer-accent: #1f40ed;
+  --typer-accent-ink: #fcfcfc;
+  --typer-radius: 0.28em;
+}
+
+[data-typer][data-typer-type="initial"] {
+  opacity: 0;
+}
+
+[data-typer] .word {
+  white-space: pre;
+}
+
+[data-typer] .char {
+  box-sizing: content-box;
+  display: inline-block;
+  color: var(--typer-fg);
+  background: transparent;
+  transition: none;
+}
+
+[data-typer] .charInit {
+  color: transparent;
+}
+
+[data-typer] .charFill {
+  color: var(--typer-bg);
+  background: var(--typer-fg);
+  border-radius: var(--typer-radius);
+}
+
+[data-typer] .charFill:has(+ .charFill),
+[data-typer] .charAccentInverse:has(+ .charAccentInverse) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+[data-typer] .charFill + .charFill,
+[data-typer] .charAccentInverse + .charAccentInverse {
+  border-radius: 0;
+}
+
+[data-typer] .charFill + .charFill:last-child,
+[data-typer] .charFill + .charFill:has(+ :not(.charFill)),
+[data-typer] .charAccentInverse + .charAccentInverse:last-child,
+[data-typer] .charAccentInverse + .charAccentInverse:has(+ :not(.charAccentInverse)) {
+  border-radius: 0 var(--typer-radius) var(--typer-radius) 0;
+}
+
+[data-typer] .charInverse {
+  color: var(--typer-bg);
+  background: var(--typer-fg);
+}
+
+[data-typer] .charAccent {
+  color: var(--typer-accent);
+}
+
+[data-typer] .charAccentInverse {
+  color: var(--typer-accent-ink);
+  background: var(--typer-accent);
+  border-radius: var(--typer-radius);
+}
+
+[data-typer] .charAccentFill {
+  color: var(--typer-accent);
+  background: var(--typer-accent);
+}
+
+[data-typer] .charBorder {
+  position: relative;
+  color: var(--typer-fg);
+}
+
+[data-typer] .charBorder::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--typer-accent);
+  border-radius: var(--typer-radius);
+}
+
+[data-typer] .charBorder:has(+ .charBorder)::after {
+  border-right-color: transparent;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+[data-typer] .charBorder + .charBorder::after {
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-radius: 0;
+}
+
+[data-typer] .charBorder + .charBorder:last-child::after,
+[data-typer] .charBorder + .charBorder:has(+ :not(.charBorder))::after {
+  border-right-color: var(--typer-accent);
+  border-left-color: transparent;
+  border-radius: 0 var(--typer-radius) var(--typer-radius) 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-typer][data-typer-type="initial"] {
+    opacity: 1;
+  }
+}

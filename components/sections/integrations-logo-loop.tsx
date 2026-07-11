@@ -27,7 +27,6 @@ export function IntegrationsLogoLoop({ compact = false }: IntegrationsLogoLoopPr
           gap={compact ? 48 : 56}
           hoverSpeed={0}
           fadeOut
-          fadeOutColor="#1a1a1a"
           ariaLabel="Payment methods supported through Razorpay and UPI"
         />
       </div>
