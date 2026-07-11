@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { PRODUCTS } from "@/lib/products";
 
-const OTHER_LINKS = [] as const;
+// const OTHER_LINKS = [] as const;
 
 const mobileLinkClassName =
   "block rounded-none px-3 py-2.5 text-base font-medium text-white transition-colors hover:bg-white/10";
@@ -25,8 +25,8 @@ const mobileLinkClassName =
 const mobileSubLinkClassName =
   "block rounded-none px-3 py-2 pl-7 text-sm text-white/70 transition-colors hover:bg-white/10";
 
-const desktopLinkClassName =
-  "px-2.5 py-1.5 text-sm font-medium text-white/80 transition-colors hover:text-white";
+// const desktopLinkClassName =
+//   "px-2.5 py-1.5 text-sm font-medium text-white/80 transition-colors hover:text-white";
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -42,7 +42,9 @@ export function Navbar() {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-white data-open:bg-white/10 data-popup-open:bg-white/10">Products</NavigationMenuTrigger>
+                <NavigationMenuTrigger className="text-white data-open:bg-white/10 data-popup-open:bg-white/10">
+                  Products
+                </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-neutral-900 text-white">
                   <ul className="w-105 p-2">
                     {PRODUCTS.map((product) => (
@@ -61,13 +63,6 @@ export function Navbar() {
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-              {OTHER_LINKS.map((link) => (
-                <NavigationMenuItem key={link.href}>
-                  <Link href={link.href} className={desktopLinkClassName}>
-                    {link.label}
-                  </Link>
-                </NavigationMenuItem>
-              ))}
             </NavigationMenuList>
           </NavigationMenu>
         </div>
@@ -78,12 +73,18 @@ export function Navbar() {
           </NeumorphicButton>
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger
-              className={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }), "lg:hidden text-white")}
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon-sm" }),
+                "lg:hidden text-white",
+              )}
               aria-label="Open menu"
             >
               <ListIcon className="size-5" />
             </SheetTrigger>
-            <SheetContent side="right" className="overflow-y-auto border-l border-white/10 bg-black text-white">
+            <SheetContent
+              side="right"
+              className="overflow-y-auto border-l border-white/10 bg-black text-white"
+            >
               <SheetHeader className="border-b border-white/10 pb-4">
                 <SheetTitle className="text-white">Menu</SheetTitle>
               </SheetHeader>
@@ -109,16 +110,6 @@ export function Navbar() {
                         onClick={() => setMobileOpen(false)}
                       >
                         {product.label}
-                      </Link>
-                    ))}
-                    {OTHER_LINKS.map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        className={mobileLinkClassName}
-                        onClick={() => setMobileOpen(false)}
-                      >
-                        {link.label}
                       </Link>
                     ))}
                     <Link

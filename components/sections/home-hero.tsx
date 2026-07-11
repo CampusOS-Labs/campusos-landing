@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 
 // import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
 import { TrustedBy } from "@/components/sections/trusted-by";
+import { HeroControlRoom } from "@/components/sections/hero-control-room";
 import { TileField } from "@/components/sections/tile-field/engine";
 import { TyperText } from "@/components/ui/typer/TyperText";
 
@@ -116,10 +117,11 @@ export function HomeHero() {
     >
       <div className="mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 items-center gap-8 text-center lg:grid-cols-2 lg:gap-12">
         <div className="relative flex min-h-80 w-full min-w-0 flex-col items-center justify-center">
+          <h1 className="sr-only">CampusOS</h1>
           <div
             ref={tileFieldHostRef}
             aria-hidden
-            className="pointer-events-none relative h-40 w-full max-w-[38rem] opacity-85"
+            className="pointer-events-none relative h-40 w-full max-w-152 opacity-85"
           />
           {/*<h1 ref={headlineRef} className="relative z-10 w-fit max-w-full text-display text-foreground/35"> CampusOS
           </h1>*/}
@@ -140,7 +142,9 @@ export function HomeHero() {
             <NeumorphicButton href="/contact">Contact us</NeumorphicButton>
           </div>*/}
         </div>
-        <div aria-hidden className="hidden min-h-96 min-w-0 lg:block" />
+        <div className="hidden min-h-96 min-w-0 lg:block">
+          <HeroControlRoom />
+        </div>
         {/* <div className="w-full max-w-90 justify-self-start overflow-hidden bg-card lg:max-w-85">
           <Image
             src="/calm-guy.jpg"
