@@ -6,8 +6,8 @@ import { notFound } from "next/navigation";
 const product = getProductById("attendance");
 
 export const metadata = createPageMetadata({
-  title: "Attendance",
-  description: "Teachers check in on their phone. See who's on campus in real time.",
+  title: product ? `${product.label} — ${product.role}` : "Shift — our attendance product",
+  description: product?.description ?? "See who's on campus in real time.",
   path: "/products/attendance",
 });
 

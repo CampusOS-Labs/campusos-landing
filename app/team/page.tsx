@@ -1,11 +1,14 @@
-import { ContentPageShell } from "@/components/content-page-shell";
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
-  title: "Team",
+  title: "Team — the people behind Blackboard",
   description: "The relentless team behind the magic of saving schools.",
   path: "/team",
 });
+
+const mono = {
+  fontFamily: '"Lucida Console", Monaco, "Courier New", monospace',
+} as const;
 
 type Founder = {
   name: string;
@@ -23,44 +26,14 @@ const founders: Founder[] = [
     linkedin: "https://www.linkedin.com/in/amaanbilwar/",
     github: "https://github.com/AmaanBilwar",
     x: "https://x.com/BilwarAmaan",
-    bio: `amaan writes code and does collison installations for CampusOS.
-Before CampusOS, he was scaling infra and building pipelines at big tech(ptsd).`,
+    bio: `amaan writes code and does collision installations for Blackboard.
+Before Blackboard, he was scaling infra and building pipelines at big tech (ptsd).`,
   },
   {
     name: "samarth ghadipatil",
     role: "Co-founder",
-    bio: `samarth, game dev, he's all optimizations and operations at CampusOS.
-When he's not working on CampusOS, he's either watching UFC or being emo online ^_^`,
-  },
-];
-
-const socials = [
-  {
-    key: "linkedin" as const,
-    label: "LinkedIn",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-        <path d="M19 3C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19ZM18.5 18.5V13.2C18.5 12.3354 18.1565 11.5062 17.5452 10.8948C16.9338 10.2835 16.1046 9.94 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17C14.6813 12.17 15.0374 12.3175 15.2999 12.5801C15.5625 12.8426 15.71 13.1987 15.71 13.57V18.5H18.5ZM6.88 8.56C7.32556 8.56 7.75288 8.383 8.06794 8.06794C8.383 7.75288 8.56 7.32556 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19C6.43178 5.19 6.00193 5.36805 5.68499 5.68499C5.36805 6.00193 5.19 6.43178 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56ZM8.27 18.5V10.13H5.5V18.5H8.27Z" />
-      </svg>
-    ),
-  },
-  {
-    key: "github" as const,
-    label: "GitHub",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-        <path d="M12 2C6.48 2 2 6.48 2 12C2 16.42 4.87 20.17 8.84 21.5C9.34 21.58 9.5 21.27 9.5 21C9.5 20.77 9.5 20.14 9.5 19.31C6.73 19.91 6.14 17.97 6.14 17.97C5.68 16.81 5.03 16.5 5.03 16.5C4.12 15.88 5.1 15.9 5.1 15.9C6.1 15.97 6.63 16.93 6.63 16.93C7.5 18.45 8.97 18 9.54 17.76C9.63 17.11 9.89 16.67 10.17 16.42C7.95 16.17 5.62 15.31 5.62 11.5C5.62 10.39 6 9.5 6.65 8.79C6.55 8.54 6.2 7.5 6.75 6.15C6.75 6.15 7.59 5.88 9.5 7.17C10.29 6.95 11.15 6.84 12 6.84C12.85 6.84 13.71 6.95 14.5 7.17C16.41 5.88 17.25 6.15 17.25 6.15C17.8 7.5 17.45 8.54 17.35 8.79C18 9.5 18.38 10.39 18.38 11.5C18.38 15.32 16.04 16.16 13.81 16.41C14.17 16.72 14.5 17.33 14.5 18.26C14.5 19.6 14.5 20.68 14.5 21C14.5 21.27 14.66 21.59 15.17 21.5C19.14 20.16 22 16.42 22 12C22 6.48 17.52 2 12 2Z" />
-      </svg>
-    ),
-  },
-  {
-    key: "x" as const,
-    label: "X",
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-      </svg>
-    ),
+    bio: `samarth, game dev — he's the MVP and operations guy at Blackboard.
+When he's not working on Blackboard, he's either watching UFC or being emo online ^_^`,
   },
 ];
 
@@ -71,65 +44,94 @@ function bioToParagraphs(bio: string) {
   });
 }
 
-export default async function TeamPage() {
+function SocialLinks({ founder }: { founder: Founder }) {
+  const links = [
+    founder.linkedin ? { href: founder.linkedin, label: "LinkedIn" } : null,
+    founder.github ? { href: founder.github, label: "GitHub" } : null,
+    founder.x ? { href: founder.x, label: "X" } : null,
+  ].filter(Boolean) as { href: string; label: string }[];
+
+  if (links.length === 0) return null;
+
+  return (
+    <p className="mt-4 font-sans text-sm text-black/45">
+      {links.map((link, index) => (
+        <span key={link.href}>
+          {index > 0 ? " · " : null}
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-black underline-offset-4 hover:opacity-70"
+          >
+            {link.label}
+          </a>
+        </span>
+      ))}
+    </p>
+  );
+}
+
+export default function TeamPage() {
   const team = founders.map((founder) => ({
     ...founder,
     bioParagraphs: bioToParagraphs(founder.bio),
   }));
 
   return (
-    <ContentPageShell title="Team" description="the team that does the heavy lifting" fullWidth>
-      <div className="mx-auto max-w-6xl space-y-0 pb-24 md:pb-32">
-        {team.map((founder, index) => (
-          <section
-            key={founder.name}
-            className={`border border-border p-8 md:p-10 ${index > 0 ? "border-t-0" : ""}`}
-          >
-            <div className="flex flex-col items-start gap-6 sm:flex-row sm:gap-10">
-              <div className="space-y-4 min-w-0 flex-1">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1">
-                    <h2 className="text-4xl font-light tracking-tight font-heading leading-[1.1]">
-                      {founder.name}
-                    </h2>
-                    <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                      {founder.role}
-                    </p>
-                  </div>
+    <main className="flex flex-1 flex-col items-center">
+      <section className="relative flex min-h-[calc(100dvh-4rem)] w-full flex-col overflow-hidden bg-white px-4 pt-8 pb-8 text-black sm:min-h-[calc(100dvh-5rem)] sm:px-6 sm:pb-10 lg:px-8">
+        <div className="relative mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center">
+          <div className="relative z-10 flex w-full flex-col items-center text-center">
+            <h1
+              className="max-w-4xl text-5xl leading-[1.05] tracking-[-0.03em] text-black sm:text-6xl md:text-7xl"
+              style={mono}
+            >
+              Team
+            </h1>
+            <p className="mt-5 max-w-xl font-sans text-base leading-relaxed text-black/50 sm:mt-6 sm:text-lg">
+              The people doing the heavy lifting — so schools can drop the spreadsheets.
+            </p>
+          </div>
+        </div>
+      </section>
 
-                  {founder.linkedin || founder.github || founder.x ? (
-                    <div className="flex shrink-0 items-center gap-1.5">
-                      {socials.map(({ key, label, icon }) => {
-                        const href = founder[key];
-                        if (!href) return null;
+      <section className="w-full self-stretch border-t border-black/10 bg-white text-black">
+        <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-10 px-4 py-16 sm:px-6 sm:py-20 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] md:gap-12 md:py-28 lg:px-8 lg:gap-16">
+          <div className="md:sticky md:top-28 md:self-start">
+            <h2 className="font-sans text-2xl font-bold tracking-tight text-black uppercase sm:text-3xl">
+              Founders
+            </h2>
+            <p className="mt-3 max-w-xs font-sans text-base leading-relaxed text-black/50">
+              Two people building school ops that actually ship.
+            </p>
+          </div>
 
-                        return (
-                          <a
-                            key={key}
-                            href={href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={label}
-                            className="flex h-8 w-8 items-center justify-center rounded-none text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                          >
-                            {icon}
-                          </a>
-                        );
-                      })}
-                    </div>
-                  ) : null}
+          <ul className="flex w-full flex-col border-t border-black/10">
+            {team.map((founder) => (
+              <li key={founder.name} className="border-b border-black/10 py-6 sm:py-8">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                  <h3 className="font-sans text-2xl font-bold tracking-tight text-black sm:text-3xl">
+                    {founder.name}
+                  </h3>
+                  <span
+                    className="inline-flex border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide text-black/70"
+                    style={mono}
+                  >
+                    {founder.role.toLowerCase()}
+                  </span>
                 </div>
-
-                <div className="prose prose-neutral max-w-none text-muted-foreground leading-relaxed [&_p]:m-0">
+                <div className="mt-4 flex max-w-2xl flex-col gap-3 font-sans text-base leading-relaxed text-black/60">
                   {founder.bioParagraphs.map((paragraph) => (
                     <p key={`${founder.name}-${paragraph}`}>{paragraph}</p>
                   ))}
                 </div>
-              </div>
-            </div>
-          </section>
-        ))}
-      </div>
-    </ContentPageShell>
+                <SocialLinks founder={founder} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </main>
   );
 }

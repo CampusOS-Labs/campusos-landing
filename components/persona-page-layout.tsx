@@ -24,7 +24,7 @@ export function PersonaPageLayout({ personaId }: PersonaPageProps) {
       <div className="mt-16 w-full max-w-3xl surface-panel sm:mt-24">
         <div className="border-b border-border px-5 py-5 sm:px-8 sm:py-6">
           <h2 className="text-h2 sm:text-3xl">
-            What {persona.label.toLowerCase()} use CampusOS for
+            What {persona.label.toLowerCase()} use Blackboard for
           </h2>
         </div>
         {persona.useCases.map((item, index) => (

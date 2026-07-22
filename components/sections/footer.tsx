@@ -1,7 +1,6 @@
 "use client";
 
-import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
-import { Fragment, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,30 +9,7 @@ import { PRODUCTS } from "@/lib/products";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const linkClassName = "motion-text-interactive text-base text-white/60 hover:text-white";
-
-const FOOTER_HEADLINE = "Your spreadsheets are optional now";
-const FOOTER_SUBHEAD = "Fix one broken workflow, flawlessly.";
-
-function HeadlineWords({ text }: { text: string }) {
-  const words = text.split(" ");
-
-  return (
-    <>
-      {words.map((word, index) => (
-        <Fragment key={`${word}-${index}`}>
-          {index > 0 ? " " : null}
-          <span
-            data-footer-word
-            className="inline-block text-white will-change-[transform,filter,opacity]"
-          >
-            {word}
-          </span>
-        </Fragment>
-      ))}
-    </>
-  );
-}
+const linkClassName = "motion-text-interactive text-lg text-white/60 hover:text-white sm:text-xl";
 
 export function Footer() {
   const footerRef = useRef<HTMLElement>(null);
@@ -138,26 +114,9 @@ export function Footer() {
     <footer ref={footerRef} className="mt-0 bg-black py-12 text-white md:py-14">
       <div className="px-4 md:px-8">
         <div className="mx-auto max-w-275">
-          <div className="border-b border-white/10 pb-12 md:pb-16">
-            <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-              <h2 ref={headlineRef} className="text-h2 text-white">
-                <HeadlineWords text={FOOTER_HEADLINE} />
-              </h2>
-              <p
-                ref={subheadRef}
-                className="mt-5 max-w-lg text-lg leading-relaxed tracking-[-0.02em] text-white/60"
-              >
-                {FOOTER_SUBHEAD}
-              </p>
-              <NeumorphicButton href="/contact" compact className="mt-4 hidden sm:inline-flex">
-                Contact Us
-              </NeumorphicButton>
-            </div>
-          </div>
-
           <div className="grid grid-cols-2 gap-x-8 gap-y-6 pt-12 md:grid-cols-4 md:gap-10 md:pt-16">
             <div>
-              <p className="mb-2 text-base font-medium text-white">Product</p>
+              <p className="mb-2 text-lg font-bold text-white sm:text-xl">Product</p>
               <div className="flex flex-col gap-1">
                 {PRODUCTS.map((item) => (
                   <Link key={item.id} href={item.href} className={linkClassName}>
@@ -166,33 +125,31 @@ export function Footer() {
                 ))}
               </div>
             </div>
-            {/*<div>
-              <p className="mb-2 text-base font-medium text-white">Company</p>
+            <div>
+              <p className="mb-2 text-lg font-bold text-white sm:text-xl">Company</p>
+              <Link href="/blogs" className={`block ${linkClassName}`}>
+                Blog
+              </Link>
+              <Link href="/jobs" className={`block ${linkClassName}`}>
+                Jobs
+                <span className="m-2 rounded-none bg-white p-0.5 text-black">
+                  WE&apos;RE HIRING
+                </span>
+              </Link>
+              <Link href="/team" className={`block ${linkClassName}`}>
+                Team
+              </Link>
+            </div>
+            <div>
+              <p className="mb-2 text-lg font-bold text-white sm:text-xl">Legal</p>
               <div className="flex flex-col gap-1">
-                <Link href="/manifesto" className={linkClassName}>
-                  Manifesto
-                </Link>
-                <Link href="/contact" className={linkClassName}>
-                  Contact
-                </Link>
-                <Link href="/values" className={linkClassName}>
-                  Values
-                </Link>
-                <Link href="/team" className={linkClassName}>
-                  Team
+                <Link href="/privacy" className={linkClassName}>
+                  Privacy
                 </Link>
               </div>
-            </div>*/}
+            </div>
             <div>
-              <p className="mb-2 text-base font-medium text-white">Follow</p>
-              <a
-                href="https://www.instagram.com/usecampusos/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`block ${linkClassName}`}
-              >
-                Instagram
-              </a>
+              <p className="mb-2 text-lg font-bold text-white sm:text-xl">Follow</p>
               <a
                 href="https://x.com"
                 target="_blank"
@@ -200,6 +157,14 @@ export function Footer() {
                 className={`block ${linkClassName}`}
               >
                 X
+              </a>
+              <a
+                href="https://www.instagram.com/useBlackboard/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`block ${linkClassName}`}
+              >
+                Instagram
               </a>
               <a
                 href="https://linkedin.com"
@@ -210,24 +175,16 @@ export function Footer() {
                 LinkedIn
               </a>
             </div>
-            <div>
-              <p className="mb-2 text-base font-medium text-white">Legal</p>
-              <div className="flex flex-col gap-1">
-                <Link href="/privacy" className={linkClassName}>
-                  Privacy
-                </Link>
-              </div>
-            </div>
           </div>
-
+          <div className="mt-10 border-t border-white/15 md:mt-12" />
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between md:mt-20">
             <Link
               href="/"
-              className="font-sans text-lg font-normal tracking-[-0.02em] text-white motion-text-interactive"
+              className="font-sans text-3xl font-bold leading-[1.15] tracking-tight text-white motion-text-interactive sm:text-4xl"
             >
-              CampusOS
+              Blackboard
             </Link>
-            <span className="text-sm text-white/50">© 2026 CampusOS, Inc.</span>
+            <span className="text-base text-white/50 sm:text-lg">© 2026 Blackboard, Inc.</span>
           </div>
         </div>
       </div>

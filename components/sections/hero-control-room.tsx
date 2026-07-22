@@ -8,14 +8,14 @@ gsap.registerPlugin(MotionPathPlugin);
 
 /**
  * Hero illustration: scattered school data sources (left) feed into one
- * CampusOS control panel (right). GSAP plays a short entrance, then keeps
+ * Blackboard control panel (right). GSAP plays a short entrance, then keeps
  * data pulsing along the routes forever.
  *
  * data-* hooks used by the animation:
  *   data-control-source  — left-side source cards (CALLS / SHEETS / CHATS)
  *   data-control-route   — white connector paths from sources → panel
  *   data-control-packet  — red squares that ride each route into the panel
- *   data-control-panel   — right-side CampusOS window
+ *   data-control-panel   — right-side Blackboard window
  *   data-control-row     — metric rows + footer status inside the panel
  *   data-control-ready   — "LIVE" indicator (appears last)
  */
@@ -27,7 +27,7 @@ const ROUTES = [
   { id: "chats", d: "M 170 312 H 205 V 220 H 246" },
 ] as const;
 
-/** Left column: fragmented tools outside CampusOS. `y` = card top in SVG coords. */
+/** Left column: fragmented tools outside Blackboard. `y` = card top in SVG coords. */
 const SOURCES = [
   { label: "CALLS", value: "14 follow-ups", y: 96 },
   { label: "EXCEL SHEETS", value: "8 versions", y: 188 },
@@ -78,7 +78,7 @@ export function HeroControlRoom() {
         timeline
           // 0.00s — source cards fade/slide in, staggered
           .to(sources, { autoAlpha: 1, x: 0, stagger: 0.07 }, 0)
-          // 0.10s — CampusOS panel fades up and scales in
+          // 0.10s — Blackboard panel fades up and scales in
           .to("[data-control-panel]", { autoAlpha: 1, y: 0, scale: 1, duration: 0.55 }, 0.1)
           // 0.32s — connector lines draw fully into the panel
           .to(routes, { strokeDashoffset: 0, stagger: 0.06, duration: 0.42 }, 0.32)
@@ -244,7 +244,7 @@ export function HeroControlRoom() {
           </g>
         ))}
 
-        {/* Right: CampusOS control panel */}
+        {/* Right: Blackboard control panel */}
         <g data-control-panel>
           {/* Window frame */}
           <rect
@@ -269,7 +269,7 @@ export function HeroControlRoom() {
           {/* App header: logo mark + name */}
           <rect x="262" y="70" width="12" height="12" fill="white" />
           <text x="284" y="81" fill="white" fontSize="13" fontWeight="600">
-            CampusOS
+            Blackboard
           </text>
 
           {/* LIVE status — last thing to animate in */}

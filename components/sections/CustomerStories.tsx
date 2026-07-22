@@ -6,7 +6,7 @@ const STORIES = [
     href: "/case-studies/introducing-slate",
   },
   {
-    title: "How Kidzee, Vadgaon Sheri handles their billing infra with CampusOS",
+    title: "How Kidzee, Vadgaon Sheri handles their billing infra with Blackboard",
     href: "/case-studies/billing-infra",
   },
   {
@@ -14,7 +14,7 @@ const STORIES = [
     href: "/case-studies/shaamas",
   },
   {
-    title: "How Kidzee, Mundhwa handles their attendance and announcements with CampusOS",
+    title: "How Kidzee, Mundhwa handles their attendance and announcements with Blackboard",
     href: "/case-studies/attendance-announcements",
   },
 ] as const;

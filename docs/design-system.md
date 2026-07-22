@@ -1,4 +1,4 @@
-# CampusOS Landing Design System
+# Blackboard Landing Design System
 
 Visual language for the marketing site, adapted from **[Exa.ai](https://exa.ai/)** — clean graphics, plain language, editorial typography, and a calm cream field that still feels capable.
 
@@ -10,7 +10,7 @@ Content voice still follows [Human Delta](https://www.humandelta.ai/) patterns; 
 
 ### Editorial typography
 
-| Role      | Exa                       | CampusOS landing                    |
+| Role      | Exa                       | Blackboard landing                    |
 | --------- | ------------------------- | ----------------------------------- |
 | Headlines | Arizona serif, weight 400 | **Crimson Text** via `font-heading` |
 | Body / UI | ABCDiatype sans           | **Inter** via `font-sans`           |
@@ -99,4 +99,4 @@ Used on capability grid, persona pages, and bordered editorial panels.
 
 ## App inheritance
 
-The [campusos-base-app](https://github.com/campusos/campusos-base-app) product UI keeps its own tokens. This landing repo is the source of truth for **marketing** visual language. When porting patterns to the app, carry over cream/charcoal/typography — not necessarily every marketing section layout.
+The [Blackboard-base-app](https://github.com/Blackboard/Blackboard-base-app) product UI keeps its own tokens. This landing repo is the source of truth for **marketing** visual language. When porting patterns to the app, carry over cream/charcoal/typography — not necessarily every marketing section layout.

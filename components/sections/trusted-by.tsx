@@ -10,11 +10,11 @@ const TRUSTED_SCHOOLS: SchoolEntry[] = [
     src: "/logos/schools/kidzee-mundhwa-white.png",
     alt: "Kidzee Mundhwa logo",
   },
-  {
-    name: "St. Arnold's Central School, Pune",
-    src: "/logos/schools/arnolds-logo.webp",
-    alt: "St. Arnold's Central School logo",
-  },
+  // {
+  //   name: "St. Arnold's Central School, Pune",
+  //   src: "/logos/schools/arnolds-logo.webp",
+  //   alt: "St. Arnold's Central School logo",
+  // },
   {
     name: "Kidzee VadgaonSheri, Pune",
     src: "/logos/schools/kidzee-vadgaonsheri-white.png",
@@ -54,7 +54,7 @@ export function TrustedBy({ className }: { className?: string }) {
           gap={56}
           hoverSpeed={0}
           fadeOut
-          ariaLabel="Schools that trust CampusOS"
+          ariaLabel="Schools that trust Blackboard"
         />
       </div>
     </section>

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { getAllPosts } from "@/lib/api";
-import { getAllCaseStudies } from "@/lib/case-studies";
+import { getAllCaseStudies } from "@/lib/stories";
 import { PERSONAS, PRODUCTS } from "@/lib/products";
 import { SITE_URL } from "@/lib/site";
 
@@ -10,6 +10,7 @@ const staticRoutes = [
   "/blogs",
   "/case-studies",
   "/contact",
+  "/jobs",
   "/manifesto",
   "/products",
   "/privacy",

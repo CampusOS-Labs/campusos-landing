@@ -8,6 +8,8 @@ export type ProductDefinition = {
   id: string;
   label: string;
   title: string;
+  /** Short line like "our billing infrastructure" — shown under the product name */
+  role: string;
   headline: string;
   description: string;
   href: string;
@@ -26,8 +28,9 @@ export type ProductDefinition = {
 export const PRODUCTS: ProductDefinition[] = [
   {
     id: "billing-infrastructure",
-    label: "Billing Infrastructure",
-    title: "Billing Infrastructure",
+    label: "Billy",
+    title: "Billy",
+    role: "our billing infrastructure",
     headline: "Fee collection that reconciles itself",
     description: "stop chasing parents, reconcile payments faster than ever before",
     href: "/products/billing-infrastructure",
@@ -43,7 +46,7 @@ export const PRODUCTS: ProductDefinition[] = [
         detail: "Fee records tied to real students — no duplicate rows.",
       },
       {
-        value: "$2.4M",
+        value: "₹2.4 Cr",
         label: "Monthly processed",
         detail: "One ledger your finance team can trust.",
       },
@@ -68,11 +71,11 @@ export const PRODUCTS: ProductDefinition[] = [
   },
   {
     id: "announcements",
-    label: "Announcement Integrations",
-    title: "Announcement Integrations",
+    label: "Relay",
+    title: "Relay",
+    role: "our announcements product",
     headline: "The fastest way to reach every parent",
-    description:
-      "send personalized whastapp messages to thousands in a single click. yes its magic",
+    description: "send personalized whastapp messages to thousands in a single click.",
     href: "/products/announcements",
     // imageSrc: "/announcements-header.png",
     stats: [
@@ -112,8 +115,9 @@ export const PRODUCTS: ProductDefinition[] = [
   },
   {
     id: "attendance",
-    label: "Attendance Tracking",
-    title: "Attendance",
+    label: "Shift",
+    title: "Shift",
+    role: "our attendance product",
     headline: "See who's on campus in real time",
     description: "track any attendance in real time, all u need is a phone",
     href: "/products/attendance",
@@ -341,7 +345,7 @@ export const WALL_OF_LOVE = [
   },
   {
     quote:
-      "CampusOS is the one ops tool we actually kept — because it fixed real workflows, not imaginary ones.",
+      "Blackboard is the one ops tool we actually kept — because it fixed real workflows, not imaginary ones.",
     name: "School leadership",
     school: "Partner school",
   },
@@ -366,6 +370,6 @@ export const PRODUCT_FAQ = [
   {
     question: "What if we already use an ERP?",
     answer:
-      "CampusOS isn't another 200-feature ERP. We fix the one workflow that's breaking — and export data to what you already have.",
+      "Blackboard isn't another 200-feature ERP. We fix the one workflow that's breaking — and export data to what you already have.",
   },
 ];

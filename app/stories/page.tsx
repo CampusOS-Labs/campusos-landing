@@ -1,5 +1,5 @@
 import { CaseStudyPreview } from "@/components/case-studies/case-study-preview";
-import { getAllCaseStudies } from "@/lib/case-studies";
+import { getAllStories } from "@/lib/stories";
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
@@ -8,7 +8,7 @@ export const metadata = createPageMetadata({
   path: "/case-studies",
 });
 export default function CaseStudies() {
-  const allCaseStudies = getAllCaseStudies();
+  const allStories = getAllStories();
 
   return (
     <main className="flex flex-1 flex-col items-center px-4 pt-24 pb-16 sm:px-6 sm:pt-32 sm:pb-24">
@@ -17,14 +17,14 @@ export default function CaseStudies() {
         Real schools fixing real workflows, one at a time.
       </p>
       <div className="mt-10 w-full max-w-2xl space-y-12 sm:mt-16">
-        {allCaseStudies.length > 0 ? (
-          allCaseStudies.map((caseStudy) => (
+        {allStories.length > 0 ? (
+          allStories.map((stories) => (
             <CaseStudyPreview
-              key={caseStudy.slug}
-              title={caseStudy.title}
-              date={caseStudy.date}
-              excerpt={caseStudy.excerpt}
-              slug={caseStudy.slug}
+              key={stories.slug}
+              title={stories.title}
+              date={stories.date}
+              excerpt={stories.excerpt}
+              slug={stories.slug}
             />
           ))
         ) : (

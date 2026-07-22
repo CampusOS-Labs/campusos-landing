@@ -1,25 +1,37 @@
 import Link from "next/link";
 import DateFormatter from "./date-formatter";
 
+const mono = {
+  fontFamily: '"Lucida Console", Monaco, "Courier New", monospace',
+} as const;
+
 type Props = {
   title: string;
   date: string;
   excerpt: string;
   slug: string;
+  number?: string;
 };
 
-export function PostPreview({ title, date, excerpt, slug }: Props) {
+export function PostPreview({ title, date, excerpt, slug, number }: Props) {
   return (
-    <article>
-      <h2 className="text-2xl font-heading font-semibold tracking-tight">
-        <Link href={`/blogs/${slug}`} className="hover:underline">
+    <article className="flex w-full max-w-2xl flex-col items-center gap-3 text-center sm:gap-4">
+      {number ? (
+        <p className="text-sm font-medium tracking-wide text-black/35" style={mono}>
+          {number}
+        </p>
+      ) : null}
+      <h2 className="!font-sans text-3xl font-bold leading-[1.15] tracking-tight text-black sm:text-4xl">
+        <Link href={`/blogs/${slug}`} className="transition-opacity hover:opacity-70">
           {title}
         </Link>
       </h2>
-      <div className="mt-1 text-sm text-muted-foreground">
+      <p className="text-sm font-medium tracking-wide text-black/35" style={mono}>
         <DateFormatter dateString={date} />
-      </div>
-      <p className="mt-2 text-muted-foreground leading-relaxed">{excerpt}</p>
+      </p>
+      <p className="mt-1 max-w-xl font-sans text-base leading-relaxed text-black sm:text-[1.05rem]">
+        {excerpt}
+      </p>
     </article>
   );
 }

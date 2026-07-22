@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getAllCaseStudies, getCaseStudyBySlug } from "@/lib/case-studies";
+import { getAllStories, getStoriesBySlug } from "@/lib/stories";
 import markdownToHtml from "@/lib/markdownToHtml";
 import { PostBody } from "@/components/blog/post-body";
 import { PostMeta } from "@/components/blog/post-meta";
@@ -12,23 +12,23 @@ type Params = {
 
 export const dynamicParams = false;
 
-export default async function CaseStudyPage(props: Params) {
+export default async function StoriesPage(props: Params) {
   const params = await props.params;
-  const caseStudy = getCaseStudyBySlug(params.slug);
+  const stories = getStoriesBySlug(params.slug);
 
-  if (!caseStudy || caseStudy.published === false) {
+  if (!stories || stories.published === false) {
     notFound();
   }
 
-  const content = await markdownToHtml(caseStudy.content || "");
+  const content = await markdownToHtml(stories.content || "");
 
   return (
     <main className="flex flex-1 flex-col items-center px-4 pt-24 pb-16 sm:px-6 sm:pt-32 sm:pb-24">
       <article className="w-full max-w-3xl">
         <h1 className="font-heading text-3xl font-semibold leading-tight tracking-tight sm:text-4xl md:text-5xl">
-          {caseStudy.title}
+          {stories.title}
         </h1>
-        <PostMeta author={caseStudy.author} date={caseStudy.date} />
+        <PostMeta author={stories.author} date={stories.date} />
         <hr className="my-8 border-border" />
         <PostBody content={content} />
       </article>
@@ -38,23 +38,23 @@ export default async function CaseStudyPage(props: Params) {
 
 export async function generateMetadata(props: Params): Promise<Metadata> {
   const params = await props.params;
-  const caseStudy = getCaseStudyBySlug(params.slug);
+  const stories = getStoriesBySlug(params.slug);
 
-  if (!caseStudy || caseStudy.published === false) {
+  if (!stories || stories.published === false) {
     notFound();
   }
 
   return createPageMetadata({
-    title: caseStudy.title,
-    description: caseStudy.excerpt,
-    path: `/case-studies/${caseStudy.slug}`,
+    title: stories.title,
+    description: stories.excerpt,
+    path: `/stories/${stories.slug}`,
   });
 }
 
 export async function generateStaticParams() {
-  const caseStudies = getAllCaseStudies();
+  const stories = getAllStories();
 
-  return caseStudies.map((caseStudy) => ({
-    slug: caseStudy.slug,
+  return stories.map((stories) => ({
+    slug: stories.slug,
   }));
 }

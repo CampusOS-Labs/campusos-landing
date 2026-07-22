@@ -4,8 +4,11 @@ import { useState } from "react";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 import { Drizzle } from "@/components/ui/drizzle";
+
+const mono = {
+  fontFamily: '"Lucida Console", Monaco, "Courier New", monospace',
+} as const;
 
 type ContactFormState = {
   status: "idle" | "success" | "error";
@@ -13,128 +16,6 @@ type ContactFormState = {
 };
 
 const initialState: ContactFormState = { status: "idle" };
-
-function ContactIntro() {
-  return (
-    <>
-      <h2 className="font-heading text-2xl font-medium leading-snug tracking-tight text-foreground md:text-3xl">
-        Let&apos;s talk about what&apos;s breaking
-      </h2>
-      <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
-        stop slowing your school down.
-        <br />
-        get good at things that matter.
-        <br />
-        let us help.
-      </p>
-    </>
-  );
-}
-
-function ContactFields({
-  state,
-  pending,
-  onSubmit,
-}: {
-  state: ContactFormState;
-  pending: boolean;
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-}) {
-  return (
-    <>
-      <h3 className="font-heading text-2xl font-medium tracking-tight md:text-3xl">
-        How can we help?
-      </h3>
-      <form onSubmit={onSubmit} className="mt-6">
-        <FieldGroup className="gap-4">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <Field>
-              <FieldLabel htmlFor="name" className="text-muted-foreground">
-                Name
-              </FieldLabel>
-              <Input
-                id="name"
-                name="name"
-                type="text"
-                placeholder="Your name"
-                required
-                disabled={pending}
-              />
-            </Field>
-            <Field>
-              <FieldLabel htmlFor="school-name" className="text-muted-foreground">
-                School name
-              </FieldLabel>
-              <Input
-                id="school-name"
-                name="school-name"
-                type="text"
-                placeholder="Your school"
-                required
-                disabled={pending}
-              />
-            </Field>
-          </div>
-          <Field>
-            <FieldLabel htmlFor="email" className="text-muted-foreground">
-              Email
-            </FieldLabel>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="you@school.edu"
-              required
-              disabled={pending}
-            />
-          </Field>
-          <Field>
-            <FieldLabel htmlFor="message" className="text-muted-foreground">
-              Message
-            </FieldLabel>
-            <Textarea
-              id="message"
-              name="message"
-              placeholder="Let's talk about your pain points..."
-              rows={5}
-              required
-              disabled={pending}
-            />
-          </Field>
-          {state.status === "error" && state.message ? (
-            <p className="text-sm text-destructive" role="alert">
-              {state.message}
-            </p>
-          ) : null}
-          {state.status === "success" && state.message ? (
-            <p className="text-sm text-foreground" role="status">
-              {state.message}
-            </p>
-          ) : null}
-          <Button type="submit" className="w-full sm:w-auto sm:min-w-40" disabled={pending}>
-            {pending ? (
-              <>
-                <Drizzle size={16} label="Sending" />
-                Sending...
-              </>
-            ) : (
-              "Submit"
-            )}
-          </Button>
-          <Button
-            type="button"
-            variant="outline"
-            className="w-full sm:w-auto sm:min-w-40"
-            disabled={pending}
-            onClick={() => window.open("https://cal.com/amaan-campusos/15min", "_blank")}
-          >
-            call us
-          </Button>
-        </FieldGroup>
-      </form>
-    </>
-  );
-}
 
 export function ContactForm() {
   const [state, setState] = useState<ContactFormState>(initialState);
@@ -190,20 +71,128 @@ export function ContactForm() {
   }
 
   return (
-    <section className="w-full overflow-hidden border border-border">
-      <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,22rem)_minmax(24rem,32rem)_minmax(0,1fr)]">
-        <div className="hidden border-r border-border lg:block" aria-hidden />
-
-        <div className="border-b border-border p-6 sm:p-8 lg:border-b-0 lg:border-r lg:border-border">
-          <ContactIntro />
-        </div>
-
-        <div className="flex flex-col gap-6 p-6 sm:p-8 lg:border-r lg:border-border">
-          <ContactFields state={state} pending={pending} onSubmit={onSubmit} />
-        </div>
-
-        <div className="hidden lg:block" aria-hidden />
+    <div className="flex w-full max-w-2xl flex-col items-center gap-8 text-center sm:gap-10">
+      <div className="flex flex-col items-center gap-3 sm:gap-4">
+        <p className="text-sm font-medium tracking-wide text-black/35" style={mono}>
+          01
+        </p>
+        <h2 className="font-sans! text-3xl font-bold leading-[1.15] tracking-tight text-black sm:text-4xl">
+          how can we help?
+        </h2>
       </div>
-    </section>
+
+      <form onSubmit={onSubmit} className="w-full text-left">
+        <FieldGroup className="gap-5">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <Field>
+              <FieldLabel
+                htmlFor="name"
+                className="text-sm font-medium tracking-wide text-black/35"
+                style={mono}
+              >
+                Name
+              </FieldLabel>
+              <Input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Your name"
+                required
+                disabled={pending}
+                className="rounded-none border-black/15 font-sans"
+              />
+            </Field>
+            <Field>
+              <FieldLabel
+                htmlFor="school-name"
+                className="text-sm font-medium tracking-wide text-black/35"
+                style={mono}
+              >
+                School name
+              </FieldLabel>
+              <Input
+                id="school-name"
+                name="school-name"
+                type="text"
+                placeholder="Your school"
+                required
+                disabled={pending}
+                className="rounded-none border-black/15 font-sans"
+              />
+            </Field>
+          </div>
+          <Field>
+            <FieldLabel
+              htmlFor="email"
+              className="text-sm font-medium tracking-wide text-black/35"
+              style={mono}
+            >
+              Email
+            </FieldLabel>
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="you@school.edu"
+              required
+              disabled={pending}
+              className="rounded-none border-black/15 font-sans"
+            />
+          </Field>
+          <Field>
+            <FieldLabel
+              htmlFor="message"
+              className="text-sm font-medium tracking-wide text-black/35"
+              style={mono}
+            >
+              Message
+            </FieldLabel>
+            <Textarea
+              id="message"
+              name="message"
+              placeholder="Let's talk about your pain points..."
+              rows={5}
+              required
+              disabled={pending}
+              className="rounded-none border-black/15 font-sans"
+            />
+          </Field>
+          {state.status === "error" && state.message ? (
+            <p className="font-sans text-sm text-red-600" role="alert">
+              {state.message}
+            </p>
+          ) : null}
+          {state.status === "success" && state.message ? (
+            <p className="font-sans text-sm text-black" role="status">
+              {state.message}
+            </p>
+          ) : null}
+          <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-center">
+            <button
+              type="submit"
+              disabled={pending}
+              className="inline-flex items-center justify-center gap-2 bg-black px-6 py-3 !font-sans text-base font-bold text-white transition-opacity hover:opacity-80 disabled:opacity-50 sm:min-w-40"
+            >
+              {pending ? (
+                <>
+                  <Drizzle size={16} label="Sending" />
+                  Sending...
+                </>
+              ) : (
+                "Submit"
+              )}
+            </button>
+            <button
+              type="button"
+              disabled={pending}
+              className="inline-flex items-center justify-center border border-black/20 px-6 py-3 font-sans!  text-base font-bold text-black transition-opacity hover:opacity-70 disabled:opacity-50 sm:min-w-40"
+              onClick={() => window.open("https://cal.com/amaan-campusos/15min", "_blank")}
+            >
+              call us
+            </button>
+          </div>
+        </FieldGroup>
+      </form>
+    </div>
   );
 }

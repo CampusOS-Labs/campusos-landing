@@ -5,7 +5,7 @@ import { createPageMetadata } from "@/lib/site";
 export const metadata = createPageMetadata({
   title: "Privacy Policy",
   description:
-    "How CampusOS collects, uses, and protects personal information on our website and school operations platform.",
+    "How Blackboard collects, uses, and protects personal information on our website and school operations platform.",
   path: "/privacy",
 });
 const sections = [
@@ -14,7 +14,7 @@ const sections = [
     content: (
       <>
         <p>
-          The information we collect depends on how you interact with CampusOS — as a school
+          The information we collect depends on how you interact with Blackboard — as a school
           administrator, parent, teacher, or website visitor.
         </p>
         <p className="mt-4 font-medium text-foreground">School staff and administrators</p>
@@ -112,8 +112,8 @@ const sections = [
           </li>
           <li>
             <span className="font-medium text-foreground">Legal requirements</span> — when required
-            by law, regulation, legal process, or to protect the rights and safety of CampusOS, our
-            users, or others
+            by law, regulation, legal process, or to protect the rights and safety of Blackboard,
+            our users, or others
           </li>
           <li>
             <span className="font-medium text-foreground">Business transfers</span> — in connection
@@ -129,7 +129,7 @@ const sections = [
     content: (
       <>
         <p>
-          CampusOS is deployed as isolated instances per school, each with its own database and
+          Blackboard is deployed as isolated instances per school, each with its own database and
           credentials. We use industry-standard security measures to protect personal information,
           including encrypted connections, hashed passwords, and session-based authentication.
         </p>
@@ -158,8 +158,8 @@ const sections = [
           </li>
         </ul>
         <p className="mt-4">
-          When a school ends its use of CampusOS, we will delete or return school data upon request,
-          subject to any legal retention requirements.
+          When a school ends its use of Blackboard, we will delete or return school data upon
+          request, subject to any legal retention requirements.
         </p>
       </>
     ),
@@ -230,9 +230,9 @@ const sections = [
     content: (
       <>
         <p>
-          CampusOS is a school operations platform. Student information (names, class, roll numbers)
-          is provided and managed by schools on behalf of parents and guardians. We do not knowingly
-          collect personal information directly from children under 13.
+          Blackboard is a school operations platform. Student information (names, class, roll
+          numbers) is provided and managed by schools on behalf of parents and guardians. We do not
+          knowingly collect personal information directly from children under 13.
         </p>
         <p className="mt-4">
           If you believe we have collected information from a child without appropriate consent,
@@ -254,7 +254,7 @@ const sections = [
           <li>Withdraw consent where processing is based on consent</li>
         </ul>
         <p className="mt-4">
-          School administrators can manage most data directly through the CampusOS dashboard. For
+          School administrators can manage most data directly through the Blackboard dashboard. For
           other requests, contact us using the details in Section 12. We will respond within a
           reasonable timeframe and as required by applicable law.
         </p>
@@ -266,8 +266,8 @@ const sections = [
     content: (
       <>
         <p>
-          CampusOS and its service providers may process data in countries other than where you are
-          located, including India, Singapore, and the United States. When we transfer data
+          Blackboard and its service providers may process data in countries other than where you
+          are located, including India, Singapore, and the United States. When we transfer data
           internationally, we take steps to ensure appropriate safeguards are in place.
         </p>
       </>
@@ -295,11 +295,11 @@ const sections = [
             href="/contact"
             className="motion-text-interactive underline underline-offset-2 hover:text-foreground"
           >
-            usecampusos.com/contact
+            useBlackboard.com/contact
           </Link>
           .
         </p>
-        <p className="mt-4">CampusOS, Inc.</p>
+        <p className="mt-4">Blackboard, Inc.</p>
       </>
     ),
   },
@@ -315,7 +315,7 @@ export default function Privacy() {
 
         <div className="mt-10 max-w-2xl space-y-0 sm:mt-16">
           <div className="text-body-sm border border-border p-5 sm:p-8">
-            CampusOS, Inc. (&quot;CampusOS&quot;, &quot;we&quot;, &quot;our&quot;) respects your
+            Blackboard, Inc. (&quot;Blackboard&quot;, &quot;we&quot;, &quot;our&quot;) respects your
             privacy. This Privacy Policy explains how we collect, use, disclose, and protect
             personal information when you visit our website or use our school operations platform
             and related services.

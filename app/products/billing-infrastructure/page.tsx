@@ -6,12 +6,12 @@ import { notFound } from "next/navigation";
 const product = getProductById("billing-infrastructure");
 
 export const metadata = createPageMetadata({
-  title: "Billing Infrastructure",
-  description: "Fee collection that reconciles itself — one source of truth for school finance.",
+  title: product ? `${product.label} — ${product.role}` : "Billy — our billing infrastructure",
+  description: product?.description ?? "Fee collection that reconciles itself.",
   path: "/products/billing-infrastructure",
 });
 
 export default function BillingInfrastructurePage() {
   if (!product) notFound();
-  return <ProductPageLayout product={product} showBillingStack />;
+  return <ProductPageLayout product={product} />;
 }

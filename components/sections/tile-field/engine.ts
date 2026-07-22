@@ -1,27 +1,9 @@
 const TAU = Math.PI * 2;
 
-type Row = {
-  word: string;
-  font: (px: number) => string;
-  letterTrack: number;
-  fillFrac: number;
-  bright: boolean;
-};
-
-const ROWS: Row[] = [
-  {
-    word: "CampusOS",
-    font: (px) => `600 ${px}px ui-sans-serif, system-ui, Arial, sans-serif`,
-    letterTrack: -0.02,
-    fillFrac: 0.98,
-    bright: false,
-  },
-];
-
-const REST = "#ffffff";
-const BRAND_HUE = 0;
-const HOVER_HEX = "#fdf3df";
-const HOVER_RGB = "253,243,223";
+/** Black tiles on white — same field language, inverted palette. */
+const REST = "#000000";
+const HOVER_HEX = "#3a3a3a";
+const HOVER_RGB = "58,58,58";
 
 const MAXSZ = 1.18;
 const SPEED = 0.02;
@@ -36,11 +18,14 @@ function hash(x: number, y: number) {
   return r - Math.floor(r);
 }
 
-const HUE_STEPS = 24;
 const ALPHA_STEPS = 6;
 
 export type TileFieldOptions = Record<string, never>;
 
+/**
+ * Wavy tile band with the original pixel-field look + hover trail.
+ * Geometry is a soft horizontal wave; shading/interaction match the old text engine.
+ */
 export class TileField {
   private host: HTMLElement;
   private canvas: HTMLCanvasElement;
@@ -56,8 +41,6 @@ export class TileField {
   private n = 0;
   private px = new Float32Array(0);
   private py = new Float32Array(0);
-  private rowOf = new Uint8Array(0);
-  private hueSeed = new Float32Array(0);
   private spark = new Uint8Array(0);
   private lit = new Float32Array(0);
   private seed = new Float32Array(0);
@@ -71,10 +54,7 @@ export class TileField {
 
   private raf = 0;
 
-  private stepL = new Float32Array(HUE_STEPS);
-  private stepC = new Float32Array(HUE_STEPS);
-
-  constructor(host: HTMLElement, _opts: TileFieldOptions = {} as TileFieldOptions) {
+  constructor(host: HTMLElement, _opts: TileFieldOptions = {}) {
     this.host = host;
 
     this.canvas = document.createElement("canvas");
@@ -91,93 +71,75 @@ export class TileField {
   }
 
   resize() {
-    const stage = this.host;
     const canvas = this.canvas;
     const ctx = this.ctx;
 
-    const rect = stage.getBoundingClientRect();
+    const rect = this.host.getBoundingClientRect();
     this.viewW = rect.width;
     this.viewH = rect.height;
     this.dpr = Math.min(2, window.devicePixelRatio || 1);
+    // Same density as the letterform engine
     this.cell = Math.max(2, Math.round(this.viewW / 460));
     const cell = this.cell;
     const viewW = this.viewW;
     const viewH = this.viewH;
 
-    canvas.style.width = Math.round(viewW) + "px";
-    canvas.style.height = Math.round(viewH) + "px";
+    canvas.style.width = `${Math.round(viewW)}px`;
+    canvas.style.height = `${Math.round(viewH)}px`;
     canvas.width = Math.ceil(viewW * this.dpr);
     canvas.height = Math.ceil(viewH * this.dpr);
     ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
     ctx.imageSmoothingEnabled = false;
 
-    const splits = ROWS.length === 1 ? [1] : [0.62, 0.38];
-    const bandTops: number[] = [];
-    const bandHeights: number[] = [];
-    let acc = 0;
-    for (const frac of splits) {
-      bandTops.push(acc * viewH);
-      bandHeights.push(frac * viewH);
-      acc += frac;
-    }
-
     const xs: number[] = [];
     const ys: number[] = [];
-    const rw: number[] = [];
     const sp: number[] = [];
     const sd: number[] = [];
-    const hs: number[] = [];
 
-    ROWS.forEach((row, ri) => {
-      const bandTop = bandTops[ri];
-      const bandH = bandHeights[ri];
-      const sc = document.createElement("canvas");
-      sc.width = Math.max(1, Math.floor(viewW));
-      sc.height = Math.max(1, Math.floor(bandH));
-      const s = sc.getContext("2d")!;
-      const sls = s as CanvasRenderingContext2D & { letterSpacing?: string };
-      s.fillStyle = "#000";
-      s.textAlign = "center";
-      s.textBaseline = "middle";
+    const cols = Math.ceil(viewW / cell);
+    const rows = Math.ceil(viewH / cell);
+    const cy = viewH * 0.5;
 
-      let fs = bandH * 0.9;
-      sls.letterSpacing = `${row.letterTrack * fs}px`;
-      s.font = row.font(fs);
-      const measured = s.measureText(row.word).width || 1;
-      fs *= (viewW * row.fillFrac) / measured;
-      sls.letterSpacing = `${row.letterTrack * fs}px`;
-      s.font = row.font(fs);
-      s.fillText(row.word, viewW / 2, bandH / 2);
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const x = c * cell + cell / 2;
+        const y = r * cell + cell / 2;
+        const u = x / Math.max(viewW, 1);
 
-      const data = s.getImageData(0, 0, sc.width, sc.height).data;
-      const cols = Math.ceil(viewW / cell);
-      const rows = Math.ceil(bandH / cell);
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          const lx = Math.floor(c * cell + cell / 2);
-          const ly = Math.floor(r * cell + cell / 2);
-          if (lx >= sc.width || ly >= sc.height) continue;
-          const a = (data[(ly * sc.width + lx) * 4 + 3] ?? 0) / 255;
-          if (a <= 0.5) continue;
-          const gx = lx;
-          const gy = ly + bandTop;
-          xs.push(gx);
-          ys.push(gy);
-          rw.push(ri);
-          sp.push(hash(gx + 7, gy - 3) > 0.82 ? 1 : 0);
-          sd.push(hash(gx * 1.3, gy * 0.7));
-          hs.push(hash(gx * 0.7 + 11, gy * 1.9 - 5));
-        }
+        // Soft rolling band — Human Delta shape, letterform tile density
+        const waveY =
+          cy +
+          Math.sin(u * TAU * 1.1) * viewH * 0.11 +
+          Math.sin(u * TAU * 2.2 + 0.8) * viewH * 0.055 +
+          Math.sin(u * TAU * 0.5 + 2.0) * viewH * 0.07;
+
+        const thickness =
+          viewH * (0.16 + 0.1 * (0.5 + 0.5 * Math.sin(u * TAU * 1.35 + 0.35)));
+
+        const dy = Math.abs(y - waveY) / Math.max(thickness, 1);
+        if (dy >= 1) continue;
+
+        // Two density lobes pulled inward — right mass sits nearer center, not the edge
+        const radial = 1 - dy * dy;
+        const leftLobe = Math.exp(-(((u - 0.26) / 0.15) ** 2));
+        const rightLobe = Math.exp(-(((u - 0.66) / 0.15) ** 2));
+        const lengthwise = 0.18 + 0.82 * Math.max(leftLobe, rightLobe);
+        const cover = radial * lengthwise;
+        if (cover < 0.42) continue;
+        if (cover < 0.62 && hash(c * 1.9, r * 2.1) > (cover - 0.42) / 0.2) continue;
+
+        xs.push(x);
+        ys.push(y);
+        sp.push(hash(x + 7, y - 3) > 0.82 ? 1 : 0);
+        sd.push(hash(x * 1.3, y * 0.7));
       }
-    });
+    }
 
     this.n = xs.length;
     this.px = new Float32Array(xs);
     this.py = new Float32Array(ys);
-    this.rowOf = new Uint8Array(rw);
     this.spark = new Uint8Array(sp);
     this.seed = new Float32Array(sd);
-    this.hueSeed = new Float32Array(hs);
     this.lit = new Float32Array(this.n);
 
     if (this.reduced && !this.raf) this.renderStatic();
@@ -199,7 +161,7 @@ export class TileField {
 
   private frame = (t: number) => {
     const ctx = this.ctx;
-    const { viewW, viewH, cell, n, px, py, rowOf, hueSeed, spark, lit, seed } = this;
+    const { viewW, viewH, cell, n, px, py, spark, lit, seed } = this;
 
     ctx.clearRect(0, 0, viewW, viewH);
     this.time += SPEED;
@@ -228,11 +190,7 @@ export class TileField {
 
     const grayP = new Path2D();
     const litList: number[] = [];
-    const buckets: Path2D[][] = Array.from({ length: HUE_STEPS }, () =>
-      Array.from({ length: ALPHA_STEPS }, () => new Path2D()),
-    );
-
-    const hueOfStep = new Float32Array(HUE_STEPS);
+    const brightBuckets = Array.from({ length: ALPHA_STEPS }, () => new Path2D());
 
     for (let i = 0; i < n; i++) {
       const x = px[i];
@@ -270,42 +228,26 @@ export class TileField {
       grayP.rect(x - h, y - h, sz, sz);
 
       if (colorAmt > 0.04) {
-        let hue: number;
-        let chroma: number;
-        if (ROWS[rowOf[i]].bright) {
-          hue = (hueSeed[i] * 360 + time * 26) % 360;
-          chroma = 0;
-        } else {
-          hue = BRAND_HUE;
-          chroma = 0;
-        }
-        const hStep = ((Math.round((hue / 360) * HUE_STEPS) % HUE_STEPS) + HUE_STEPS) % HUE_STEPS;
-        const lightness = ROWS[rowOf[i]].bright ? 0.82 : 0.82;
-        hueOfStep[hStep] = hue;
         const as = Math.min(ALPHA_STEPS - 1, Math.floor(colorAmt * ALPHA_STEPS));
-        buckets[hStep][as].rect(x - h, y - h, sz, sz);
-
-        this.stepL[hStep] = lightness;
-        this.stepC[hStep] = chroma;
+        brightBuckets[as].rect(x - h, y - h, sz, sz);
       }
 
       if (lit[i] > 0.02) litList.push(i);
     }
 
+    // Rest field — same solid white pixels as before
     ctx.fillStyle = REST;
     ctx.fill(grayP);
 
-    for (let hsI = 0; hsI < HUE_STEPS; hsI++) {
-      const hue = hueOfStep[hsI];
-      for (let as = 0; as < ALPHA_STEPS; as++) {
-        const p = buckets[hsI][as];
-        ctx.globalAlpha = (as + 1) / ALPHA_STEPS;
-        ctx.fillStyle = `oklch(${this.stepL[hsI]} ${this.stepC[hsI]} ${hue})`;
-        ctx.fill(p);
-      }
+    // Ambient brightness wash (white, varying alpha) — replaces the old oklch pass
+    for (let as = 0; as < ALPHA_STEPS; as++) {
+      ctx.globalAlpha = ((as + 1) / ALPHA_STEPS) * 0.35;
+      ctx.fillStyle = REST;
+      ctx.fill(brightBuckets[as]);
     }
     ctx.globalAlpha = 1;
 
+    // Pointer trail — cream hover, identical to the letterform engine
     for (const i of litList) {
       const L = lit[i];
       const x = px[i];

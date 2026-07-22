@@ -1,13 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-// import Image from "next/image";
 import { gsap } from "gsap";
 
 // import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
-import { TrustedBy } from "@/components/sections/trusted-by";
-import { HeroControlRoom } from "@/components/sections/hero-control-room";
-import { TileField } from "@/components/sections/tile-field/engine";
+// import { TrustedBy } from "@/components/sections/trusted-by";
+// import { TileField } from "@/components/sections/tile-field/engine";
 import { TyperText } from "@/components/ui/typer/TyperText";
 
 export function HomeHero() {
@@ -15,7 +13,7 @@ export function HomeHero() {
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subheadRef = useRef<HTMLParagraphElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
-  const tileFieldHostRef = useRef<HTMLDivElement>(null);
+  // const tileFieldHostRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -94,70 +92,70 @@ export function HomeHero() {
     };
   }, []);
 
-  useEffect(() => {
-    const host = tileFieldHostRef.current;
-    if (!host) return;
-
-    const tileField = new TileField(host);
-    tileField.start();
-
-    const onResize = () => tileField.resize();
-    window.addEventListener("resize", onResize);
-
-    return () => {
-      window.removeEventListener("resize", onResize);
-      tileField.destroy();
-    };
-  }, []);
+  // useEffect(() => {
+  //   const host = tileFieldHostRef.current;
+  //   if (!host) return;
+  //
+  //   const tileField = new TileField(host);
+  //   tileField.start();
+  //
+  //   const onResize = () => tileField.resize();
+  //   window.addEventListener("resize", onResize);
+  //
+  //   return () => {
+  //     window.removeEventListener("resize", onResize);
+  //     tileField.destroy();
+  //   };
+  // }, []);
 
   return (
     <div
       ref={sectionRef}
-      className="relative flex min-h-[calc(100dvh-3.5rem)] w-full flex-col bg-black px-4 pt-8 pb-8 text-white sm:min-h-[calc(100dvh-4rem)] sm:px-6 sm:pb-10 lg:px-8"
+      className="relative flex min-h-[calc(100dvh-4rem)] w-full flex-col overflow-hidden bg-white px-4 pt-8 pb-8 text-black sm:min-h-[calc(100dvh-5rem)] sm:px-6 sm:pb-10 lg:px-8"
     >
-      <div className="mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 items-center gap-8 text-center lg:grid-cols-2 lg:gap-12">
-        <div className="relative flex min-h-80 w-full min-w-0 flex-col items-center justify-center">
-          <h1 className="sr-only">CampusOS</h1>
-          <div
-            ref={tileFieldHostRef}
-            aria-hidden
-            className="pointer-events-none relative h-40 w-full max-w-152 opacity-85"
-          />
-          {/*<h1 ref={headlineRef} className="relative z-10 w-fit max-w-full text-display text-foreground/35"> CampusOS
-          </h1>*/}
-          <p ref={subheadRef} className="mt-6 max-w-2xl text-lg leading-relaxed text-white/40">
+      {/* Centered hero stack — wave sits behind the copy like Human Delta */}
+      <div className="relative mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center">
+        {/* <div
+          ref={tileFieldHostRef}
+          aria-hidden
+          className="pointer-events-none absolute top-1/2 left-1/2 h-[min(48vh,440px)] w-screen -translate-x-1/2 -translate-y-1/2 opacity-90"
+        /> */}
+
+        <div className="relative z-10 flex w-full flex-col items-center text-center">
+          <h1
+            ref={headlineRef}
+            className="max-w-4xl text-5xl leading-[1.05] tracking-[-0.03em] text-black sm:text-6xl md:text-7xl"
+            style={{ fontFamily: '"Lucida Console", Monaco, "Courier New", monospace' }}
+          >
+            <span data-hero-word className="inline-block">
+              Blackboard
+            </span>
+          </h1>
+
+          <p
+            ref={subheadRef}
+            className="mt-5 max-w-xl leading-relaxed text-black/50 sm:mt-6 font-black sm:text-lg"
+          >
             <TyperText
               text="Less calls. Less spreadsheets. More control."
               fps={20}
               cycles={3}
               style={{
-                "--typer-fg": "#ffffff",
-                "--typer-bg": "#000000",
-                "--typer-accent": "#ff2e5e",
+                "--typer-fg": "rgba(0,0,0,0.55)",
+                "--typer-bg": "#ffffff",
+                "--typer-accent": "#b8b8b8",
                 "--typer-accent-ink": "#ffffff",
               }}
             />
           </p>
-          {/*<div ref={buttonRef} className="mt-6 flex items-center gap-3 sm:mt-8">
-            <NeumorphicButton href="/contact">Contact us</NeumorphicButton>
+
+          {/*<div ref={buttonRef} className="mt-8 flex items-center justify-center sm:mt-10">
+            <NeumorphicButton href="/contact">Contact</NeumorphicButton>
           </div>*/}
         </div>
-        <div className="hidden min-h-96 min-w-0 lg:block">
-          <HeroControlRoom />
-        </div>
-        {/* <div className="w-full max-w-90 justify-self-start overflow-hidden bg-card lg:max-w-85">
-          <Image
-            src="/calm-guy.jpg"
-            alt="Calm person with hands on face"
-            width={660}
-            height={641}
-            className="h-auto w-full object-cover"
-            preload
-            sizes="(max-width: 1024px) 360px, 340px"
-          />
-        </div> */}
       </div>
-      <TrustedBy className="mt-10 w-full shrink-0" />
+
+      {/*<TrustedBy className="relative z-10 mt-10 w-full shrink-0" />*/}
     </div>
   );
 }

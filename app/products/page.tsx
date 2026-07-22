@@ -21,7 +21,7 @@ const PRODUCT_OPTIONS = [
 export const metadata = createPageMetadata({
   title: "Products",
   description:
-    "Explore CampusOS products for billing, communication, attendance, and school growth.",
+    "Explore Blackboard products for billing, communication, attendance, and school growth.",
   path: "/products",
 });
 
