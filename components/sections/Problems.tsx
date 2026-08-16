@@ -1,132 +1,105 @@
 "use client";
 
-import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { cn } from "@/lib/utils";
-
-const headerGridClass = "grid grid-cols-4 gap-0";
-
-const gaps = [
+const PAIN_POINTS = [
   {
-    conflict: '"Fee paid in cash" vs "Still marked unpaid in Excel"',
-    sources: "Finance / Class teacher",
-    severity: "Critical" as const,
-    href: "/solutions/billing-infrastructure",
-    cta: "Learn how we fix billing",
+    value: "fees",
+    trigger: "fees stuck in spreadsheet hell",
   },
   {
-    conflict: '"Notice sent in WhatsApp group" vs "Parent never saw it"',
-    sources: "Admin / Parent inbox",
-    severity: "Warning" as const,
-    href: "/solutions/announcements",
-    cta: "See how parents actually get the message",
+    value: "comms",
+    trigger: "teach kids, then teach parents",
   },
   {
-    conflict: '"Timetable updated" vs "Substitute not notified"',
-    sources: "Office / Staff group",
-    severity: "Warning" as const,
-    href: "/solutions/announcements",
-    cta: "Learn how to notify every teacher",
-  },
-  {
-    conflict: '"Tuition due Friday" vs "Reminder sent Monday after deadline"',
-    sources: "Billing / Announcements",
-    severity: "Critical" as const,
-    href: "/solutions/billing-infrastructure",
-    cta: "Fix fee reminders before they're late",
+    value: "reports",
+    trigger: "daily reports, oh god",
   },
 ] as const;
 
-function SeverityBadge({ severity }: { severity: "Critical" | "Warning" }) {
-  return (
-    <span
-      className={
-        severity === "Critical"
-          ? "text-xs uppercase tracking-wide text-destructive"
-          : "text-xs uppercase tracking-wide text-muted-foreground"
-      }
-    >
-      {severity}
-    </span>
-  );
-}
-
-function GapCard({
-  conflict,
-  sources,
-  severity,
-  href,
-  cta,
-  borderRight,
-  borderBottom,
-}: {
-  conflict: string;
-  sources: string;
-  severity: "Critical" | "Warning";
-  href: string;
-  cta: string;
-  borderRight?: boolean;
-  borderBottom?: boolean;
-}) {
-  return (
-    <Tooltip trackCursorAxis="both">
-      <TooltipTrigger
-        render={
-          <Link
-            href={href}
-            className={cn(
-              "flex h-full flex-col justify-between p-8 transition-colors hover:bg-muted/40",
-              borderRight && "border-r border-border",
-              borderBottom && "border-b border-border",
-            )}
-          />
-        }
-      >
-        <p className="text-sm leading-relaxed">{conflict}</p>
-
-        <div className="mt-6 flex items-end justify-between gap-4">
-          <p className="text-xs text-muted-foreground">{sources}</p>
-          <SeverityBadge severity={severity} />
-        </div>
-      </TooltipTrigger>
-
-      <TooltipContent
-        side="top"
-        sideOffset={12}
-        hideArrow
-        className="pointer-events-none max-w-56 text-center"
-      >
-        {cta}
-      </TooltipContent>
-    </Tooltip>
-  );
-}
+const ROTATION_MS = 10000;
 
 export function Problems() {
+  const tabValues = useMemo(() => PAIN_POINTS.map((point) => point.value), []);
+  const [activeTab, setActiveTab] = useState<(typeof PAIN_POINTS)[number]["value"]>(tabValues[0]);
+  const [autoRotate, setAutoRotate] = useState(true);
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  useEffect(() => {
+    if (!autoRotate || prefersReducedMotion) return;
+
+    const timer = window.setInterval(() => {
+      setActiveTab((prev) => {
+        const nextIndex = (tabValues.indexOf(prev) + 1) % tabValues.length;
+        return tabValues[nextIndex];
+      });
+    }, ROTATION_MS);
+
+    return () => window.clearInterval(timer);
+  }, [autoRotate, prefersReducedMotion, tabValues]);
+
   return (
-    <section className="mt-24 flex w-full flex-col gap-8 self-stretch">
-      <div className={headerGridClass}>
-        <div />
-
-        <div className="flex items-end justify-start p-8 pt-0">
-          <h2 className="max-w-xs text-left text-5xl font-light tracking-tight font-heading leading-[1.05]">
-            See where schools fail
-          </h2>
+    <section className="section-band-white w-full self-stretch">
+      <Tabs
+        value={activeTab}
+        onValueChange={(value) => {
+          if (typeof value === "string") {
+            setAutoRotate(false);
+            setActiveTab(value as (typeof PAIN_POINTS)[number]["value"]);
+          }
+        }}
+        className="mx-auto grid min-h-[calc(100dvh-3.5rem)] w-full max-w-6xl grid-cols-1 content-center gap-10 px-4 py-12 sm:min-h-[calc(100dvh-4rem)] md:px-8 md:py-16 lg:grid-cols-2 lg:items-center lg:gap-14 lg:px-12"
+      >
+        <div className="space-y-8">
+          <div>
+            <p className="text-eyebrow">The problem</p>
+            <h2 className="mt-3 text-h2">run a school, not a circus</h2>
+          </div>
+          <TabsList className="grid h-auto grid-cols-1 gap-2 bg-transparent p-0">
+            {PAIN_POINTS.map((point) => (
+              <TabsTrigger
+                key={point.value}
+                value={point.value}
+                className="hover:cursor-pointer justify-start border border-border/70 bg-card p-4 text-left text-foreground shadow-[0_1px_0_0_rgba(15,23,42,0.04)] data-active:border-foreground data-active:bg-foreground data-active:text-background data-active:shadow-[0_10px_30px_-18px_rgba(0,0,0,0.45)] aria-selected:border-foreground aria-selected:bg-foreground aria-selected:text-background aria-selected:shadow-[0_10px_30px_-18px_rgba(0,0,0,0.45)]"
+              >
+                <p className="text-sm leading-relaxed text-inherit">{point.trigger}</p>
+              </TabsTrigger>
+            ))}
+          </TabsList>{" "}
         </div>
 
-        <div className="flex items-end justify-end p-8 pt-0">
-          <p className="max-w-xs text-right text-sm leading-relaxed text-muted-foreground">
-            One pass finds every gap — and the exact workflow that caused it.
-          </p>
+        <div className="relative min-h-105 overflow-hidden bg-card p-6 md:min-h-115 md:p-8">
+          <TabsContent value="fees" className="mt-0 flex h-full items-center justify-center">
+            {/*<SpreadsheetMock />*/}
+            <Image
+              src="/spreadsheets-mock.svg"
+              alt="Spreadsheet mockup"
+              width={1056}
+              height={500}
+              className="h-120 w-auto max-w-full object-contain object-center md:h-136"
+              unoptimized
+            />
+          </TabsContent>
+          <TabsContent value="comms" className="mt-0">
+            {/*<WhatsAppMock />*/}
+            <Image
+              src="/wa-mock-2.svg"
+              alt="WhatsApp mockup"
+              width={786}
+              height={1141}
+              className="h-120 w-auto max-w-full object-contain object-center md:h-136"
+              unoptimized
+            />
+          </TabsContent>
+          <TabsContent value="reports" className="mt-0">
+            {/*<ScatteredToolsMock />*/}
+            scattered tools mock haha
+          </TabsContent>
         </div>
-
-        <div />
-      </div>
+      </Tabs>
     </section>
   );
 }

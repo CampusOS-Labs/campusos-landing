@@ -1,3 +1,5 @@
+import "server-only";
+
 import { Post } from "@/interfaces/post";
 import fs from "fs";
 import matter from "gray-matter";
@@ -24,7 +26,7 @@ export const getPostBySlug = cache((slug: string): Post | null => {
   return readPostFromDisk(slug);
 });
 
-export function getPostSlugs() {
+function getPostSlugs() {
   if (!fs.existsSync(postsDirectory)) {
     return [];
   }
@@ -37,6 +39,7 @@ export const getAllPosts = cache((): Post[] => {
   const posts = slugs
     .map((slug) => getPostBySlug(slug.replace(/\.md$/, "")))
     .filter((post): post is Post => post !== null)
+    .filter((post) => post.published !== false)
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
 
   return posts;

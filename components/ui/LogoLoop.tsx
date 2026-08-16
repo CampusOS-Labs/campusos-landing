@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
+import Image from "next/image";
 import {
   useCallback,
   useEffect,
@@ -12,8 +12,9 @@ import {
   type Key,
   type ReactNode,
   type RefObject,
-} from 'react';
-import './LogoLoop.css';
+} from "react";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+import "./LogoLoop.css";
 
 const ANIMATION_CONFIG = { SMOOTH_TAU: 0.25, MIN_COPIES: 2, COPY_HEADROOM: 2 };
 
@@ -40,14 +41,13 @@ export type LogoItem = NodeLogoItem | ImageLogoItem;
 type LogoLoopProps = {
   logos: LogoItem[];
   speed?: number;
-  direction?: 'left' | 'right' | 'up' | 'down';
+  direction?: "left" | "right" | "up" | "down";
   width?: number | string;
   logoHeight?: number;
   gap?: number;
   pauseOnHover?: boolean;
   hoverSpeed?: number;
   fadeOut?: boolean;
-  fadeOutColor?: string;
   scaleOnHover?: boolean;
   renderItem?: (item: LogoItem, key: Key) => ReactNode;
   ariaLabel?: string;
@@ -56,7 +56,7 @@ type LogoLoopProps = {
 };
 
 const toCssLength = (value: number | string | undefined) =>
-  typeof value === 'number' ? `${value}px` : (value ?? undefined);
+  typeof value === "number" ? `${value}px` : (value ?? undefined);
 
 const useResizeObserver = (
   callback: () => void,
@@ -66,9 +66,9 @@ const useResizeObserver = (
   useEffect(() => {
     if (!window.ResizeObserver) {
       const handleResize = () => callback();
-      window.addEventListener('resize', handleResize);
+      window.addEventListener("resize", handleResize);
       callback();
-      return () => window.removeEventListener('resize', handleResize);
+      return () => window.removeEventListener("resize", handleResize);
     }
     const observers = elements.map((ref) => {
       if (!ref.current) return null;
@@ -80,7 +80,7 @@ const useResizeObserver = (
     return () => {
       observers.forEach((observer) => observer?.disconnect());
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-doctor/exhaustive-deps
   }, [callback, elements, ...dependencies]);
 };
 
@@ -90,7 +90,7 @@ const useImageLoader = (
   dependencies: unknown[],
 ) => {
   useEffect(() => {
-    const images = seqRef.current?.querySelectorAll('img') ?? [];
+    const images = seqRef.current?.querySelectorAll("img") ?? [];
     if (images.length === 0) {
       onLoad();
       return;
@@ -104,17 +104,17 @@ const useImageLoader = (
       if (img.complete) {
         handleImageLoad();
       } else {
-        img.addEventListener('load', handleImageLoad, { once: true });
-        img.addEventListener('error', handleImageLoad, { once: true });
+        img.addEventListener("load", handleImageLoad, { once: true });
+        img.addEventListener("error", handleImageLoad, { once: true });
       }
     });
     return () => {
       images.forEach((img) => {
-        img.removeEventListener('load', handleImageLoad);
-        img.removeEventListener('error', handleImageLoad);
+        img.removeEventListener("load", handleImageLoad);
+        img.removeEventListener("error", handleImageLoad);
       });
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-doctor/exhaustive-deps
   }, [onLoad, seqRef, ...dependencies]);
 };
 
@@ -126,6 +126,7 @@ const useAnimationLoop = (
   isHovered: boolean,
   hoverSpeed: number | undefined,
   isVertical: boolean,
+  prefersReducedMotion: boolean,
 ) => {
   const rafRef = useRef<number | null>(null);
   const lastTimestampRef = useRef<number | null>(null);
@@ -137,6 +138,11 @@ const useAnimationLoop = (
     if (!track) return;
 
     const seqSize = isVertical ? seqHeight : seqWidth;
+
+    if (prefersReducedMotion) {
+      track.style.transform = "translate3d(0, 0, 0)";
+      return;
+    }
 
     if (seqSize > 0) {
       offsetRef.current = ((offsetRef.current % seqSize) + seqSize) % seqSize;
@@ -182,23 +188,31 @@ const useAnimationLoop = (
       }
       lastTimestampRef.current = null;
     };
-  }, [targetVelocity, seqWidth, seqHeight, isHovered, hoverSpeed, isVertical, trackRef]);
+  }, [
+    targetVelocity,
+    seqWidth,
+    seqHeight,
+    isHovered,
+    hoverSpeed,
+    isVertical,
+    prefersReducedMotion,
+    trackRef,
+  ]);
 };
 
 export const LogoLoop = memo(function LogoLoop({
   logos,
   speed = 120,
-  direction = 'left',
-  width = '100%',
+  direction = "left",
+  width = "100%",
   logoHeight = 28,
   gap = 32,
   pauseOnHover,
   hoverSpeed,
   fadeOut = false,
-  fadeOutColor,
   scaleOnHover = false,
   renderItem,
-  ariaLabel = 'Partner logos',
+  ariaLabel = "Partner logos",
   className,
   style,
 }: LogoLoopProps) {
@@ -210,6 +224,7 @@ export const LogoLoop = memo(function LogoLoop({
   const [seqHeight, setSeqHeight] = useState(0);
   const [copyCount, setCopyCount] = useState(ANIMATION_CONFIG.MIN_COPIES);
   const [isHovered, setIsHovered] = useState(false);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   const effectiveHoverSpeed = useMemo(() => {
     if (hoverSpeed !== undefined) return hoverSpeed;
@@ -218,15 +233,15 @@ export const LogoLoop = memo(function LogoLoop({
     return 0;
   }, [hoverSpeed, pauseOnHover]);
 
-  const isVertical = direction === 'up' || direction === 'down';
+  const isVertical = direction === "up" || direction === "down";
 
   const targetVelocity = useMemo(() => {
     const magnitude = Math.abs(speed);
     let directionMultiplier: number;
     if (isVertical) {
-      directionMultiplier = direction === 'up' ? 1 : -1;
+      directionMultiplier = direction === "up" ? 1 : -1;
     } else {
-      directionMultiplier = direction === 'left' ? 1 : -1;
+      directionMultiplier = direction === "left" ? 1 : -1;
     }
     const speedMultiplier = speed < 0 ? -1 : 1;
     return magnitude * directionMultiplier * speedMultiplier;
@@ -253,7 +268,8 @@ export const LogoLoop = memo(function LogoLoop({
       }
     } else if (sequenceWidth > 0) {
       setSeqWidth(Math.ceil(sequenceWidth));
-      const copiesNeeded = Math.ceil(containerWidth / sequenceWidth) + ANIMATION_CONFIG.COPY_HEADROOM;
+      const copiesNeeded =
+        Math.ceil(containerWidth / sequenceWidth) + ANIMATION_CONFIG.COPY_HEADROOM;
       setCopyCount(Math.max(ANIMATION_CONFIG.MIN_COPIES, copiesNeeded));
     }
   }, [isVertical]);
@@ -270,29 +286,29 @@ export const LogoLoop = memo(function LogoLoop({
     isHovered,
     effectiveHoverSpeed,
     isVertical,
+    prefersReducedMotion,
   );
 
   const cssVariables = useMemo(
     () =>
       ({
-        '--logoloop-gap': `${gap}px`,
-        '--logoloop-logoHeight': `${logoHeight}px`,
-        ...(fadeOutColor && { '--logoloop-fadeColor': fadeOutColor }),
+        "--logoloop-gap": `${gap}px`,
+        "--logoloop-logoHeight": `${logoHeight}px`,
       }) as CSSProperties,
-    [gap, logoHeight, fadeOutColor],
+    [gap, logoHeight],
   );
 
   const rootClassName = useMemo(
     () =>
       [
-        'logoloop',
-        isVertical ? 'logoloop--vertical' : 'logoloop--horizontal',
-        fadeOut && 'logoloop--fade',
-        scaleOnHover && 'logoloop--scale-hover',
+        "logoloop",
+        isVertical ? "logoloop--vertical" : "logoloop--horizontal",
+        fadeOut && "logoloop--fade",
+        scaleOnHover && "logoloop--scale-hover",
         className,
       ]
         .filter(Boolean)
-        .join(' '),
+        .join(" "),
     [isVertical, fadeOut, scaleOnHover, className],
   );
 
@@ -308,12 +324,12 @@ export const LogoLoop = memo(function LogoLoop({
     (item: LogoItem, key: Key) => {
       if (renderItem) {
         return (
-          <li className="logoloop__item" key={key} role="listitem">
+          <li className="logoloop__item" key={key}>
             {renderItem(item, key)}
           </li>
         );
       }
-      const isNodeItem = 'node' in item;
+      const isNodeItem = "node" in item;
       const content = isNodeItem ? (
         <span className="logoloop__node" aria-hidden={!!item.href && !item.ariaLabel}>
           {item.node}
@@ -321,7 +337,7 @@ export const LogoLoop = memo(function LogoLoop({
       ) : (
         <Image
           src={item.src}
-          alt={item.alt ?? ''}
+          alt={item.alt ?? ""}
           width={item.width ?? logoHeight}
           height={item.height ?? logoHeight}
           title={item.title}
@@ -329,14 +345,12 @@ export const LogoLoop = memo(function LogoLoop({
           className="logoloop__item_img"
         />
       );
-      const itemAriaLabel = isNodeItem
-        ? (item.ariaLabel ?? item.title)
-        : (item.alt ?? item.title);
+      const itemAriaLabel = isNodeItem ? (item.ariaLabel ?? item.title) : (item.alt ?? item.title);
       const itemContent = item.href ? (
         <a
           className="logoloop__link"
           href={item.href}
-          aria-label={itemAriaLabel || 'logo link'}
+          aria-label={itemAriaLabel || "logo link"}
           target="_blank"
           rel="noreferrer noopener"
         >
@@ -346,7 +360,7 @@ export const LogoLoop = memo(function LogoLoop({
         content
       );
       return (
-        <li className="logoloop__item" key={key} role="listitem">
+        <li className="logoloop__item" key={key}>
           {itemContent}
         </li>
       );
@@ -360,7 +374,6 @@ export const LogoLoop = memo(function LogoLoop({
         <ul
           className="logoloop__list"
           key={`copy-${copyIndex}`}
-          role="list"
           aria-hidden={copyIndex > 0}
           ref={copyIndex === 0 ? seqRef : undefined}
         >
@@ -373,10 +386,10 @@ export const LogoLoop = memo(function LogoLoop({
   const containerStyle = useMemo(
     () => ({
       width: isVertical
-        ? toCssLength(width) === '100%'
+        ? toCssLength(width) === "100%"
           ? undefined
           : toCssLength(width)
-        : (toCssLength(width) ?? '100%'),
+        : (toCssLength(width) ?? "100%"),
       ...cssVariables,
       ...style,
     }),
@@ -384,11 +397,10 @@ export const LogoLoop = memo(function LogoLoop({
   );
 
   return (
-    <div
+    <section
       ref={containerRef}
       className={rootClassName}
       style={containerStyle}
-      role="region"
       aria-label={ariaLabel}
     >
       <div
@@ -399,10 +411,10 @@ export const LogoLoop = memo(function LogoLoop({
       >
         {logoLists}
       </div>
-    </div>
+    </section>
   );
 });
 
-LogoLoop.displayName = 'LogoLoop';
+LogoLoop.displayName = "LogoLoop";
 
 export default LogoLoop;

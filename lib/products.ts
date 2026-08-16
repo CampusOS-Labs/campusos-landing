@@ -1,0 +1,375 @@
+export type ProductStat = {
+  value: string;
+  label: string;
+  detail: string;
+};
+
+export type ProductDefinition = {
+  id: string;
+  label: string;
+  title: string;
+  /** Short line like "our billing infrastructure" — shown under the product name */
+  role: string;
+  headline: string;
+  description: string;
+  href: string;
+  imageSrc?: string;
+  stats: ProductStat[];
+  useCases: string[];
+  testimonial: {
+    quote: string;
+    name: string;
+    role: string;
+    school: string;
+  };
+  outcomes: string[];
+};
+
+export const PRODUCTS: ProductDefinition[] = [
+  {
+    id: "billing-infrastructure",
+    label: "Billy",
+    title: "Billy",
+    role: "our billing infrastructure",
+    headline: "Fee collection that reconciles itself",
+    description: "stop chasing parents, reconcile payments faster than ever before",
+    href: "/products/billing-infrastructure",
+    stats: [
+      {
+        value: "97.2%",
+        label: "On-time payments",
+        detail: "Timely reminders keep collections ahead of term-end crunch.",
+      },
+      {
+        value: "14,283",
+        label: "Students served",
+        detail: "Fee records tied to real students — no duplicate rows.",
+      },
+      {
+        value: "₹2.4 Cr",
+        label: "Monthly processed",
+        detail: "One ledger your finance team can trust.",
+      },
+    ],
+    useCases: [
+      "Send fee reminders with payment links on WhatsApp",
+      "Track partial payments and overdue balances in one view",
+      "Export reconciled data to your accounting software",
+    ],
+    testimonial: {
+      quote:
+        "We stopped living in three different spreadsheets. Billing finally matches what parents actually paid.",
+      name: "School admin",
+      role: "Operations lead",
+      school: "Kidzee Vadgaon Sheri",
+    },
+    outcomes: [
+      "Every transaction tracked in real time with no duplicate records.",
+      "Flexible payment plans that match how your school actually collects fees.",
+      "Seamless export to existing accounting tools — no manual reconciliation.",
+    ],
+  },
+  {
+    id: "announcements",
+    label: "Relay",
+    title: "Relay",
+    role: "our announcements product",
+    headline: "The fastest way to reach every parent",
+    description: "send personalized whastapp messages to thousands in a single click.",
+    href: "/products/announcements",
+    // imageSrc: "/announcements-header.png",
+    stats: [
+      {
+        value: "98.4%",
+        label: "Parent read rate",
+        detail: "Direct messages get opened — not lost in group chat.",
+      },
+      {
+        value: "< 2 min",
+        label: "School-wide broadcast",
+        detail: "One template reaches every parent without manual forwarding.",
+      },
+      {
+        value: "72%",
+        label: "Fewer repeat inquiries",
+        detail: "Clear notices cut follow-up questions teachers answer weekly.",
+      },
+    ],
+    useCases: [
+      "PTM reminders and holiday notices to all parents at once",
+      "Fee payment reminders with links for unpaid families",
+      "Share activity photos and documents from one dashboard",
+    ],
+    testimonial: {
+      quote:
+        "Parents actually read notices now. We send once and stop answering the same question ten times.",
+      name: "Centre head",
+      role: "School leadership",
+      school: "Kidzee Mundhwa",
+    },
+    outcomes: [
+      "We connect to the admin's whatsapp acccounts",
+      "Create or use pre-existing templates to send hundreds if not thousands of messages",
+      "Add multiple accounts and send to multiple parents at once while keeping it personalized",
+    ],
+  },
+  {
+    id: "attendance",
+    label: "Shift",
+    title: "Shift",
+    role: "our attendance product",
+    headline: "See who's on campus in real time",
+    description: "track any attendance in real time, all u need is a phone",
+    href: "/products/attendance",
+    stats: [
+      {
+        value: "< 30s",
+        label: "Teacher check-in",
+        detail: "GPS-verified check-in from the teacher's phone.",
+      },
+      {
+        value: "100%",
+        label: "Class coverage",
+        detail: "Every section accounted for before the first period.",
+      },
+      {
+        value: "Live",
+        label: "Dashboard updates",
+        detail: "Office sees arrivals as they happen — no paper registers.",
+      },
+    ],
+    useCases: [
+      "Morning check-in with GPS verification for each teacher",
+      "Live dashboard for office staff during arrival windows",
+      "Export attendance records for compliance and payroll",
+    ],
+    testimonial: {
+      quote:
+        "We know who's on campus before the bell rings. No more chasing paper registers at 9am.",
+      name: "Operations team",
+      role: "Administration",
+      school: "Kidzee Mundhwa",
+    },
+    outcomes: [
+      "Teachers check in from their phone — no shared kiosk or fingerprint machine.",
+      "GPS verification confirms presence on campus.",
+      "Live dashboard replaces end-of-day register reconciliation.",
+    ],
+  },
+  // {
+  //   id: "socials",
+  //   label: "Social Media",
+  //   title: "Social Media",
+  //   headline: "Your school's story, published consistently",
+  //   description: "scale your socials with ease. we know what works, so lets get you out there",
+  //   href: "/products/socials",
+  //   stats: [
+  //     {
+  //       value: "3×",
+  //       label: "Posting consistency",
+  //       detail: "Scheduled content keeps your school's feed active.",
+  //     },
+  //     {
+  //       value: "Weekly",
+  //       label: "Content calendar",
+  //       detail: "Plan events, admissions, and milestones in one place.",
+  //     },
+  //     {
+  //       value: "1",
+  //       label: "Brand voice",
+  //       detail: "Templates keep every post on-message.",
+  //     },
+  //   ],
+  //   useCases: [
+  //     "Schedule admissions season posts across Instagram and Facebook",
+  //     "Repurpose event photos from announcements into social content",
+  //     "Track engagement without switching between five tabs",
+  //   ],
+  //   testimonial: {
+  //     quote:
+  //       "Our Instagram finally looks like a real school — not a ghost account updated once a term.",
+  //     name: "Marketing coordinator",
+  //     role: "Outreach",
+  //     school: "Partner school",
+  //   },
+  //   outcomes: [
+  //     "Consistent posting cadence without hiring a full-time social manager.",
+  //     "Reuse content from school events and announcements.",
+  //     "One place to plan, draft, and publish.",
+  //   ],
+  // },
+];
+
+export const HOMEPAGE_PRODUCTS = PRODUCTS.filter((p) =>
+  ["billing-infrastructure", "announcements", "attendance"].includes(p.id),
+);
+
+export function getProductById(id: string): ProductDefinition | undefined {
+  return PRODUCTS.find((p) => p.id === id);
+}
+
+export const HOW_IT_WORKS_STEPS = [
+  {
+    step: "01",
+    title: "Tell us where operations break",
+    description: "We start with your current workflow and identify the handoffs that keep failing.",
+  },
+  {
+    step: "02",
+    title: "We tailor the system to your school",
+    description:
+      "We configure what you need now, so your team gets useful workflows instead of bloated software.",
+  },
+  {
+    step: "03",
+    title: "We launch it on campus with your team",
+    description:
+      "We handle setup and onboarding on-site so staff can run it confidently from day one.",
+  },
+] as const;
+
+export type HowItWorksStep = (typeof HOW_IT_WORKS_STEPS)[number];
+
+export type Capability = {
+  title: string;
+  description: string;
+  imageCaption?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  visual?: "payment-stack" | "whatsapp-comparison";
+  comparisonImages?: CapabilityComparisonImage[];
+};
+
+export type CapabilityComparisonImage = {
+  src: string;
+  alt: string;
+};
+
+export const CAPABILITIES: Capability[] = [
+  {
+    title: "WhatsApp-native delivery",
+    description:
+      "Parents get a direct message — not a group chat where the notice that matters scrolls away under a hundred good-mornings. Read receipts tell you who saw it before you chase anyone down.",
+    imageCaption: "A fee notice, delivered direct and read — receipt and all.",
+    visual: "whatsapp-comparison",
+  },
+  {
+    title: "Fee reconciliation",
+    description:
+      "Payment links, partial payments, and overdue flags in one ledger. Your finance team stops reconciling three spreadsheets at term end.",
+  },
+  {
+    title: "Broadcast templates",
+    description:
+      "PTM reminders, holidays, and fee notices — send in seconds. Pick a template, choose your audience, and reach every parent without manual forwarding.",
+  },
+  {
+    title: "Integrates with your stack",
+    description:
+      "Razorpay, UPI, WhatsApp Business — connect what you already have. No rip-and-replace ERP project to get one workflow working.",
+    visual: "payment-stack",
+  },
+];
+
+export type PersonaDefinition = {
+  id: string;
+  label: string;
+  href: string;
+  headline: string;
+  subhead: string;
+  useCases: string[];
+};
+
+export const PERSONAS: PersonaDefinition[] = [
+  {
+    id: "owners",
+    label: "School owners",
+    href: "/for-owners",
+    headline: "See every rupee and every parent message in one place",
+    subhead:
+      "Billing, announcements, and attendance — without three spreadsheets and a WhatsApp group maze.",
+    useCases: [
+      "Track fee collection and outstanding balances in real time",
+      "Confirm parent notices are actually being read",
+      "Know who's on campus before the school day starts",
+    ],
+  },
+  {
+    id: "admins",
+    label: "Office admins",
+    href: "/for-admins",
+    headline: "Stop copying contacts into WhatsApp groups",
+    subhead:
+      "Sync parents once, send notices in minutes, and export records without manual cleanup.",
+    useCases: [
+      "Broadcast PTM and holiday notices to every parent",
+      "Send fee reminders with payment links to unpaid families",
+      "Export attendance and billing reports for compliance",
+    ],
+  },
+  {
+    id: "teachers",
+    label: "Teachers",
+    href: "/for-teachers",
+    headline: "Check in on your phone. Done.",
+    subhead: "GPS-verified attendance from your pocket — no shared kiosk, no paper register.",
+    useCases: [
+      "Morning check-in in under 30 seconds",
+      "Send quick class updates without chasing admin",
+      "Focus on teaching — not copying phone numbers",
+    ],
+  },
+];
+
+export function getPersonaById(id: string): PersonaDefinition | undefined {
+  return PERSONAS.find((p) => p.id === id);
+}
+
+export const WALL_OF_LOVE = [
+  {
+    quote:
+      "We stopped living in three different spreadsheets. Billing finally matches what parents actually paid.",
+    name: "Operations lead",
+    school: "Kidzee Vadgaon Sheri",
+  },
+  {
+    quote:
+      "Parents actually read notices now. We send once and stop answering the same question ten times.",
+    name: "Centre head",
+    school: "Kidzee Mundhwa",
+  },
+  {
+    quote: "We know who's on campus before the bell rings. No more chasing paper registers at 9am.",
+    name: "Administration",
+    school: "Kidzee Mundhwa",
+  },
+  {
+    quote:
+      "Blackboard is the one ops tool we actually kept — because it fixed real workflows, not imaginary ones.",
+    name: "School leadership",
+    school: "Partner school",
+  },
+];
+
+export const PRODUCT_FAQ = [
+  {
+    question: "How long does setup take?",
+    answer:
+      "A few hours, no really. We show up to your school, help you migrate your data and set everything up.",
+  },
+  {
+    question: "Do parents need to install anything?",
+    answer:
+      "No. Announcements and payment links arrive on WhatsApp — the app parents already use every day.",
+  },
+  {
+    question: "Can we start with one workflow?",
+    answer:
+      "Yes. Most schools start with announcements or billing, then add attendance when the first workflow is running smoothly.",
+  },
+  {
+    question: "What if we already use an ERP?",
+    answer:
+      "Blackboard isn't another 200-feature ERP. We fix the one workflow that's breaking — and export data to what you already have.",
+  },
+];

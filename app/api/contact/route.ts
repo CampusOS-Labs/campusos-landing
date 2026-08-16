@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 
 import { createContactInquiry } from "@/lib/contact-inquiries";
 
+export const runtime = "nodejs";
+
 type ContactBody = {
   name?: string;
   schoolName?: string;
@@ -27,10 +29,7 @@ export async function POST(request: Request) {
   const message = String(body.message ?? "").trim();
 
   if (!name || !schoolName || !email || !message) {
-    return NextResponse.json(
-      { error: "All fields are required" },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: "All fields are required" }, { status: 400 });
   }
 
   if (!isValidEmail(email)) {

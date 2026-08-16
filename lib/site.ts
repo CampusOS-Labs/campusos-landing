@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 
-export const SITE_NAME = "CampusOS";
-export const SITE_TAGLINE = "Campus Operating System";
+export const SITE_NAME = "Blackboard";
+export const SITE_TAGLINE = "school infrastructure";
 export const SITE_DESCRIPTION =
-  "School infrastructure for every workflow — billing, announcements, and operations that stop living in spreadsheets.";
-export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://usecampusos.vercel.app";
+  "Billy, Relay, and Shift — billing, announcements, and attendance that work in production. Less calls. Less spreadsheets. More control.";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://usecampusos.vercel.app";
 
 type PageMetadataOptions = {
   title: string;

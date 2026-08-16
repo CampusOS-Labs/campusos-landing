@@ -3,7 +3,7 @@
 
   --logoloop-gap: 32px;
   --logoloop-logoHeight: 28px;
-  --logoloop-fadeColorAuto: #ffffff;
+  --logoloop-fadeWidth: clamp(24px, 8%, 120px);
 }
 
 .logoloop--vertical {
@@ -14,12 +14,6 @@
 .logoloop--scale-hover {
   padding-top: calc(var(--logoloop-logoHeight) * 0.1);
   padding-bottom: calc(var(--logoloop-logoHeight) * 0.1);
-}
-
-@media (prefers-color-scheme: dark) {
-  .logoloop {
-    --logoloop-fadeColorAuto: #0b0b0b;
-  }
 }
 
 .logoloop__track {
@@ -101,7 +95,7 @@
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: 0;
   transition: opacity 0.2s ease;
 }
 
@@ -114,60 +108,23 @@
   outline-offset: 2px;
 }
 
-.logoloop--fade::before,
-.logoloop--fade::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: clamp(24px, 8%, 120px);
-  pointer-events: none;
-  z-index: 10;
-}
-
-.logoloop--fade::before {
-  left: 0;
-  background: linear-gradient(
+.logoloop--fade {
+  mask-image: linear-gradient(
     to right,
-    var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
-    rgba(0, 0, 0, 0) 100%
+    transparent,
+    black var(--logoloop-fadeWidth),
+    black calc(100% - var(--logoloop-fadeWidth)),
+    transparent
   );
 }
 
-.logoloop--fade::after {
-  right: 0;
-  background: linear-gradient(
-    to left,
-    var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
-}
-
-.logoloop--vertical.logoloop--fade::before,
-.logoloop--vertical.logoloop--fade::after {
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: clamp(24px, 8%, 120px);
-}
-
-.logoloop--vertical.logoloop--fade::before {
-  top: 0;
-  bottom: auto;
-  background: linear-gradient(
+.logoloop--vertical.logoloop--fade {
+  mask-image: linear-gradient(
     to bottom,
-    var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
-}
-
-.logoloop--vertical.logoloop--fade::after {
-  bottom: 0;
-  top: auto;
-  background: linear-gradient(
-    to top,
-    var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
-    rgba(0, 0, 0, 0) 100%
+    transparent,
+    black var(--logoloop-fadeWidth),
+    black calc(100% - var(--logoloop-fadeWidth)),
+    transparent
   );
 }
 

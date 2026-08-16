@@ -1,0 +1,36 @@
+import { CaseStudyPreview } from "@/components/case-studies/case-study-preview";
+import { getAllStories } from "@/lib/stories";
+import { createPageMetadata } from "@/lib/site";
+
+export const metadata = createPageMetadata({
+  title: "Case Studies",
+  description: "Real schools fixing real workflows — one at a time.",
+  path: "/case-studies",
+});
+export default function CaseStudies() {
+  const allStories = getAllStories();
+
+  return (
+    <main className="flex flex-1 flex-col items-center px-4 pt-24 pb-16 sm:px-6 sm:pt-32 sm:pb-24">
+      <h1 className="max-w-3xl text-center text-display">Case Studies</h1>
+      <p className="mt-4 max-w-xl text-center text-lead">
+        Real schools fixing real workflows, one at a time.
+      </p>
+      <div className="mt-10 w-full max-w-2xl space-y-12 sm:mt-16">
+        {allStories.length > 0 ? (
+          allStories.map((stories) => (
+            <CaseStudyPreview
+              key={stories.slug}
+              title={stories.title}
+              date={stories.date}
+              excerpt={stories.excerpt}
+              slug={stories.slug}
+            />
+          ))
+        ) : (
+          <p className="text-muted-foreground text-center">No case studies yet. Check back soon.</p>
+        )}
+      </div>
+    </main>
+  );
+}

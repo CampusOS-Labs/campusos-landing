@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
+
 import { getAllPosts } from "@/lib/api";
-import { getAllCaseStudies } from "@/lib/case-studies";
+import { getAllCaseStudies } from "@/lib/stories";
+import { PERSONAS, PRODUCTS } from "@/lib/products";
 import { SITE_URL } from "@/lib/site";
 
 const staticRoutes = [
@@ -8,29 +10,33 @@ const staticRoutes = [
   "/blogs",
   "/case-studies",
   "/contact",
+  "/jobs",
   "/manifesto",
+  "/products",
   "/privacy",
-  "/cookies",
-  "/solutions/billing-infrastructure",
-  "/solutions/announcements",
-  "/solutions/socials",
+  "/values",
+  "/team",
+  ...PRODUCTS.map((p) => p.href),
+  ...PERSONAS.map((p) => p.href),
 ];
+
+const absoluteUrl = (path: string) => new URL(path, SITE_URL).toString();
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   const staticEntries = staticRoutes.map((path) => ({
-    url: `${SITE_URL}${path}`,
+    url: absoluteUrl(path),
     lastModified: now,
   }));
 
   const blogEntries = getAllPosts().map((post) => ({
-    url: `${SITE_URL}/blogs/${post.slug}`,
+    url: absoluteUrl(`/blogs/${post.slug}`),
     lastModified: new Date(post.date),
   }));
 
   const caseStudyEntries = getAllCaseStudies().map((caseStudy) => ({
-    url: `${SITE_URL}/case-studies/${caseStudy.slug}`,
+    url: absoluteUrl(`/case-studies/${caseStudy.slug}`),
     lastModified: new Date(caseStudy.date),
   }));
 

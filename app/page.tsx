@@ -1,35 +1,29 @@
-import { NeumorphicButton } from "@/components/ui/NeumorphicButton";
-import { TrustedBy } from "@/components/sections/trusted-by";
-// import { CoreLoop } from "@/components/sections/CoreLoop";
-import { CoreLoop2 } from "@/components/sections/CoreLoop2";
-import { CustomerStories } from "@/components/sections/CustomerStories";
-import { Problems } from "@/components/sections/Problems";
+import type { Metadata } from "next";
+import { HomeHero } from "@/components/sections/home-hero";
 import { createPageMetadata } from "@/lib/site";
+// import { Problems } from "@/components/sections/Problems";
+import { Whatwedo } from "@/components/sections/Whatwedo";
+import { Support } from "@/components/sections/Support";
+import { Validation } from "@/components/sections/Validation";
+// import { Solutions } from "@/components/sections/Solutions";
 
-export const metadata = createPageMetadata({
-  title: "School Infrastructure for Every Workflow",
+export const metadata: Metadata = createPageMetadata({
+  title: "Blackboard — school infrastructure",
   description:
-    "We fix only breaking operations, so your team stops living in spreadsheets.",
+    "Billy, Relay, and Shift — billing, announcements, and attendance that work in production. Less calls. Less spreadsheets. More control.",
   path: "/",
 });
+
 export default function Home() {
   return (
-    <main className="flex-1 flex flex-col items-center pt-32">
-      <h1 className="text-6xl font-light tracking-tight text-center max-w-3xl font-heading leading-[1.05]">
-        School Infrastructure<br />
-        for Every Workflow
-      </h1>
-      <p className="mt-4 text-center text-lg text-muted-foreground max-w-sm">
-We fix only breaking operations, so your team stops living in spreadsheets.
-      </p>
-      <NeumorphicButton href="/contact" className="mt-8">
-        Contact us
-      </NeumorphicButton>
-      <TrustedBy />
-      <CoreLoop2 />
-      {/*<CoreLoop />*/}
-      {/*<Problems />*/}
-      <CustomerStories />
+    <main className="flex flex-1 flex-col items-center">
+      <HomeHero />
+      <Whatwedo />
+      <Support />
+      <Validation />
+      {/*<Problems />
+      <Solutions />*/}
+      {/*<CustomerStories />*/}
     </main>
   );
 }
